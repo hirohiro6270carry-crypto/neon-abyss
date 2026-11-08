@@ -18,3 +18,13 @@ Ver.2.6.0 検査項目：
 5. 重力パルスで亀裂壁を破壊できること。
 6. 10F：大型ボスアリーナと回避アイテムが従来通り動作すること。
 7. オフライン・セーブ復旧・アイテム12枠の常時表示を確認すること。
+
+
+Ver.4.0.0 additional regression cases
+1. Fresh start in a private/no-save browser, 1F loads correctly.
+2. Play 10+ turns, settings -> recover backup shows a checkpoint.
+3. Export old v1 backup, import it into new version; validate town and run data.
+4. Corrupt localStorage run and reload; automatic recovery notice; corrupted raw remains quarantined.
+5. Deliberately invalid JSON import does not overwrite original saves.
+6. With storage quota exhausted, import rollback attempts to preserve previous data; user sees failure.
+7. Offline PWA launch after cache update; compare version 4.0.0 and verify save persistence.
