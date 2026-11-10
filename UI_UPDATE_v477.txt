@@ -1,0 +1,11 @@
+NEON ABYSS v4.7.7 — PORTRAIT UI
+Base: v4.7.6 COMPACT VIEW
+
+- iPhone portrait first: viewport-height-aware map, safe-area margins and responsive controller sizes.
+- Town and dungeon: matching 3x3 direction pad on the left, actions on the right.
+- Conversation: console-style bottom text panel; sentence paging for plain narrative and preserved accessible scrolling for rich-choice menus.
+- Town canvas and movement: no changes to town geography, NPCs or save data.
+- Combat logic, AI, dungeon generation, music and game balance remain the same as v4.7.6.
+
+Validation: Chromium viewport layout checks at 390x844, 375x667, 430x932 and 320x568; no page errors in these checks. JavaScript and service worker syntax checks passed.
+Not validated on physical iPhone/iOS Safari. For unusually long optional menus (warehouse, codex etc.), internal scrolling may still be necessary to preserve all content.
