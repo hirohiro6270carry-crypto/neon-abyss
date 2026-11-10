@@ -1,0 +1,5 @@
+NEON ABYSS v4.7.5 — TOWN SOUNDS
+
+BGM: Existing fixed town theme “灯の街 / NEON VILLAGE” remains exactly unchanged. No story state, ending, or building selection affects its melody, tempo, instrumentation, or playback selection.
+SE: Discreet synthesised footsteps (every 2nd step), dialogue chirps, facility entry/exit sounds and distinct short electronic ambience accents for the six building interiors. SFX share the existing AudioContext, obey sound effects OFF, and do not start automatically before a user gesture.
+Scope: City only. No enemy, player stats, AI, dungeon layout, item rates or save schema changes.

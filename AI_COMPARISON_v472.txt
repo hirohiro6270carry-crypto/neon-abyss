@@ -1,0 +1,4 @@
+AI comparison, same 12 seeds (1000 + 93217*i), 2500 actions maximum, Chromium, no permanent saves
+v4.6.9 baseline: 1/12 clears (8.3%); average final floor 14.75F.
+v4.7.2 survival AI test: 1/12 clears (8.3%); average final floor 15.00F.
+These are small samples. No 30F clear rate improvement demonstrated. Continue using v4.6.9 as the verified baseline.
