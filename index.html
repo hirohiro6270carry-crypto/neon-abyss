@@ -2530,7 +2530,57 @@ function drawEnemySprite(t,e,x,y){
  if(e.boss){t.strokeStyle='#ffef9c';t.strokeRect(-15,-15,30,30);}t.shadowBlur=0;
  t.restore();
 }
-function draw(){const t=ctx;const N=mapTileCount,offsetX=g.p.x-Math.floor(N/2),offsetY=g.p.y-Math.floor(N/2);t.setTransform(1,0,0,1,0,0);t.fillStyle='#020710';t.fillRect(0,0,480,480);t.save();t.scale(VIEW/N,VIEW/N);for(let sy=0;sy<N;sy++)for(let sx=0;sx<N;sx++){let x=offsetX+sx,y=offsetY+sy,px=sx*TILE,py=sy*TILE;if(x<0||y<0||x>=W||y>=H||!g.seen[y][x])continue;let lit=visible(x,y),wall=cell(x,y)===1;if(terrainAt(g.p.x,g.p.y)?.type==='fog'&&Math.abs(x-g.p.x)+Math.abs(y-g.p.y)>2)lit=false;if(g.floorHazard?.type==='blackout'&&lit){lit=(Math.abs(x-g.p.x)+Math.abs(y-g.p.y)<=2);}t.fillStyle=wall?(lit?'#22475b':'#152633'):(g.bossArena?(lit?'#231a35':'#120f21'):(lit?'#102b38':'#0b1a25'));t.fillRect(px,py,TILE,TILE);t.strokeStyle=lit?'#164457':'#102430';t.strokeRect(px+.5,py+.5,TILE-1,TILE-1);if(!wall&&lit&&((x*7+y*11)%13===0)){t.fillStyle=g.bossArena?'#8b4e73':'#286e7b';t.fillRect(px+3,py+3,3,3)}if(!wall&&g.monsterHouse&&x>=g.monsterHouse.x&&x<g.monsterHouse.x+g.monsterHouse.w&&y>=g.monsterHouse.y&&y<g.monsterHouse.y+g.monsterHouse.h&&g.monsterHouse.triggered){t.fillStyle='#ff52751c';t.fillRect(px,py,TILE,TILE)}if(!wall&&lit){const terrain=terrainAt(x,y);if(terrain){const color={electric:'#6ebaff',sticky:'#c5a05e',fog:'#a18edb'}[terrain.type];t.save();t.globalAlpha=.55;t.fillStyle=color;t.fillRect(px+4,py+4,TILE-8,TILE-8);t.strokeStyle=color;t.lineWidth=2;t.strokeRect(px+6,py+6,TILE-12,TILE-12);t.restore();}}if(wall){t.fillStyle=lit?'#3a6c80':'#234151';t.fillRect(px+3,py+3,TILE-6,5)}const device=gimmickAt(x,y);
+
+// v4.6.3: purely visual interpolation. All collision, combat, turns and saves stay tile based.
+const FIELD_STEP_MS=145, TOWN_STEP_MS=135;
+let fieldSnapshot=null,fieldMotion=null,fieldFrame=0,townMotion=null,townFrame=0;
+const smoothStep=u=>{u=Math.max(0,Math.min(1,u));return u*u*(3-2*u)};
+function fieldMotionFraction(){return fieldMotion?smoothStep((performance.now()-fieldMotion.started)/FIELD_STEP_MS):1;}
+function fieldMotionView(){
+ if(!fieldMotion)return {x:g.p.x,y:g.p.y};
+ const a=fieldMotionFraction();return {x:fieldMotion.fromX+(fieldMotion.toX-fieldMotion.fromX)*a,y:fieldMotion.fromY+(fieldMotion.toY-fieldMotion.fromY)*a};
+}
+function scheduleFieldFrame(){
+ if(fieldFrame||!fieldMotion)return;
+ fieldFrame=requestAnimationFrame(()=>{fieldFrame=0;if(!g)return;draw();});
+}
+function updateFieldMotion(){
+ if(!g||g.atTown){fieldSnapshot=null;fieldMotion=null;return;}
+ const next={game:g,floor:g.floor,x:g.p.x,y:g.p.y,units:new Map(g.enemies.map(e=>[e,{x:e.x,y:e.y}]))};
+ const prev=fieldSnapshot;
+ if(prev&&prev.game===g&&prev.floor===g.floor){
+  const moved=prev.x!==next.x||prev.y!==next.y;
+  const enemiesMoved=g.enemies.some(e=>{const old=prev.units.get(e);return old&&(old.x!==e.x||old.y!==e.y)});
+  if(moved||enemiesMoved){
+   const from=fieldMotion?fieldMotionView():{x:prev.x,y:prev.y};
+   const prior=new Map();
+   for(const e of g.enemies){const old=prev.units.get(e);if(!old)continue;
+    const anim=fieldMotion?.units.get(e);
+    const a=fieldMotion?fieldMotionFraction():1;
+    prior.set(e,anim?{x:anim.x+(old.x-anim.x)*a,y:anim.y+(old.y-anim.y)*a}:{x:old.x,y:old.y});
+   }
+   fieldMotion={fromX:from.x,fromY:from.y,toX:next.x,toY:next.y,units:prior,started:performance.now()};
+  }
+ }else{fieldMotion=null;}
+ fieldSnapshot=next;
+}
+function animateTownAvatar(t,x,y){
+ if(townMotion){const a=smoothStep((performance.now()-townMotion.started)/TOWN_STEP_MS);
+  const px=(townMotion.fromX+(townMotion.toX-townMotion.fromX)*a)*32+16;
+  const py=(townMotion.fromY+(townMotion.toY-townMotion.fromY)*a)*32+16;
+  paintExplorer(t,px,py);
+  if(a<1){if(!townFrame)townFrame=requestAnimationFrame(()=>{townFrame=0;townDraw()});}
+  else townMotion=null;
+ }else paintExplorer(t,x,y);
+}
+function beginTownMotion(fromX,fromY,toX,toY){
+ townMotion={fromX,fromY,toX,toY,started:performance.now()};
+}
+function draw(){
+ updateFieldMotion();
+ const t=ctx,N=mapTileCount,offsetX=g.p.x-Math.floor(N/2),offsetY=g.p.y-Math.floor(N/2);
+ const camera=fieldMotionView(),shiftX=(g.p.x-camera.x)*TILE,shiftY=(g.p.y-camera.y)*TILE;
+t.setTransform(1,0,0,1,0,0);t.fillStyle='#020710';t.fillRect(0,0,480,480);t.save();t.scale(VIEW/N,VIEW/N);t.translate(shiftX,shiftY);for(let sy=-1;sy<=N;sy++)for(let sx=-1;sx<=N;sx++){let x=offsetX+sx,y=offsetY+sy,px=sx*TILE,py=sy*TILE;if(x<0||y<0||x>=W||y>=H||!g.seen[y][x])continue;let lit=visible(x,y),wall=cell(x,y)===1;if(terrainAt(g.p.x,g.p.y)?.type==='fog'&&Math.abs(x-g.p.x)+Math.abs(y-g.p.y)>2)lit=false;if(g.floorHazard?.type==='blackout'&&lit){lit=(Math.abs(x-g.p.x)+Math.abs(y-g.p.y)<=2);}t.fillStyle=wall?(lit?'#22475b':'#152633'):(g.bossArena?(lit?'#231a35':'#120f21'):(lit?'#102b38':'#0b1a25'));t.fillRect(px,py,TILE,TILE);t.strokeStyle=lit?'#164457':'#102430';t.strokeRect(px+.5,py+.5,TILE-1,TILE-1);if(!wall&&lit&&((x*7+y*11)%13===0)){t.fillStyle=g.bossArena?'#8b4e73':'#286e7b';t.fillRect(px+3,py+3,3,3)}if(!wall&&g.monsterHouse&&x>=g.monsterHouse.x&&x<g.monsterHouse.x+g.monsterHouse.w&&y>=g.monsterHouse.y&&y<g.monsterHouse.y+g.monsterHouse.h&&g.monsterHouse.triggered){t.fillStyle='#ff52751c';t.fillRect(px,py,TILE,TILE)}if(!wall&&lit){const terrain=terrainAt(x,y);if(terrain){const color={electric:'#6ebaff',sticky:'#c5a05e',fog:'#a18edb'}[terrain.type];t.save();t.globalAlpha=.55;t.fillStyle=color;t.fillRect(px+4,py+4,TILE-8,TILE-8);t.strokeStyle=color;t.lineWidth=2;t.strokeRect(px+6,py+6,TILE-12,TILE-12);t.restore();}}if(wall){t.fillStyle=lit?'#3a6c80':'#234151';t.fillRect(px+3,py+3,TILE-6,5)}const device=gimmickAt(x,y);
 if(device&&lit){t.save();t.textAlign='center';t.textBaseline='middle';t.font='bold 23px sans-serif';
  const colors={conveyor:'#ffde78',spring:'#ffc56a',shield:'#74efb4',portal:'#cf98ff',cracked:'#ff9566'};
  t.fillStyle=colors[device.type]||'#fff';t.strokeStyle=t.fillStyle;t.lineWidth=2;
@@ -2570,14 +2620,16 @@ for(const e of g.enemies){
   t.save();t.strokeStyle='#ff526b';t.lineWidth=3;t.setLineDash([7,4]);t.beginPath();t.moveTo(ex*TILE+16,ey*TILE+16);t.lineTo(ax*TILE+16,ay*TILE+16);t.stroke();t.setLineDash([]);t.strokeStyle='#ffd4da';t.lineWidth=2;t.strokeRect(ax*TILE+5,ay*TILE+5,22,22);t.restore();
  }
 }
-for(const e of g.enemies){let sx=e.x-offsetX,sy=e.y-offsetY;if(sx< -1||sy< -1||sx>=N||sy>=N||!(e.boss&&g.bossArena?Math.abs(e.x-g.p.x)<=7&&Math.abs(e.y-g.p.y)<=7:visible(e.x,e.y)))continue;let px=sx*TILE,py=sy*TILE;if(e.boss&&e.large){
+for(const e of g.enemies){let sx=e.x-offsetX,sy=e.y-offsetY;if(sx< -1||sy< -1||sx>=N||sy>=N||!(e.boss&&g.bossArena?Math.abs(e.x-g.p.x)<=7&&Math.abs(e.y-g.p.y)<=7:visible(e.x,e.y)))continue;let px=sx*TILE,py=sy*TILE;
+ if(fieldMotion){const prior=fieldMotion.units.get(e);if(prior){const a=fieldMotionFraction();px+=(prior.x+(e.x-prior.x)*a-e.x)*TILE;py+=(prior.y+(e.y-prior.y)*a-e.y)*TILE;}}
+ if(e.boss&&e.large){
   paintBoss(t,e,px,py);
   continue;
  }drawEnemySprite(t,e,px,py);if(e.intent){t.strokeStyle='#ffad54';t.lineWidth=2;t.strokeRect(px+1,py+1,30,30);}if(e.aim){t.strokeStyle='#ff596e';t.lineWidth=2;t.strokeRect(px+2,py+2,28,28);t.lineWidth=1;}if(e.stun>0){t.fillStyle='#b4eaff';t.font='bold 13px monospace';t.fillText('✦',px+22,py+10);}t.fillStyle='#f15a7a';t.fillRect(px+4,py+27,24,2);t.fillStyle='#7bffc4';t.fillRect(px+4,py+27,24*Math.max(0,e.hp/e.max),2)}// Unique asymmetric explorer is shared with town and building interiors.
 const cx=Math.floor(N/2)*TILE+16,cy=Math.floor(N/2)*TILE+16;
-paintExplorer(t,cx,cy,1);
+paintExplorer(t,cx-shiftX,cy-shiftY,1);
 // MOCHI: hovering cream-colored cat-like robot, rendered beside the player.
-const bx=Math.floor(N/2)*TILE+29,by=Math.floor(N/2)*TILE+5+(g.turn%2)*2;
+const bx=Math.floor(N/2)*TILE+29-shiftX,by=Math.floor(N/2)*TILE+5-shiftY+(g.turn%2)*2;
 t.fillStyle='#ffdfef';t.beginPath();t.arc(bx,by,8,0,Math.PI*2);t.fill();
 t.fillStyle='#ffb6da';t.beginPath();t.moveTo(bx-6,by-5);t.lineTo(bx-6,by-11);t.lineTo(bx-1,by-7);t.fill();t.beginPath();t.moveTo(bx+6,by-5);t.lineTo(bx+6,by-11);t.lineTo(bx+1,by-7);t.fill();
 t.fillStyle='#3d4967';t.fillRect(bx-4,by-2,2,3);t.fillRect(bx+3,by-2,2,3);t.fillStyle='#ff87bb';t.fillRect(bx,by+2,2,2);
@@ -2587,6 +2639,7 @@ t.fillStyle='#fdf2c8';t.fillRect(bx-3,by+7,6,2);
 t.fillStyle='#7eead8';t.fillRect(bx-1,by-5,2,2);
 drawBattleFx(t,offsetX,offsetY);
 t.restore();
+if(fieldMotion){if(fieldMotionFraction()<1)scheduleFieldFrame();else fieldMotion=null;}
 }
 const GUIDE_KEY='neon_abyss_guide_v1';
 let guideEnabled=true;
@@ -2729,7 +2782,7 @@ function indoorDraw(){
    t.fillStyle='#f3fbff';t.font='bold 10px sans-serif';t.textAlign='center';t.fillText(door.locked?'封鎖':door.name,door.x*32+16,4*32-6);
   }
  }
- const x=townInteriorPlayer.x*32+16,y=townInteriorPlayer.y*32+16;paintExplorer(t,x,y);
+ const x=townInteriorPlayer.x*32+16,y=townInteriorPlayer.y*32+16;animateTownAvatar(t,x,y);
  const door=townGateNearby();
  $('townInteract').disabled=!townNPCNearby()&&!door&&!(townInteriorPlayer.x===3&&townInteriorPlayer.y===8);
  $('townInteract').textContent=door?'入る：'+door.name:townNPCNearby()?'話す：'+indoorNPC[townInterior].name:(townInteriorPlayer.x===3&&townInteriorPlayer.y===8?'街に出る':'調べる');
@@ -2764,7 +2817,7 @@ function townDraw(){
  }
  for(const n of townResidents){const x=n.x*32+16,y=n.y*32+16;paintCitizen(t,x,y,n.color,townResidents.indexOf(n));t.font='bold 10px sans-serif';t.textAlign='center';t.fillStyle='#f2faff';t.fillText(n.name,x,y-17)}
  const px=townPlayer.x*32+16,py=townPlayer.y*32+16;
- paintExplorer(t,px,py);
+ animateTownAvatar(t,px,py);
  t.fillStyle='#ffffff';t.textAlign='center';t.font='bold 10px sans-serif';t.fillText('YOU',px,py-17);
  const npc=townNPCNearby();$('townEconomy').textContent=cityStatus();$('townInteract').disabled=!nearby&&!npc;$('townInteract').textContent=npc?'話す：'+npc.name:(nearby?'入る：'+nearby.name:'調べる');
 }
@@ -2773,10 +2826,10 @@ function townMove(dx,dy){
  if(townInterior){const x=townInteriorPlayer.x+dx,y=townInteriorPlayer.y+dy;
   if(x===3&&y===9){townInterior=null;$('townMessage').textContent='街に戻りました。';townDraw();return}
   if(indoorBlocked(x,y)){$('townMessage').textContent='ここは通れません。';return}
-  townInteriorPlayer={x,y};$('townMessage').textContent=townGateNearby()?'ゲートが近くにある。「調べる」で入口を使用しよう。':townNPCNearby()?'住民の隣です。「調べる」で話そう。':'出口は下側の緑色の扉です。';townDraw();return;
+  beginTownMotion(townInteriorPlayer.x,townInteriorPlayer.y,x,y);townInteriorPlayer={x,y};$('townMessage').textContent=townGateNearby()?'ゲートが近くにある。「調べる」で入口を使用しよう。':townNPCNearby()?'住民の隣です。「調べる」で話そう。':'出口は下側の緑色の扉です。';townDraw();return;
  }
  const x=townPlayer.x+dx,y=townPlayer.y+dy;if(townBlocked(x,y)){$('townMessage').textContent='ここは通れません。道を歩いて建物や住民の近くへ向かおう。';return}
- townPlayer={x,y};const near=townNearby(),npc=townNPCNearby();$('townMessage').textContent=npc?'「'+npc.name+'」が近くにいる。「調べる」で話そう。':near?'「'+near.name+'」が近くにある。「調べる」で入ろう。':'方向キーで歩こう。建物や住民の隣で「調べる」を押そう。';townDraw();
+ beginTownMotion(townPlayer.x,townPlayer.y,x,y);townPlayer={x,y};const near=townNearby(),npc=townNPCNearby();$('townMessage').textContent=npc?'「'+npc.name+'」が近くにいる。「調べる」で話そう。':near?'「'+near.name+'」が近くにある。「調べる」で入ろう。':'方向キーで歩こう。建物や住民の隣で「調べる」を押そう。';townDraw();
 }
 function townInteract(){
  if(townInterior){const door=townGateNearby();if(door){if(door.id==='main')startDungeonFromTown();else if(meta.clears>0)specialModesMenu();else modal('封鎖された特別ゲート','本編30階を初めてクリアすると開放されます。',[['確認',()=>{}]]);return;}if(townInteriorPlayer.x===3&&townInteriorPlayer.y===8&&!townNPCNearby()){townInterior=null;townDraw();return}if(townNPCNearby()){const n=indoorNPC[townInterior];$('townMessage').textContent=townCharacterTalk(n.name);if(townInterior==='home'){$('townOverlay').hidden=true;hubOpen();return}if(townInterior==='workshop'){forgeMenu();return}if(townInterior==='gate'){townGateMenu();return}if(townInterior==='shop'){cityShop();return}if(townInterior==='clinic'){cityClinic();return}if(townInterior==='square'){cityQuestMenu();return}}townDraw();return}
