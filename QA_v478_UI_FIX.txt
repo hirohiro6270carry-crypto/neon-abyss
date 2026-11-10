@@ -1,0 +1,5 @@
+NEON ABYSS v4.7.8 — Dungeon UI Fix
+Base: v4.7.7 PORTRAIT UI
+Changes: CSS-only restoration of dungeon 3x3 D-pad; fixed action-button grid; compact debug auto bar. Version header and PWA cache key updated. Town UI and game logic untouched.
+Browser checks (Playwright Chromium) at 390x844, 375x667, 430x932, 320x568, 414x896: all PASS (no button overflow; D-pad correct; town unaffected; no uncaught JS errors in load).
+Real iPhone Safari: not tested.
