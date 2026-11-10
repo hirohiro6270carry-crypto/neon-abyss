@@ -28,3 +28,59 @@ Ver.4.0.0 additional regression cases
 5. Deliberately invalid JSON import does not overwrite original saves.
 6. With storage quota exhausted, import rollback attempts to preserve previous data; user sees failure.
 7. Offline PWA launch after cache update; compare version 4.0.0 and verify save persistence.
+
+
+Ver.4.3.0 回帰確認
+1. 通信ログを拡大→全画面表示→閉じる→移動可能。iPhoneのセーフエリア確認。
+2. 装備をバッグで自由に付け替え。迷宮の通常床から合成・改造不可。
+3. 改造端末上で合成と改造チップ強化、街の合成工房で合成。設備から離れた後の合成拒否。
+4. 本編未クリアで特別迷宮選択不可。クリア後、迷宮入口内門番から特別モードへ。
+5. 初期状態は装甲騎士のみ。7階の共鳴端末→電脳術師、14階以降→位相疾走者解放。再起動しても維持。
+6. 既存セーブを読み込み、古い選択ジョブが勝手に置き換わらないこと。
+
+Ver.4.4.0追加検証：
+1) 巻物2種がランダム床アイテムに出現、回収してバッグに表示される。
+2) バイキルトは武器のみ、スカラは装甲のみ+1強化する。使用前確認で中止可能。
+3) 装備なし／強化+20なら未消費。+19からは+20で停止。
+4) 使用後1ターン進行、巻物を1枚消費し、プレイ統計へ反映。
+5) 装備の付け替えは引き続き自由、合成と改造チップ強化には専用設備が必要。
+6) 旧セーブのロード、オフライン起動、iPhone表示。
+
+
+【Ver.4.5.0 追加チェック】
+1. バッグの武器を「そうびする」→装備中表示とバッグ枠がともに残る。
+2. 別の武器へ交換→旧装備と新装備がともにバッグ内に残る。
+3. 装備中の武器を「なげる」「おく」→拒否され消えない。
+4. 合成工房→装備中の品自身が合成素材候補にならない。
+5. 巻物で強化→装備値・バッグ内の品の値が一致し、セーブ再読込後も維持。
+6. 階段へ移動→「おりる」「やめる」、やめる→同じ階のまま。再入場→おりる→次階。
+7. ボス未討伐時に階段をおりようとする→移動不可。
+8. 旧バージョンの既存セーブで装備品がバッグへ移行する（空きがある場合）。
+
+Ver.4.5.1: Repeatedly generate 2F-29F, verify ordinary (non-forced-displacement) path from start to stair; verify bosses, saves, scrolls, inventory and special gates.
+
+[v4.5.2] Natural spawn checks:
+- On normal floor, kill enough original monsters, advance 40 turns: verify one remote enemy, log and persisted floorTurn.
+- Before turn 40, or when cap is met, no spawn. Never more than one per 40-turn tick.
+- No spawn next to player, stairs, on existing enemy/items/gimmicks/terrain/traps/terminal, or behind disconnected walls.
+- Boss floors 10/20/30 and training/challenge/special modes do not spawn.
+- Transition floors resets floorTurn; load legacy save without floorTurn and verify it continues.
+- Verify level-up, drops (still none), turn limit (none), equipment, save/import and iPhone offline after update.
+
+Ver.4.5.3 QA: 各階200/260/290Tの通信ログ警告、300T死亡扱い帰還、階層遷移でカウンタリセット、10Fボスは無制限、通常敵の床ドロップ、バッグ満杯で床に残る、ボスはドロップしない、モード別対象外、セーブ互換。
+
+Ver.4.5.4
+- 通常攻撃/毒/EN枯渇/罠/ボス/階層制限で死亡時の直接原因が分類されること
+- ENが回復した場合、EN0からの経過ターンがリセットされること
+- 10階ボス開始時のHP/EN/Lv/防御と死亡時の値が記録されること
+- 既存セーブでdeathTraceが存在しなくても動作すること
+
+
+Ver.4.5.6 manual QA:
+- デバッグOFFでは自動探索UIが表示されないこと
+- デバッグON後、探索画面のAUTOバーと設定の開始/停止が使えること
+- ×1/×2/×4/×8/×16を切り替え、AUTOの行動数が増えること
+- 手動方向キーを押すと即停止し、手動操作に戻ること
+- 階段確認・ボス会話・最終エンディングを正常処理すること
+- リロード、画面非表示、死亡、クリア、通常のダイアログにより安全停止すること
+- デバッグ探索が通常統計・実績に含まれないこと

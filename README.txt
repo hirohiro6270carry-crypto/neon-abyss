@@ -1,3 +1,12 @@
+v4.5.9 LIVING MEMORIES — 記憶の環境演出
+- 全30階：階層到達時、メイン会話をマップ上の非強制通信パネルで段階表示（×で閉じられます）
+- 各階：記憶信号✦をマップ上に配置。信号から距離2マス以内で「周辺の記憶を聴く」が表示されます。
+- 通信は任意・各階1回。TRUE/SECRET/NORMALの分岐フラグに影響しません。
+- 新規開始と既存セーブの両方に対応。旧セーブの進行中階は現在地から信号を読めます。
+- 既存の戦闘、装備、倉庫、セーブキー、分岐条件は保持。デバッグ・訓練・挑戦迷宮では演出を抑止。
+- 更新前にセーブをエクスポートしてください。iPhone実機・通しプレイは未検証です。
+
+v4.5.8 MEMORY ECHOES: 全30階の主筋会話を拡充、各階に任意通信を1件追加。任意通信は1回のみ記録され、クリア分岐フラグには影響しません。
 NEON ABYSS v0.7.0 / SPECIAL ZONES
 Netlifyにneon_abyss_pwaフォルダ内のファイルを公開してください。
 紫の◇の上で「周辺端末を調べる」を使用。既存のセーブキーを維持します。
@@ -163,3 +172,94 @@ Ver.4.2.0 / BALANCE LAB
 - デバッグ/訓練/特殊迷宮は通常探索の統計から除外
 - 記録は端末のセーブデータ(meta)内のみ。外部への送信なし。最大100回
 - 以前の探索分は集計しません。既存セーブ／JSONバックアップと互換性あり。
+
+
+Ver.4.3.0 — EXPLORER REWORK (2026-11-09)
+・戦闘ログの「通信ログを拡大」で全画面ログ（最新35件）を閲覧。
+・装備の付け替えは従来どおり自由。合成は街の合成工房か迷宮内の改造端末のみ。改造チップも当該設備で使用。
+・特別な迷宮は本編30階クリア後に解放。街の迷宮入口内、門番から選択。
+・電脳術師は7階、位相疾走者は14階以降の記憶共鳴端末で解放。街の案内人から遠征用ジョブ選択。解放フラグは恒久セーブに追加。
+・更新前に設定からセーブのJSONバックアップを取ってください。
+
+
+Ver.4.4.0 — ENCHANTED SCROLLS (2026-11-09)
+- バイキルトの巻物：装備中の武器を+1強化。スカラの巻物：装備中の装甲を+1強化。上限は各+20。
+- 迷宮探索中にバッグから使用可能。専用の合成設備は不要。使用前に確認画面、使用後は1ターン経過。
+- 対象の装備なし／強化上限到達時は巻物を消費しない。
+- ランダム床アイテムに両巻物を追加。闇市にも各62Crで登場する可能性あり。
+- 装備の着脱は引き続き自由。合成・改造チップは引き続き合成工房／改造端末が必要。
+- 既存のセーブキーとデータ構造を変更しない。
+
+
+【Ver.4.5.0 装備・階段操作改善】
+・武器・装甲は「そうびする」で装着。装備後もバッグに残り、付け替え可能。
+・装備中の品は「なげる」「おく」で失われないよう禁止。合成素材にも選択不可。
+・旧バージョンで装備済みの品は、バッグに空きがあれば移行。満杯時は空きができた次の保存で移行。
+・階段のマスに移動すると「おりる」「やめる」を表示。従来の「階段を降りる」ボタンは廃止。
+・「やめる」後はそのマスで探索を継続可能。再度選択するには階段から離れて戻る。
+
+
+Ver.4.5.1 STALL PREVENTION: Mandatory corridors cannot be permanently obstructed by conveyor, spring, or portal gimmicks. If such gimmicks make the exit unreachable via ordinary tiles, the floor generation removes only those forced-displacement gimmicks. Other monsters, items, gear, saves and balance values are unchanged.
+
+Ver.4.5.2 NATURAL SPAWNS — Phase 1 of 3
+In the normal 30-floor dungeon, an additional regular enemy may spawn every 40 turns spent on a given floor. At most one per interval, on a reachable vacant tile at Manhattan distance >=7 and out of vision, never on/next to stairs, on a special object, or on items/traps/terrain/gimmicks. The simultaneous population cap is min(25, max(6, ceil(initial enemy budget * 0.75))). No spawning in boss floors 10/20/30, boss arenas, training, postgame challenge, or special modes. No forced death time limit and no random enemy drops are introduced. Existing saves remain compatible: floorTurn starts counting when next turn advances. The spawn clock resets when a new floor generates.
+
+Ver.4.5.3 FLOOR LIMIT & LOOT
+- 本編通常階は各階200/260/290ターン警告、300ターン到達で迷宮崩壊（死亡扱い）。
+- ボス専用階（10/20/30F）、訓練、NULL PROTOCOL、特別迷宮は対象外。
+- 通常敵撃破時12%で床に消費アイテムをドロップ。回復35%/EN25%/弾15%/解毒10%/武器巻物8%/防具巻物7%。
+- ドロップはバッグに直接入らず、拾う必要があります。床アイテムが18件以上ならドロップなし。
+- 以前のセーブは同一形式で読み込めます。旧セーブで現在階の経過カウンタ未記録の場合は0から開始。
+
+Ver.4.5.4 DEATH DIAGNOSTICS
+死亡原因を最後のダメージの発生源に基づいて記録し、死亡ダイアログに表示します。
+HP/EN/Lv/防御、EN0経過ターン、10階ボス戦開始時の状態を探索データに保持します。
+ボス戦の開始時情報は10階の最初のターンに保存。戦闘の難易度や能力値の変更はありません。
+古いセーブでは探索中の情報は更新後に受けたダメージから記録。
+
+
+Ver.4.5.6 DEBUG AUTO EXPLORE
+設定→デバッグON→自動探索：開始。探索画面に表示される AUTO バーから開始／停止、×1／×2／×4／×8／×16を切り替えられます。
+改良AI（30階ボス撃破例のあるmidpoint方針）をゲーム内向けに移植。装備・回復・EN・育成・ボス回避・階段を自動操作します。
+開始すると当該探索はデバッグ扱いになり、通常戦績・実績には反映されません。再読み込み時に自動起動しません。
+安全のため2000行動で停止し、ダイアログ未対応・経路なし・6回の停滞時にも自動停止します。
+速度倍率はAIが実行する行動数の倍率で、表示更新や音声は端末性能によります。iPhone実機未検証。
+
+
+Ver.4.5.7 / STORY REWORK — ストーリーVer.2.0反映
+- 30Fの明示的な結末選択を撤廃し、探索履歴の自動判定（NORMAL/TRUE/SECRET）へ変更。
+- TRUE: 7F記憶片→17F解析→21Fモチの認証回路修復。
+- SECRET: 14F記録→24F解読→27F継承登録。両方達成時はSECRETを優先。
+- 各該当階で「記憶の痕跡を調べる」ボタンが表示され、取り逃しても本編は進行可能。
+- クリア後は7Fまたは14Fから記憶再調査を選択可能（30F時点の状態を保持したスナップショットから再開）。
+- NORMALクリア後の街会話・記録を変更。旧セーブキーとゲームバランスを維持。
+- 単独プレイ・オフライン対応は従来のPWA構成のまま。
+- QA: JavaScript構文確認。iPhone実機と30階全ルート通しプレイは未確認。
+- 更新前に「設定」からセーブデータをエクスポートしてください。
+
+
+=== v4.6.0 RESONANT MEMORIES ===
+- 重要記録(7F/14F/17F/21F/24F/27F)に専用の記憶復元演出を追加。
+- 通常の周辺記憶収集後に、発見済みの記録に応じてモチ／リラの反応が変化。
+- モチとの会話、街のリラの会話に探索進行に応じた台詞を追加。
+- 結末判定・戦闘・装備・セーブデータ形式は変更なし。
+- 画面の記憶演出は任意に閉じられ、イベントフラグとは独立。
+
+=== v4.6.1 FINAL DAWN ===
+- 30F SERAPH-0 final battle dialogue now explicitly identifies speakers.
+- Boss first turn and half-HP threshold reveal nonblocking story dialogue.
+- Ending presentation split into four cinematic pages for each of NORMAL/TRUE/SECRET, automatic branch unchanged.
+- The last recorded (non-debug) ending changes town lighting and resident dialogue.
+- Ending screen can return directly to town, or revisit 7F / 14F for discovery.
+- Existing save keys and ending flags are retained; v4.6.1 uses optional meta.lastStoryEnding and g.finalBattleMoments.
+- On update export your saved progress first; mobile Safari runtime test not available here.
+
+
+=== v4.6.2 PIXEL BOSSES ===
+・敵30系統にドット模様/翼/アンテナ/甲冑の差分、主人公とモチの装飾を追加。
+・10F: 範囲/縦帯/近距離衝撃の3パターン。
+・20F: 十字/横帯/斜線EN妨害の3パターン。
+・30F: 初期形態(HP180/ATK24/DEF7)、撃破すると従来性能の第二形態(HP450/ATK29/DEF9)。
+・30Fの各形態に固有の3パターン、合計6種類の予告付き特殊行動。
+・第一形態撃破時HP最大18、EN15の補助回復。
+・戦闘バランスの厳密なAIクリア率同等性は未検証。
