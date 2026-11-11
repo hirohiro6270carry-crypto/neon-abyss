@@ -1,4 +1,4 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07101c"><link rel="manifest" href="manifest.webmanifest"><title>NEON ABYSS v4.8.6</title><style>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07101c"><link rel="manifest" href="manifest.webmanifest"><title>NEON ABYSS v4.8.8</title><style>
 :root{color-scheme:dark;--bg:#07101c;--panel:#0e2130;--line:#2b6372;--cyan:#78efff;--pink:#ff6cab;--gold:#f9c979}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#15354a,#050b13 70%);color:#dcecf5;font:14px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif}button{touch-action:manipulation;border:1px solid #398ca0;background:#153b4d;color:#e7fcff;border-radius:10px;padding:11px;font-weight:700;font-size:14px}button:active{background:#28647c}button:disabled{opacity:.35}header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #25515c}h1{font-size:18px;margin:0;color:var(--cyan);letter-spacing:.09em}small{color:#8da8b9}.app{max-width:540px;margin:auto;padding:9px 10px 28px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:8px}.stat{background:#102735;border:1px solid #254c60;border-radius:9px;padding:5px;text-align:center;font-size:11px}.stat strong{display:block;font-size:17px;color:#fff}.bar{height:5px;background:#2b3844;border-radius:8px;overflow:hidden;margin-top:3px}.fill{height:100%;background:#39dc9e}#mapWrap{position:relative;border:1px solid #327f90;border-radius:13px;background:#030a12;overflow:hidden;box-shadow:0 0 22px #0d799022}canvas{display:block;width:100%;aspect-ratio:1;image-rendering:pixelated}#banner{position:absolute;left:0;right:0;top:44%;text-align:center;font-size:21px;font-weight:900;color:white;text-shadow:0 0 12px var(--cyan);pointer-events:none;opacity:0;transition:opacity .3s}#banner.show{opacity:1}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.dpad button{min-height:46px;font-size:21px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:5px}.actions button{font-size:12px;padding:7px}.wide{grid-column:span 2}.panel{background:#0c1c2b;border:1px solid #244b5b;border-radius:11px;margin-top:8px;padding:10px}h2{font-size:14px;color:var(--cyan);margin:0 0 7px}.log{height:85px;overflow-y:auto;font-size:12px;color:#b9d3e3}.log p{margin:2px 0}.log p:first-child{color:#fff}.inventory{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}.inventory button{font-size:12px;text-align:left;min-height:42px;padding:7px}.tag{font-size:11px;color:var(--gold)}.footer{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.footer button{font-size:12px;padding:8px}.overlay{position:fixed;inset:0;background:#020912e8;z-index:10;display:flex;align-items:center;justify-content:center;padding:20px}.overlay[hidden]{display:none}.dialog{width:min(100%,430px);background:#102535;border:1px solid #5ec8db;border-radius:16px;padding:24px;text-align:center;box-shadow:0 0 45px #1b819944}.dialog h2{font-size:25px;color:#fff}.dialog p{line-height:1.9}.dialog button{margin:5px}.note{color:#9eb5c6;font-size:12px}.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#9bb6c8;margin-top:5px}.legend b{color:var(--cyan)}@media(max-height:750px){header{padding:5px 10px}.app{padding-top:5px}.stats{margin-bottom:5px}.stat{padding:2px}.stat strong{font-size:15px}.dpad button{min-height:39px}.log{height:54px}}
 .battery-status{margin:6px 2px;font-size:12px;color:#e2d6a2}.battery-status strong{float:right;color:#f8e7a4}.battery-status .fill{background:#f5d36d}.story{font-size:12px;line-height:1.65;color:#a8c5d9;max-height:60px;overflow:hidden}.story.expanded{max-height:none}.story p{margin:5px 0}.boss-mark{color:#ff8aa5}
  .combat-status{margin:5px 2px;color:#ffb5d5;font-size:12px;min-height:17px}.enemy-guide{font-size:12px;color:#accbd9;line-height:1.7}.enemy-guide strong{color:#7ceaff} 
@@ -633,6 +633,32 @@ header h1{font-size:14px!important}header small{font-size:9px!important}
 .prologue-next{align-self:stretch;min-height:39px!important;padding:7px!important;font-size:13px!important;background:#145363!important;border-color:#81d6dc!important}
 @media(max-height:690px){.start-content{gap:7px}.start-intro{margin:3px 0 9px}.start-commands button{min-height:49px}.start-credit{margin-top:3px}.town-prologue{min-height:142px;padding:8px 10px}.prologue-text{font-size:12px;line-height:1.5}.prologue-speaker{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.start-content,.town-prologue{animation:none}}
+
+/* v4.8.8: three independent save files; compact iPhone portrait layout */
+.start-content{gap:7px!important;width:min(100%,410px)!important}
+.start-logo{font-size:clamp(35px,10vw,56px)!important;margin:2px 0!important}
+.start-intro{margin:1px 0 4px!important;font-size:11px!important}
+.slot-heading{width:100%;display:flex;justify-content:space-between;gap:8px;color:#94dce9;font-size:10px;font-weight:800;letter-spacing:.09em}
+.slot-heading span{color:#d0e5ea;letter-spacing:0;font-weight:500}
+.save-slot-list{width:100%;display:flex;flex-direction:column;gap:6px}
+.save-slot-card{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:5px;padding:6px;background:#0b2434;border:1px solid #345d70;border-radius:9px;min-width:0}
+.save-slot-card.selected{background:#113e4b;border-color:#8ceaff;box-shadow:inset 0 0 0 1px #6bddea66}
+.save-slot-main{display:flex;flex-direction:column;gap:2px;align-items:flex-start;text-align:left;min-width:0;padding:4px 7px!important;border:0!important;background:transparent!important;box-shadow:none!important;min-height:36px!important}
+.save-slot-main strong{color:#edfcff;font-size:12px}.save-slot-main small{color:#9fbac9;font-size:10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.save-slot-action{font-size:10px!important;padding:5px 8px!important;min-height:33px!important;border-radius:6px!important;background:#173549!important}
+.save-slot-action:disabled{opacity:.3}
+.start-commands{grid-template-columns:1fr 1fr;gap:7px!important}
+.start-commands button{min-height:43px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;padding:5px 7px!important;font-size:13px!important}
+.start-commands button small{font-size:9px!important}
+.start-status{font-size:10px!important;min-height:16px!important;margin:0!important}
+.start-credit{margin-top:1px!important}
+@media(max-height:670px){
+ .start-content{gap:4px!important}.start-kicker{font-size:8px!important}.start-logo{font-size:34px!important}
+ .start-subtitle{font-size:12px!important}.start-subtitle span{font-size:9px!important;margin-top:1px!important}
+ .start-intro{display:none!important}.save-slot-list{gap:3px!important}.save-slot-card{padding:3px!important}
+ .save-slot-main{min-height:31px!important}.save-slot-action{min-height:29px!important;padding:3px 5px!important}
+ .start-commands button{min-height:38px!important}.start-credit{display:none!important}
+}
 </style></head><body>
 <section id="startScreen" class="start-screen" aria-label="ゲームスタート画面" role="dialog" aria-modal="true">
  <div class="start-stars" aria-hidden="true"></div>
@@ -641,22 +667,30 @@ header h1{font-size:14px!important}header small{font-size:9px!important}
   <h1 class="start-logo">NEON<br><span>ABYSS</span></h1>
   <div class="start-subtitle">電脳迷宮 <span>― 失われた記憶の記録 ―</span></div>
   <p class="start-intro">途切れた記憶の、その先へ。</p>
+  <div class="slot-heading">SAVE FILES <span id="slotModeLabel">使用するスロットを選択</span></div>
+  <div id="saveSlotList" class="save-slot-list" role="group" aria-label="セーブスロット"></div>
   <div class="start-commands">
    <button id="startNew" type="button">はじめから <small>NEW GAME</small></button>
    <button id="startContinue" type="button">つづきから <small>CONTINUE</small></button>
   </div>
   <p id="startSaveStatus" class="start-status" role="status"></p>
-  <small class="start-credit">NEON VILLAGE / SIGNAL ONLINE · v4.8.3</small>
+  <small class="start-credit">NEON VILLAGE / SIGNAL ONLINE · v4.8.8</small>
  </div>
 </section>
-<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v4.8.6 / DEPTH ATMOSPHERE</small></div><div class="header-tools"><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div></div><div class="vitals" aria-label="HPとエネルギー"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>EN / 電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="エネルギー残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">⬡</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><div id="banner"></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="記憶表示を閉じる">×</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="credits" class="compact-credits">CREDITS 0</span><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（EN 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townClose" type="button">ダンジョンへ入る</button></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では出口の扉から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="384" height="320" aria-label="歩いて探索できる街の地図"></canvas></div>
+<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v4.8.8 / SAVE SLOTS</small></div><div class="header-tools"><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div></div><div class="vitals" aria-label="HPとエネルギー"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>EN / 電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="エネルギー残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">⬡</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><div id="banner"></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="記憶表示を閉じる">×</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="credits" class="compact-credits">CREDITS 0</span><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（EN 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townClose" type="button">ダンジョンへ入る</button></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では出口の扉から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="384" height="320" aria-label="歩いて探索できる街の地図"></canvas></div>
 <div id="townPrologue" class="town-prologue" hidden aria-live="polite">
  <div class="prologue-top"><span>PROLOGUE · 消えた名前</span><button id="prologueSkip" type="button">スキップ</button></div>
  <div class="prologue-speaker" id="prologueSpeaker">記録音声</div>
  <div class="prologue-text" id="prologueText"></div>
  <button id="prologueNext" class="prologue-next" type="button">次へ ▸</button>
 </div><div class="town-controls"><div class="town-pad" aria-label="移動"><span></span><button data-town-move="0,-1" aria-label="街で上へ移動">▲</button><span></span><button data-town-move="-1,0" aria-label="街で左へ移動">◀</button><button type="button" class="town-center" disabled aria-label="中央">•</button><button data-town-move="1,0" aria-label="街で右へ移動">▶</button><span></span><button data-town-move="0,1" aria-label="街で下へ移動">▼</button><span></span></div><div class="town-actions"><button id="townInteract" class="town-interact" type="button">決定 / 調べる</button><button id="townJobs" type="button">ジョブ</button><button id="townArchive" type="button">記憶</button><span class="town-keys-hint">左：移動　右：決定・情報</span></div></div><div id="townEconomy" class="town-economy" aria-live="polite"></div><div id="townMessage" class="town-message" role="status">建物の前まで歩いて「調べる」を押そう。</div></div></div><div class="overlay" id="menuOverlay" hidden><div class="dialog drawer"><div class="drawer-head"><h2>EXPLORER MENU</h2><button id="menuClose" type="button">探索へ戻る</button></div><div class="menu-tabs" role="tablist" aria-label="メニュー分類"><button type="button" role="tab" id="tab-bag" data-menu-tab="bag" aria-selected="true">バッグ</button><button type="button" role="tab" id="tab-gear" data-menu-tab="gear" aria-selected="false">装備</button><button type="button" role="tab" id="tab-adventure" data-menu-tab="adventure" aria-selected="false">探索</button><button type="button" role="tab" id="tab-mochi" data-menu-tab="mochi" aria-selected="false">モチ</button><button type="button" role="tab" id="tab-info" data-menu-tab="info" aria-selected="false">情報</button><button type="button" role="tab" id="tab-settings" data-menu-tab="settings" aria-selected="false">設定</button></div><div class="menu-page" id="page-bag" role="tabpanel" aria-labelledby="tab-bag"><section class="panel"><h2>バックパック <span class="tag" id="bagCount"></span></h2><div class="inventory" id="inventory"></div></section></div><div class="menu-page" id="page-gear" role="tabpanel" aria-labelledby="tab-gear" hidden><section class="panel"><h2>装備・強化</h2><div id="equipment"></div><button id="fusionBtn" type="button">合成設備の場所を確認</button><p class="inv-note">装備はバックパックの「そうびする」で変更でき、装備中もバッグに残ります。街の合成工房または迷宮の改造端末でのみ合成できます。巻物による武器・装甲の+1強化は探索中どこでも可能です。素材は消費され、強化値を合計（最大+20）し特殊効果を付与します。武器は会心・EN吸収、装甲は毒耐性・被ダメージ軽減。合成費用20クレジット。呪われた装備は合成できません。</p></section></div><div class="menu-page" id="page-adventure" role="tabpanel" aria-labelledby="tab-adventure" hidden><section class="panel"><h2>ジョブ / スキル</h2><p id="jobInfo" class="note"></p><button id="jobMenuBtn" type="button">ジョブの詳細・変更</button></section><div class="drawer-actions"><button id="extract">あきらめる（探索終了）</button><button id="restart" hidden>新しい探索を開始</button><button id="trainingStart" type="button" hidden>訓練迷宮（全5階）</button></div><section class="panel"><h2>拠点 / セーフハウス</h2><p class="note">探索中は街に戻れません。「あきらめる」を選ぶと倒された扱いとなり、探索中の装備・所持品を失います。倉庫と出発用に指定した物資は残ります。</p><button id="hubBtn">セーフハウス・倉庫・探索記録</button><div class="note" id="hubSummary"></div></section></div><div class="menu-page" id="page-mochi" role="tabpanel" aria-labelledby="tab-mochi" hidden><section class="panel"><h2>サポートドローン / モチ</h2><p class="note" id="buddyInfo"></p><p id="mochiTechInfo" class="note"></p><button id="mochiUpgradeBtn" type="button">モチのパーツ改修</button><div class="buddy-custom"><button id="buddyTalk" type="button">モチと話す</button><label>支援モード <select id="buddyMode"><option value="heal">回復重視</option><option value="explore">探索重視</option><option value="combat">戦闘重視</option></select></label><label>モチの外装 <select id="buddySkin"><option value="cream">ミルク</option><option value="mint">ミント（親密度2）</option><option value="violet">ラベンダー（親密度3）</option><option value="gold">スター（親密度4）</option></select></label></div><p class="note">「ぴこっ！ いっしょに行こう！」<br/>小さな猫型ドローンが探索に同行します。回復重視：応急修復を強化。探索重視：ゲート・罠の探知。戦闘重視：隣接敵を妨害。親密度Lv.2以上で支援能力が成長します。自動行動なのでボタン操作は不要。モチは攻撃対象にならず、死亡時に一緒に帰還します。</p></section></div><div class="menu-page" id="page-info" role="tabpanel" aria-labelledby="tab-info" hidden><div class="info-tabs"><button type="button" data-info-tab="0">物語</button><button type="button" data-info-tab="1">端末</button><button type="button" data-info-tab="2">敵の情報</button><button type="button" data-info-tab="3">ログ</button></div><section class="panel"><h2>傍受した機密通信 <span class="tag" id="chapterLabel"></span></h2><div class="story" id="story"></div><button id="storyBtn" type="button">記録を読む</button><button id="memoryArchiveBtn" type="button">記憶アーカイブ</button><button type="button" id="fieldGuideOpenBtn">道具・特殊マスの発見ガイド</button><button id="signalBtn" type="button">機密通信に応答</button><div class="note" id="signalStatus"></div></section><section class="panel"><h2>特殊フロア / 取引端末</h2><p class="note">商人端末、医療ステーション、データ保管庫がランダム出現。紫の◇に立ち「周辺端末を調べる」で利用できます。商人の支払いは探索中に得たクレジットから。</p></section><section class="panel"><h2>敵データ / 戦闘ヒント</h2><div class="enemy-guide">全30系統の敵が階層に応じて出現。通常階では40ターンごとに離れた安全な場所へ最大1体が自然発生。200/260/290ターンで警告し、300ターンで帰還（死亡扱い）。通常敵は低確率でアイテムを床へ落とします。ボス階・訓練・特別な迷宮では発生しません。各系統の姿・攻撃傾向・特殊能力は異なります。図鑑で発見状況を確認できます。<br/>ショック弾：直線3マスに攻撃＋スタン。解毒パッチ：毒と出血を除去。</div></section><section class="panel"><h2>通信ログ</h2><div aria-live="polite" class="log" id="log"></div></section></div><div class="menu-page" id="page-settings" role="tabpanel" aria-labelledby="tab-settings" hidden><div class="footer"><button id="sound">効果音 ON</button><button id="save">手動セーブ</button><button id="diagnostics" type="button">動作診断</button><button id="balanceMenu" type="button">プレイ統計</button><button id="bossMusicBtn" type="button">BGM：OFF</button><div class="sound-controls"><label for="musicVolume">BGM音量 <output id="musicVolumeLabel">35%</output></label><input id="musicVolume" type="range" min="0" max="100" step="5" value="35" aria-label="BGM音量"><p class="note" id="musicSceneLabel">BGM：停止中（街・探索・危険・ボスの4種類）</p><p class="note">iPhoneではBGMをONにしたタップ操作から再生を始めます。外部音楽ファイル・通信は使用しません。</p></div><button id="debugToggle" type="button">デバッグ：OFF</button><button hidden="" id="debugTools" type="button">階数・HPを操作</button><button hidden id="debugAutoToggle" type="button">自動探索：開始</button><button id="exportSave">セーブを書き出す</button><button id="restoreBackup" type="button">予備セーブを確認・復元</button><button id="importSave">セーブを読み込む</button><input accept=".json,application/json" hidden="" id="importFile" type="file"/><button aria-pressed="true" id="guideToggle" type="button">ヒント：ON</button><button id="helpBottom">ルール</button></div></div></div></div><div class="overlay" id="hubOverlay" hidden><div class="dialog" style="max-height:90vh;overflow:auto;text-align:left"><h2>SAFEHOUSE / 倉庫</h2><p id="hubStats" class="note"></p><p class="note">街で物資を出発用に指定できます。ダンジョン探索中は物資の出し入れができません。</p><h3 id="warehouseTitle">倉庫</h3><p class="note">倉庫の物資を「出発用に指定」すると、次の探索へ持ち込めます（初期道具4個＋最大8個）。</p><div id="readyList" class="inventory"></div><div id="warehouseList" class="inventory"></div><h3>現在のバッグ（探索中の預け入れは不可）</h3><div id="depositList" class="inventory"></div><h3>クリア後ダンジョン</h3><p class="note">本編30階をクリアすると「NULL PROTOCOL」全20階が解放。死亡すると持ち物を失います。</p><button id="challengeStart">NULL PROTOCOLに挑戦</button><h3>特別な迷宮 / SPECIAL MODES</h3><p class="note">街からも「特別な迷宮」を選択できます。持ち込み禁止10階・ボスラッシュ3戦に挑戦。</p><button id="specialModes" type="button">特別な迷宮を選ぶ</button><p id="specialRecords" class="note"></p><h3>発見ガイド（初回説明を再確認）</h3><p class="note">初めて拾った道具や踏んだ特殊マスは自動登録されます。未発見の項目は表示されません。</p><div id="fieldGuideEntries" class="codex"></div><h3>探索図鑑</h3><p id="codexSummary" class="note"></p><div id="codexEntries" class="codex"></div><h3>実績</h3><div id="achievements" class="codex"></div><h3>プレイ統計</h3><button id="balanceDashboard" type="button">階層別死亡率・ジョブ別成績・アイテム使用</button><p class="note">端末内のみで集計。終了した通常探索が対象です。</p><h3>探索記録</h3><div id="runHistory" class="note" style="max-height:160px;overflow:auto"></div><button id="hubClose">戻る</button></div></div><div class="overlay" id="fullMapOverlay" hidden><div class="dialog"><h2>TACTICAL MAP</h2><canvas id="fullMap" width="500" height="500" aria-label="探索済みのダンジョン全体図"></canvas><p id="mapInfo"></p><button type="button" id="closeFullMap">探索に戻る</button></div></div><div class="overlay" id="overlay" hidden><div class="dialog"><h2 id="modalTitle"></h2><p id="modalBody"></p><div id="modalButtons"></div></div></div><script>
-(()=>{'use strict';const $=id=>document.getElementById(id),W=25,H=25,VIEW=15,TILE=32,SAVE='neon_abyss_run_v1';const META='neon_abyss_meta_v1';const cv=$('map'),ctx=cv.getContext('2d');let mapTileCount=11;try{mapTileCount=localStorage.getItem('neon_map_zoom_v310')==='wide'?15:11}catch(e){}let g=null,lock=false,soundOn=true,audio=null,modalOpen=false;const dirs=[[0,-1],[1,0],[0,1],[-1,0]];const rnd=n=>Math.floor(Math.random()*n),rand=(a,b)=>a+rnd(b-a+1),key=(x,y)=>x+','+y;const itemTypes={battery:{name:"高密度セル",symbol:"⚡",color:"#f4e887"},med:{name:'ナノ修復剤',symbol:'+',color:'#62f3a8'},emp:{name:'EMPグレネード',symbol:'✦',color:'#b79cff'},blade:{name:'プラズマブレード',symbol:'/',color:'#ffd16d'},armor:{name:'強化装甲',symbol:'▣',color:'#76baff'},shock:{name:'ショック弾',color:'#7fe9ff',symbol:'⚡'},antidote:{name:'解毒パッチ',color:'#9ff3ae',symbol:'✚'},upgrade:{name:'改造チップ',color:'#f4c67c',symbol:'◇'},bikill:{name:'バイキルトの巻物',color:'#ff9c7d',symbol:'巻'},scala:{name:'スカラの巻物',color:'#a5d7ff',symbol:'巻'},scanner:{name:'鑑定スキャナ',color:'#8cf6ef',symbol:'◎'},smoke:{name:"光学迷彩弾",color:"#a8a9ff",symbol:"◈"},repair:{name:"高性能修復剤",color:"#67f5a8",symbol:"✚"},purge:{name:"呪詛解除キー",color:"#ffe4a1",symbol:"⌁"},overdrive:{name:"オーバードライブ",color:"#ff8b9c",symbol:"✧"},warp:{name:'位相跳躍器',color:'#d7aaff',symbol:'↗'},anchor:{name:'位相アンカー',color:'#8fe9f9',symbol:'⇄'},gravity:{name:'重力パルス',color:'#f5b37b',symbol:'➤'},freeze:{name:'時間凍結チップ',color:'#a9ceff',symbol:'❄'},cloak:{name:'光学迷彩',color:'#a5ebc1',symbol:'◌'},hack:{name:'ハッキングチップ',color:'#ffd56f',symbol:'⌘'},transfer:{name:'緊急転送装置',color:'#d6abff',symbol:'✳'}};
+(()=>{'use strict';const $=id=>document.getElementById(id),W=25,H=25,VIEW=15,TILE=32;
+const SLOT_SELECTED_KEY='neon_abyss_selected_slot_v488',SLOT_MIGRATED_KEY='neon_abyss_slot_migrated_v488';
+const SLOT_BASE_KEYS=['neon_abyss_run_v1','neon_abyss_meta_v1','neon_abyss_recovery_a_v1','neon_abyss_recovery_b_v1','neon-abyss-story-v2-gate-checkpoint','neon_abyss_invalid_run_v1','neon_abyss_invalid_meta_v1'];
+const slotKey=(id,base)=>base+'_slot'+id;
+let activeSlot=1;
+try{const n=Number(localStorage.getItem(SLOT_SELECTED_KEY));if(n>=1&&n<=3&&Number.isInteger(n))activeSlot=n;}catch(e){}
+let SAVE=slotKey(activeSlot,SLOT_BASE_KEYS[0]);let META=slotKey(activeSlot,SLOT_BASE_KEYS[1]);const cv=$('map'),ctx=cv.getContext('2d');let mapTileCount=11;try{mapTileCount=localStorage.getItem('neon_map_zoom_v310')==='wide'?15:11}catch(e){}let g=null,lock=false,soundOn=true,audio=null,modalOpen=false;const dirs=[[0,-1],[1,0],[0,1],[-1,0]];const rnd=n=>Math.floor(Math.random()*n),rand=(a,b)=>a+rnd(b-a+1),key=(x,y)=>x+','+y;const itemTypes={battery:{name:"高密度セル",symbol:"⚡",color:"#f4e887"},med:{name:'ナノ修復剤',symbol:'+',color:'#62f3a8'},emp:{name:'EMPグレネード',symbol:'✦',color:'#b79cff'},blade:{name:'プラズマブレード',symbol:'/',color:'#ffd16d'},armor:{name:'強化装甲',symbol:'▣',color:'#76baff'},shock:{name:'ショック弾',color:'#7fe9ff',symbol:'⚡'},antidote:{name:'解毒パッチ',color:'#9ff3ae',symbol:'✚'},upgrade:{name:'改造チップ',color:'#f4c67c',symbol:'◇'},bikill:{name:'バイキルトの巻物',color:'#ff9c7d',symbol:'巻'},scala:{name:'スカラの巻物',color:'#a5d7ff',symbol:'巻'},scanner:{name:'鑑定スキャナ',color:'#8cf6ef',symbol:'◎'},smoke:{name:"光学迷彩弾",color:"#a8a9ff",symbol:"◈"},repair:{name:"高性能修復剤",color:"#67f5a8",symbol:"✚"},purge:{name:"呪詛解除キー",color:"#ffe4a1",symbol:"⌁"},overdrive:{name:"オーバードライブ",color:"#ff8b9c",symbol:"✧"},warp:{name:'位相跳躍器',color:'#d7aaff',symbol:'↗'},anchor:{name:'位相アンカー',color:'#8fe9f9',symbol:'⇄'},gravity:{name:'重力パルス',color:'#f5b37b',symbol:'➤'},freeze:{name:'時間凍結チップ',color:'#a9ceff',symbol:'❄'},cloak:{name:'光学迷彩',color:'#a5ebc1',symbol:'◌'},hack:{name:'ハッキングチップ',color:'#ffd56f',symbol:'⌘'},transfer:{name:'緊急転送装置',color:'#d6abff',symbol:'✳'}};
 
 
 const GEAR_CATALOG={blade:["訓練ナイフ", "スクラップブレード", "セラミックダガー", "電磁警棒", "警備用サーベル", "振動カッター", "プラズマブレード", "アークソード", "量子短剣", "レーザーエッジ", "衝撃ハンマー", "ナノブレード", "高周波刀", "イオンランス", "コイルセイバー", "レールスピア", "フォトンソード", "重力ハンマー", "フェイズダガー", "パルスブレード", "粒子斬鉄剣", "電脳クレイモア", "虚数サーベル", "反物質エッジ", "星屑の太刀", "ゼロ距離ランス", "深淵の刃", "時空切断剣", "記憶喰らい", "黎明の剣"],armor:["布製プロテクター", "軽量パッド", "警備ジャケット", "樹脂アーマー", "防刃ベスト", "合金プレート", "強化装甲", "耐電スーツ", "ナノメッシュ", "セラミックガード", "複合装甲", "電磁シールド", "反射コート", "チタンフレーム", "耐熱装甲", "イオンバリア", "フォトンベスト", "重力安定服", "量子アーマー", "位相装甲", "粒子防壁", "電脳外殻", "虚数プロテクター", "反物質シェル", "星屑の鎧", "ゼロフィールド", "深淵の外套", "時空障壁", "記憶の守護衣", "黎明の鎧"]};
@@ -1164,7 +1198,7 @@ function endingScene(id,index=0){
  ]);
 }
 function endingId(){const f=storyFlags();if(f.authority27)return 'control';if(f.fragment7&&f.analysis17&&f.mochiRepair)return 'freedom';return 'balance';}
-const STORY_REPLAY='neon-abyss-story-v2-gate-checkpoint';
+let STORY_REPLAY=slotKey(activeSlot,SLOT_BASE_KEYS[4]);
 function storyRestoreCheckpoint(floor){
  try{
   const raw=localStorage.getItem(STORY_REPLAY);if(!raw)throw Error('記録なし');
@@ -2058,12 +2092,11 @@ function debugTools(){
 }
 // v4.7.9: Explicit destructive action, accessible only from debug tools.
 // Preserve UI/audio preferences; erase every game-state source including recovery snapshots.
-const DEBUG_ERASE_KEYS=[SAVE,META,'neon_abyss_recovery_a_v1','neon_abyss_recovery_b_v1','neon-abyss-story-v2-gate-checkpoint',
- 'neon_abyss_invalid_run_v1','neon_abyss_invalid_meta_v1'];
+const DEBUG_ERASE_KEYS=SLOT_BASE_KEYS.map(base=>slotKey(activeSlot,base));
 function debugSaveEraseConfirm(){
  if(!debugEnabled)return;
  modal('セーブデータ消去 / 確認',
-  '探索中のデータ、街の倉庫・所持金、実績・エンディング履歴、予備セーブ、記憶再調査の記録をすべて消去します。<br><br><strong>元に戻せません。</strong> 必要なら先に「設定」からセーブを書き出してください。<br>※ BGM音量・画面設定などは保持します。',[
+  '現在のスロット '+activeSlot+' にある探索、街の倉庫、実績、エンディング、予備セーブ、記憶再調査の記録を消去します。他のスロットには影響しません。<br><br><strong>元に戻せません。</strong> 必要なら先に「設定」からセーブを書き出してください。<br>※ BGM音量・画面設定などは保持します。',[
   ['キャンセル',()=>debugTools()],
   ['消去手順へ',debugSaveEraseFinal]
  ]);
@@ -2071,7 +2104,7 @@ function debugSaveEraseConfirm(){
 function debugSaveEraseFinal(){
  if(!debugEnabled)return;
  modal('セーブデータ消去 / 最終確認',
-  'すべてのゲーム進行を初期化します。<br><strong>確認のため「消去」と入力してください。</strong><br><input id="debugErasePhrase" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="消去確認の入力" placeholder="消去" style="width:100%;padding:10px;margin:8px 0;color:#fff;background:#163749;border:1px solid #69d7ef;border-radius:8px">',[
+  'スロット '+activeSlot+' の進行を初期化します。<br><strong>確認のため「消去」と入力してください。</strong><br><input id="debugErasePhrase" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="消去確認の入力" placeholder="消去" style="width:100%;padding:10px;margin:8px 0;color:#fff;background:#163749;border:1px solid #69d7ef;border-radius:8px">',[
   ['やめる',()=>debugTools()],
   ['完全消去を実行',()=>{
    if($('debugErasePhrase').value.trim()!=='消去'){
@@ -2121,8 +2154,8 @@ function validSave(x){
  return true;
 }
 // Version 4.0: recoverable checkpoints. Keep run + town state in the same snapshot.
-const QUALITY_BACKUP_A='neon_abyss_recovery_a_v1';
-const QUALITY_BACKUP_B='neon_abyss_recovery_b_v1';
+let QUALITY_BACKUP_A=slotKey(activeSlot,SLOT_BASE_KEYS[2]);
+let QUALITY_BACKUP_B=slotKey(activeSlot,SLOT_BASE_KEYS[3]);
 let qualityCheckpointTurn=-1,qualityCheckpointFloor=-1,qualityCheckpointTown=null;
 let qualityRecoveryNotice='';
 let qualityLastStorageWarning=0;
@@ -3496,6 +3529,96 @@ function draw(){
  t.restore();
  if(fieldMotion){if(fieldMotionFraction()<1)scheduleFieldFrame();else fieldMotion=null;}
 }
+const GUIDE_KEY='neon_abyss_guide_v1';
+let guideEnabled=true;
+try{guideEnabled=localStorage.getItem(GUIDE_KEY)!=='off'}catch(e){}
+function updateGuideToggle(){const b=$('guideToggle');if(!b)return;b.textContent='ヒント：'+(guideEnabled?'ON':'OFF');b.setAttribute('aria-pressed',String(guideEnabled));}
+function floorLesson(){
+ if(g.challenge||g.floor>5)return '';
+ const lessons=['','【1階：移動】方向キーで進み、緑の階段を探そう。','【2階：戦闘】敵に近づいたら、敵の方向へ移動して攻撃。','【3階：回復】体力を確認。傷ついたら「回復」を押そう。','【4階：装備と道具】バッグから武器・装甲を装備。メニューの「装備合成」も試そう。','【5階：探索】全体マップで道を確認し、階段を目指そう。'];
+ return lessons[g.floor]||'';
+}
+function beginnerHint(){
+ if(!g||g.dead)return ['探索終了。新しい探索を開始できます。','danger'];
+ if(!guideEnabled)return ['', ''];
+ if(g.win)return ['クリアおめでとう！ メニューで記録を確認できます。','good'];
+ if(g.bossArena&&g.enemies.some(e=>e.boss&&e.bossCharge))return ['危険な予告！「緊急回避」で2マス移動、または「位相跳躍器」で瞬間移動しよう。','danger'];
+ if(g.bossArena)return ['ボス戦！ 巨体に隣接して攻撃。紫の転送床で距離を取ろう。BGMは設定からONにできます。',''];
+ if(g.p.hp<=Math.max(8,Math.ceil(g.p.max*.35)))return [g.bag.some(i=>i.type==='med')?'体力が少ない！「回復」を押そう。':'体力が少ない！ 敵を避けて進もう。','danger'];
+ if(g.energy<=20)return [g.bag.some(i=>i.type==='battery')?'電力が残りわずか。バッグから電池を使おう。':'電力が残りわずか。補給アイテムを探そう。','danger'];
+ if(g.enemies.some(e=>Math.abs(e.x-g.p.x)+Math.abs(e.y-g.p.y)===1))return ['敵が隣にいる！ 敵の方向へ移動すると攻撃できる。','danger'];
+ if(g.enemies.some(e=>e.aim&&visible(e.x,e.y)||e.intent&&visible(e.x,e.y)))return ['敵が攻撃を準備中！ 危険なマスから離れよう。','danger'];
+ if(g.p.x===g.stair.x&&g.p.y===g.stair.y)return ['階段に到着！「おりる」か「やめる」を選ぼう。','good'];
+ if(g.items.some(i=>i.x===g.p.x&&i.y===g.p.y))return ['アイテムを発見！ 自動で拾えない場合はバッグを確認。','good'];
+ if(g.floor<=5&&!g.challenge)return [floorLesson(),''];
+ if(g.turn<5)return ['まずは方向キーで移動。敵に近づいたら攻撃しよう。',''];
+ if(g.turn<15)return ['緑色の階段を探そう。困ったら「全体マップ」を開こう。',''];
+ return ['目標：緑色の階段を探して次の階へ。全体マップで確認できる。',''];
+}
+function beginnerGuide(step=0){
+ const pages=[
+ ['まずは「移動」','<b>目標は、緑色の階段を見つけて奥へ進むこと。</b><br><br>画面の▲▼◀▶で1マスずつ移動します。敵もあなたが行動すると動きます。'],
+ ['次は「戦闘」','<b>敵が隣に来たら、その敵の方向へ移動して攻撃。</b><br><br>体力（HP）が0になると探索失敗です。危なくなったら「回復」を使いましょう。'],
+ ['「アイテム」と「電力」','<b>拾った道具は画面下のバッグに表示。</b><br><br>道具をタップすると使い方が出ます。電力（EN）は時間とともに減り、0になると体力も減ります。'],
+ ['迷ったときは','<b>マップ上の案内メッセージを見てください。</b><br><br>「全体マップ」で探索済みの場所を確認できます。最初は「訓練迷宮（全5階）」で練習するのもおすすめです。']
+ ];
+ const [title,body]=pages[step];
+ modal('はじめての冒険 '+(step+1)+'/4 — '+title,body,step===pages.length-1?[['冒険を始める',()=>{}]]:[['次へ',()=>beginnerGuide(step+1)],['閉じる',()=>{}]]);
+}
+function escapeText(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function fieldAlertUpdate(){
+ const el=$('fieldAlert');
+ if(!el||!g)return;
+ let message='',state='';
+ const boss=g.enemies?.find(e=>e.boss&&e.bossCharge);
+ const danger=g.enemies?.some(e=>(e.intent||e.aim)&&visible(e.x,e.y));
+ if(g.dead){message='探索終了：街から再挑戦できます';state='danger';}
+ else if(g.atTown){message='灯の街：準備を整えてダンジョンへ';state='safe';}
+ else if(boss){message='危険！ ボスの範囲攻撃が予告中。回避や道具を確認';state='danger';}
+ else if(danger){message='注意：敵が特殊攻撃を準備しています';state='danger';}
+ else if(g.p.hp<=g.p.max*.3){message='HP危険：回復か安全な退路を確認';state='danger';}
+ else if(g.energy<=15){message='電力不足：残りENと補給手段を確認';state='warn';}
+ else if(g.p.x===g.stair.x&&g.p.y===g.stair.y){message=g.enemies.some(e=>e.boss)?'階段はボス撃破後に開きます':'階段の上です。移動して戻ると「おりる」を選べます';state='safe';}
+ el.hidden=!message;
+ if(message){el.textContent=message;el.dataset.level=state;}
+}
+function updateActionAvailability(){
+ if(!g)return;
+ const canAct=!g.dead&&!g.win&&!g.atTown;
+ const controls=[
+  ['heal',canAct&&g.p.hp<g.p.max&&g.bag.some(i=>i.type==='med'), 'HPが減っていて回復剤を持っていると使えます'],
+  ['pulse',canAct&&g.bag.some(i=>i.type==='emp'), 'EMPを持っていると使えます'],
+  ['shock',canAct&&g.bag.some(i=>i.type==='shock'), '遠距離弾を持っていると使えます'],
+  ['antidote',canAct&&g.bag.some(i=>i.type==='antidote')&&Object.entries(g.status||{}).some(([k,v])=>v>0&&['poison','bleed','slow'].includes(k)), '状態異常のとき解毒パッチを使えます']
+ ];
+ for(const [id,enabled,reason] of controls){
+  const b=$(id);if(!b)continue;
+  b.disabled=!enabled;b.title=enabled?'使用できます':reason;
+  b.setAttribute('aria-label',enabled?b.textContent.trim():b.textContent.trim()+'（使用不可）');
+ }
+}
+function render(){if(!g)return;balanceVisit();musicRefresh();updateBattleLog();const terminalReady=!!(g.special&&!g.special.used&&g.p.x===g.special.x&&g.p.y===g.special.y);$('terminalBtn').hidden=!terminalReady;const [hintText,hintStyle]=beginnerHint();$('nextHint').textContent=hintText;$('nextHint').hidden=!guideEnabled;$('nextHint').className='next-hint'+(hintStyle?' '+hintStyle:'');updateGuideToggle();for(const e of g.enemies)if(visible(e.x,e.y))discoverEnemy(e.name);$('hubSummary').textContent=`倉庫 ${cityTotalStorage()}/${warehouseLimit()}　|　最高到達 ${meta.bestFloor}F`;$('battery').textContent=g.energy+' / 100';$('batteryBar').style.width=Math.max(0,Math.min(100,g.energy))+'%';$('batteryBar').parentElement.setAttribute('aria-valuenow',String(Math.max(0,Math.min(100,g.energy))));storyRender();memorySceneFlush();memoryBeaconFeedback();$('floor').textContent=`${g.floor} / ${g.specialMode==='naked'?10:g.specialMode==='rush'?30:g.training?5:g.challenge?20:30}${g.specialMode==='naked'?' NO-CARRY':g.specialMode==='rush'?' RUSH':g.training?' TRAINING':g.challenge?' NULL':''}`;$('level').textContent=`${g.p.level} / ${g.p.xp}`;$('hp').textContent=`${g.p.hp} / ${g.p.max}`;$('hpbar').style.width=Math.max(0,Math.min(100,100*g.p.hp/Math.max(1,g.p.max)))+'%';$('hpbar').parentElement.setAttribute('aria-valuenow',String(Math.max(0,g.p.hp)));$('hpbar').parentElement.setAttribute('aria-valuemax',String(g.p.max));$('power').textContent=`${g.p.atk+(g.gear?.weapon?.bonus||0)} / ${g.p.def+(g.gear?.armor?.bonus||0)}`;$('empCount').textContent=`(${g.bag.filter(i=>i.type==='emp').length})`;$('healCount').textContent=`(${g.bag.filter(i=>i.type==='med').length})`;$('shockCount').textContent=`(${g.bag.filter(i=>i.type==='shock').length})`;$('antidoteCount').textContent=`(${g.bag.filter(i=>i.type==='antidote').length})`;$('buddyBadge').textContent='◕ モチ '+buddyRank()+' '+({heal:'♡',explore:'◇',combat:'⚡'}[g.buddy?.mode]||'♡');buddyUi();jobInit();$('jobInfo').textContent='現在：'+jobLabel()+'　｜次回：'+JOBS[meta.job].name+'　｜'+JOBS[g.job].desc+'　｜スキル再使用：'+Math.max(0,4-(g.turn-g.jobLastSkill))+'T';$('jobSkill').textContent='スキル：'+JOBS[g.job].skill+' ('+({vanguard:18,hacker:20,runner:15}[g.job])+'EN)';$('combatStatus').textContent=Object.entries(g.status||{}).filter(([k,v])=>v>0).map(([k,v])=>({poison:'毒',bleed:'出血',slow:'移動妨害'}[k]||k)+' '+v+'T').join(' / ')||'STATUS: NORMAL';const warnings=g.enemies.filter(e=>e.aim&&visible(e.x,e.y)).length;if(warnings)$('combatStatus').textContent+=' / ⚠ 射撃予告 '+warnings;const danger=g.enemies.filter(e=>e.intent&&visible(e.x,e.y)).length;if(danger)$('combatStatus').textContent+=' / ⚠ 範囲・突進 '+danger;if(g.jobShield>0)$('combatStatus').textContent+=' / 防壁 '+g.jobShield+'T';if(g.tacticalCloak>0)$('combatStatus').textContent+=' / 光学迷彩 '+g.tacticalCloak+'T';if(g.monsterHouse?.triggered&&!g.monsterHouse.cleared)$('combatStatus').textContent+=' / ⚠ MONSTER HOUSE';if(g.floorHazard)$('combatStatus').textContent+=' / '+({blackout:'停電',drain:'EN漏出',supply:'補給'}[g.floorHazard.type]||'');if(floorLimitActive())$('combatStatus').textContent+=' / 階層滞在 '+(g.floorTurn||0)+'/300T'+((g.floorTurn||0)>=200?' ⚠':'');const terrainHere=terrainAt(g.p.x,g.p.y);if(terrainHere)$('combatStatus').textContent+=' / '+({electric:'電撃床',sticky:'粘着床',fog:'電磁霧'}[terrainHere.type]);$('bagCount').textContent=`${g.bag.length} / 12`;$('quickBagCount').textContent=`${g.bag.length}`;const weapon=g.gear?.weapon||null,armor=g.gear?.armor||null;
+ for(const [slot,it,label,stat] of [['Weapon',weapon,'ATK','weapon'],['Armor',armor,'DEF','armor']]){
+  const btn=$('equipped'+slot),name=$('equipped'+slot+'Name'),bonus=$('equipped'+slot+'Stat');
+  name.textContent=it?itemLabel(it):'未装備';
+  bonus.textContent=label+' +'+(it?.bonus||0);
+  btn.classList.toggle('empty',!it);btn.classList.toggle('cursed',!!it?.cursed);
+  btn.title=(it?itemLabel(it):'未装備')+' — タップで装備詳細';
+  btn.setAttribute('aria-label',(slot==='Weapon'?'武器':'装甲')+'：'+(it?itemLabel(it):'未装備')+'。タップで詳細');
+ }
+ $('equipment').innerHTML='<strong>WEAPON</strong> '+escapeText(itemLabel(weapon))+'　/　<strong>ARMOR</strong> '+escapeText(itemLabel(armor));$('liveBagCount').textContent=g.bag.length+' / 12　タップで説明';
+$('liveInventory').replaceChildren();
+for(let i=0;i<12;i++){
+ const it=g.bag[i],b=document.createElement('button');b.type='button';b.className='live-slot';
+ if(it){
+  const t=itemTypes[it.type]||{symbol:'?',name:'不明'};
+  const label=itemLabel(it);if((it.type==='blade'||it.type==='armor')&&gearKnown(it)){b.style.borderColor=gearRarity(it).color;b.style.boxShadow='inset 0 0 0 1px '+gearRarity(it).color+'55';}b.title=label+'：タップで説明';b.setAttribute('aria-label',(i+1)+'番: '+label+' の説明');
+  const ico=document.createElement('span');ico.className='slot-icon';ico.textContent=t.symbol||'?';ico.style.color=t.color||'#e7f9ff';
+  const name=document.createElement('span');name.className='slot-name';name.textContent=((it.type==='blade'||it.type==='armor')&&gearKnown(it)?'['+gearRarity(it).name+'] ':'')+label;
+  b.append(ico,name);b.addEventListener('click',()=>showItemDetails(i));
+ }else{b.disabled=true;b.setAttribute('aria-label',(i+1)+'番: 空き');b.innerHTML='<span class="slot-icon">·</span><span class="slot-name">EMPTY</span>'}
+ $('liveInventory').append(b);
+}
+$('inventory').replaceChildren();g.bag.forEach((it,i)=>{let b=document.createElement('button');b.textContent=`${i+1}. ${itemLabel(it)}　詳細を見る`;b.addEventListener('click',()=>showItemDetails(i));$('inventory').append(b)});if(!g.bag.length)$('inventory').textContent='アイテムなし';$('log').replaceChildren();g.logs.forEach(m=>{let p=document.createElement('p');p.textContent='› '+m;$('log').append(p)});fieldAlertUpdate();updateActionAvailability();draw();}
 function drawFullMap(){if(!g)return;const c=$('fullMap'),t=c.getContext('2d');t.fillStyle='#020710';t.fillRect(0,0,500,500);const sz=20;for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(!g.seen[y][x])continue;const lit=visible(x,y);t.fillStyle=cell(x,y)===1?'#244559':lit?'#245c6a':'#123443';t.fillRect(x*sz,y*sz,sz-1,sz-1);if(g.special&&!g.special.used&&x===g.special.x&&y===g.special.y){t.fillStyle='#bd7aff';t.fillRect(x*sz+5,y*sz+5,10,10)}if(x===g.stair.x&&y===g.stair.y){t.fillStyle='#53f3a4';t.fillRect(x*sz+5,y*sz+5,10,10)}}for(const e of g.enemies){if(visible(e.x,e.y)){t.fillStyle=e.boss?'#ffc468':'#ff647d';t.fillRect(e.x*sz+6,e.y*sz+6,8,8)}}for(const it of g.items){if(visible(it.x,it.y)){t.fillStyle='#ffe187';t.fillRect(it.x*sz+7,it.y*sz+7,6,6)}}t.fillStyle='#8bf5ff';t.beginPath();t.arc(g.p.x*sz+10,g.p.y*sz+10,8,0,Math.PI*2);t.fill();t.strokeStyle='#fff';t.stroke();$('mapInfo').textContent='FLOOR '+g.floor+' / 紫：特殊端末　水色：現在地　緑：階段　赤：視界内の敵　黄：視界内のアイテム。未探索エリアと視界外の敵は表示しません。'}
 function openFullMap(){if(modalOpen||!g||!$('hubOverlay').hidden)return;closeMenu();drawFullMap();$('fullMapOverlay').hidden=false}
 function closeFullMap(){$('fullMapOverlay').hidden=true}
@@ -4171,10 +4294,73 @@ const PROLOGUE_SCENES=[
  {speaker:'リラ',text:'街の向こうには、記憶の断片が眠る電脳迷宮がある。\nでも、急いで入る必要はないわ。まず街を歩いて、みんなと話してみて。'},
  {speaker:'記録音声 / FIRST SIGNAL',text:'新しい記録を開始。\n記憶を失った旅人の、最初の一歩。'}
 ];
+function slotHasData(n){try{return !!localStorage.getItem(slotKey(n,SLOT_BASE_KEYS[0]));}catch(e){return false;}}
+function slotRun(n){try{const raw=localStorage.getItem(slotKey(n,SLOT_BASE_KEYS[0]));return raw?JSON.parse(raw):null;}catch(e){return null;}}
+function slotInfo(n){
+ const run=slotRun(n);
+ if(!run)return '空きスロット';
+ if(!validSave(run))return 'データ要確認';
+ return (run.atTown?'灯の街':(run.floor||1)+'F')+' / LV '+(run.p?.level||1)+(run.prologuePending?' / プロローグ':'')+(run.win?' / クリア':'')+(run.dead?' / 探索終了':'');
+}
+function slotMigrateLegacy(){
+ try{
+  if(localStorage.getItem(SLOT_MIGRATED_KEY)==='done')return;
+  // Old single-save data is copied into slot 1 only; never delete the legacy originals.
+  for(const base of SLOT_BASE_KEYS){const raw=localStorage.getItem(base);if(raw!==null&&localStorage.getItem(slotKey(1,base))===null)localStorage.setItem(slotKey(1,base),raw);}
+  localStorage.setItem(SLOT_MIGRATED_KEY,'done');
+ }catch(e){qualityStorageWarning('既存セーブを移行できません。端末の空き容量を確認してください。');}
+}
+let slotCopySource=0;
 function titleStatus(){
- const has=!!g&&validSave(g);
+ const has=slotHasData(activeSlot)&&!!g&&validSave(g);
  $('startContinue').disabled=!has;
- $('startSaveStatus').textContent=has?'保存された探索データがあります。':'セーブデータがありません。「はじめから」を選択してください。';
+ const title=$('startSaveStatus');
+ title.textContent=slotCopySource?'スロット '+slotCopySource+' のコピー先を選択（コピーを再押下で中止）':
+  'スロット '+activeSlot+' を選択中 — '+(has?'つづきから再開できます':'はじめから開始できます');
+ $('slotModeLabel').textContent=slotCopySource?'コピー先を選択':'使用するスロットを選択';
+ const host=$('saveSlotList');host.replaceChildren();
+ for(let n=1;n<=3;n++){
+  const card=document.createElement('div');card.className='save-slot-card'+(n===activeSlot?' selected':'');
+  const select=document.createElement('button');select.className='save-slot-main';select.type='button';select.setAttribute('aria-label','スロット '+n+'：'+slotInfo(n));
+  const name=document.createElement('strong');name.textContent='SLOT '+String(n).padStart(2,'0')+(n===activeSlot?' · 選択中':'');
+  const subtitle=document.createElement('small');subtitle.textContent=slotInfo(n);select.append(name,subtitle);
+  select.addEventListener('click',()=>{if(slotCopySource)slotCopyTo(n);else slotSelect(n);});
+  const copy=document.createElement('button');copy.className='save-slot-action';copy.type='button';copy.textContent=slotCopySource===n?'中止':'コピー';copy.disabled=!slotHasData(n)&&slotCopySource!==n;
+  copy.addEventListener('click',()=>{slotCopySource=slotCopySource===n?0:n;titleStatus();});
+  const del=document.createElement('button');del.className='save-slot-action';del.type='button';del.textContent='削除';del.disabled=!slotHasData(n);del.addEventListener('click',()=>slotDelete(n));
+  card.append(select,copy,del);host.append(card);
+ }
+}
+function slotSelect(n){
+ if(n<1||n>3||n===activeSlot)return;
+ try{
+  if(g&&validSave(g))save();
+  localStorage.setItem(SLOT_SELECTED_KEY,String(n));location.reload();
+ }catch(e){alert('スロットを切り替えられません。保存領域を確認してください。');}
+}
+function slotCopyTo(target){
+ const src=slotCopySource;slotCopySource=0;
+ if(!src||src===target){titleStatus();return;}
+ if(!confirm('スロット '+src+' をスロット '+target+' にコピーします。'+(slotHasData(target)?'コピー先の既存データは上書きされます。':'')+' よろしいですか？')){titleStatus();return;}
+ if(src===activeSlot&&g&&validSave(g))save();
+ const snapshot=new Map();
+ try{
+  const updates=SLOT_BASE_KEYS.map(base=>[slotKey(target,base),localStorage.getItem(slotKey(src,base))]);
+  if(!updates[0][1])throw Error('コピー元が空です');
+  const parsed=JSON.parse(updates[0][1]);if(!validSave(parsed))throw Error('コピー元の探索データが不正です');
+  for(const [key] of updates)snapshot.set(key,localStorage.getItem(key));
+  for(const [key,value] of updates){if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value);}
+  if(target===activeSlot){location.reload();return;}
+  titleStatus();
+ }catch(e){for(const [key,value] of snapshot){try{if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value)}catch(_){}}alert('コピーに失敗しました：'+e.message);titleStatus();}
+}
+function slotDelete(n){
+ if(!confirm('スロット '+n+' の探索・街・実績・予備セーブを削除します。元に戻せません。削除しますか？'))return;
+ try{
+  for(const base of SLOT_BASE_KEYS)localStorage.removeItem(slotKey(n,base));
+  if(n===activeSlot){location.reload();return;}
+  titleStatus();
+ }catch(e){alert('削除に失敗しました。保存領域を確認してください。');}
 }
 function titleOpen(){
  if(autoRunning)autoStop('タイトルへ戻る');
@@ -4234,7 +4420,7 @@ function titleNew(){
  };
  if(g&&validSave(g)){
   $('startScreen').hidden=true;
-  modal('新しく始めますか？','現在の探索を最初からやり直します。<br>街の倉庫・実績・エンディングの記録は保持されます。<br>現在の探索は上書きされるため、必要なら先にバックアップしてください。',[
+  modal('新しく始めますか？','選択中のスロット '+activeSlot+' の探索を最初からやり直します。<br>このスロットの街の倉庫・実績・エンディング履歴は保持します。<br><strong>他のスロットは変更されません。</strong><br>現在の探索は上書きされるため、必要なら先にコピーしてください。',[
    ['やめる',()=>{$('startScreen').hidden=false;}],['はじめから',start]
   ]);
  }else start();
@@ -4247,7 +4433,7 @@ $('prologueSkip').addEventListener('click',introFinish);
 const titleReturnBtn=document.createElement('button');titleReturnBtn.id='titleReturnBtn';titleReturnBtn.type='button';titleReturnBtn.textContent='タイトル画面に戻る';
 const settingsPage=$('page-settings');if(settingsPage)settingsPage.append(titleReturnBtn);
 titleReturnBtn.addEventListener('click',()=>{closeMenu();titleOpen();});
-metaLoad();load();titleStatus();
+slotMigrateLegacy();metaLoad();load();titleStatus();
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 $('bossDodge').addEventListener('click',emergencyDodge);$('battleLogToggle').addEventListener('click',communicationLogOpen);$('commLogClose').addEventListener('click',communicationLogClose);})();
 const $=id=>document.getElementById(id);
