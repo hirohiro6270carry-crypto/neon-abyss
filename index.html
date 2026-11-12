@@ -1,4 +1,4 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07101c"><link rel="manifest" href="manifest.webmanifest"><title>NEON ABYSS v4.9.0 — MEMORY BEACON UX</title><style>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07101c"><link rel="manifest" href="manifest.webmanifest"><title>NEON ABYSS v5.0.7 — DEEP SPECIALISTS</title><style>
 :root{color-scheme:dark;--bg:#07101c;--panel:#0e2130;--line:#2b6372;--cyan:#78efff;--pink:#ff6cab;--gold:#f9c979}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#15354a,#050b13 70%);color:#dcecf5;font:14px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif}button{touch-action:manipulation;border:1px solid #398ca0;background:#153b4d;color:#e7fcff;border-radius:10px;padding:11px;font-weight:700;font-size:14px}button:active{background:#28647c}button:disabled{opacity:.35}header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #25515c}h1{font-size:18px;margin:0;color:var(--cyan);letter-spacing:.09em}small{color:#8da8b9}.app{max-width:540px;margin:auto;padding:9px 10px 28px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:8px}.stat{background:#102735;border:1px solid #254c60;border-radius:9px;padding:5px;text-align:center;font-size:11px}.stat strong{display:block;font-size:17px;color:#fff}.bar{height:5px;background:#2b3844;border-radius:8px;overflow:hidden;margin-top:3px}.fill{height:100%;background:#39dc9e}#mapWrap{position:relative;border:1px solid #327f90;border-radius:13px;background:#030a12;overflow:hidden;box-shadow:0 0 22px #0d799022}canvas{display:block;width:100%;aspect-ratio:1;image-rendering:pixelated}#banner{position:absolute;left:0;right:0;top:44%;text-align:center;font-size:21px;font-weight:900;color:white;text-shadow:0 0 12px var(--cyan);pointer-events:none;opacity:0;transition:opacity .3s}#banner.show{opacity:1}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.dpad button{min-height:46px;font-size:21px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:5px}.actions button{font-size:12px;padding:7px}.wide{grid-column:span 2}.panel{background:#0c1c2b;border:1px solid #244b5b;border-radius:11px;margin-top:8px;padding:10px}h2{font-size:14px;color:var(--cyan);margin:0 0 7px}.log{height:85px;overflow-y:auto;font-size:12px;color:#b9d3e3}.log p{margin:2px 0}.log p:first-child{color:#fff}.inventory{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}.inventory button{font-size:12px;text-align:left;min-height:42px;padding:7px}.tag{font-size:11px;color:var(--gold)}.footer{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.footer button{font-size:12px;padding:8px}.overlay{position:fixed;inset:0;background:#020912e8;z-index:10;display:flex;align-items:center;justify-content:center;padding:20px}.overlay[hidden]{display:none}.dialog{width:min(100%,430px);background:#102535;border:1px solid #5ec8db;border-radius:16px;padding:24px;text-align:center;box-shadow:0 0 45px #1b819944}.dialog h2{font-size:25px;color:#fff}.dialog p{line-height:1.9}.dialog button{margin:5px}.note{color:#9eb5c6;font-size:12px}.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#9bb6c8;margin-top:5px}.legend b{color:var(--cyan)}@media(max-height:750px){header{padding:5px 10px}.app{padding-top:5px}.stats{margin-bottom:5px}.stat{padding:2px}.stat strong{font-size:15px}.dpad button{min-height:39px}.log{height:54px}}
 .battery-status{margin:6px 2px;font-size:12px;color:#e2d6a2}.battery-status strong{float:right;color:#f8e7a4}.battery-status .fill{background:#f5d36d}.story{font-size:12px;line-height:1.65;color:#a8c5d9;max-height:60px;overflow:hidden}.story.expanded{max-height:none}.story p{margin:5px 0}.boss-mark{color:#ff8aa5}
  .combat-status{margin:5px 2px;color:#ffb5d5;font-size:12px;min-height:17px}.enemy-guide{font-size:12px;color:#accbd9;line-height:1.7}.enemy-guide strong{color:#7ceaff} 
@@ -665,6 +665,216 @@ header h1{font-size:14px!important}header small{font-size:9px!important}
 body.map-focus .explore-tools:has(#storyOptionalBtn:not([hidden])){display:flex!important;min-height:28px!important}
 #storyOptionalBtn:not([hidden]){background:#17665f!important;border-color:#9ff8e7!important;color:#f0fffb!important;font-weight:800!important;min-height:29px!important;box-shadow:0 0 7px #41d5bf44}
 #storyOptionalBtn[hidden]{display:none!important}
+
+/* v4.9.1: contextual actions float above the map; no layout height is added. */
+#mapWrap>.explore-tools{
+ position:absolute!important;left:7px;top:7px;right:auto;bottom:auto;
+ z-index:9;display:flex!important;flex-wrap:wrap;align-items:center;
+ width:max-content;max-width:calc(100% - 150px);height:auto;
+ min-height:0!important;margin:0!important;padding:0!important;gap:4px!important;
+ pointer-events:none;
+}
+#mapWrap>.explore-tools button{pointer-events:auto;min-height:30px!important;padding:5px 8px!important;font-size:11px!important;max-width:100%;white-space:normal;text-align:center;box-shadow:0 2px 8px #0009}
+#mapWrap>.explore-tools:not(:has(button:not([hidden]))){display:none!important}
+#mapWrap>.explore-tools:has(button:not([hidden])){display:flex!important}
+#mapWrap>.explore-tools #floorEventLabel{display:none!important}
+@media(max-width:365px){#mapWrap>.explore-tools{max-width:calc(100% - 122px);left:5px;top:5px}#mapWrap>.explore-tools button{font-size:10px!important;padding:4px 5px!important}}
+
+
+/* v4.9.3: fix clipped town d-pad on iPhone portrait */
+#townOverlay .town-dialog{
+  width:min(96vw,560px)!important;
+  max-height:min(94dvh,900px)!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  padding:10px!important;
+  box-sizing:border-box!important;
+}
+#townOverlay .town-dialog>*{box-sizing:border-box}
+#townOverlay .town-stage{display:flex!important;justify-content:center!important;align-items:center!important;flex:1 1 auto!important;min-height:0!important;margin:6px 0 4px!important}
+#townOverlay .town-stage canvas{width:min(100%,384px)!important;max-width:100%!important;height:auto!important;aspect-ratio:6/5!important}
+#townOverlay .town-controls{
+  display:grid!important;
+  grid-template-columns:minmax(152px,168px) minmax(0,1fr)!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  gap:10px!important;
+  margin:6px 0 4px!important;
+  width:100%!important;
+  overflow:visible!important;
+}
+#townOverlay .town-pad{
+  display:grid!important;
+  grid-template-columns:repeat(3,44px)!important;
+  grid-template-rows:repeat(3,44px)!important;
+  gap:4px!important;
+  justify-content:center!important;
+  justify-items:center!important;
+  align-content:center!important;
+  width:152px!important;
+  min-width:152px!important;
+  margin:0 auto!important;
+}
+#townOverlay .town-pad>div{display:contents!important}
+#townOverlay .town-pad button{
+  width:44px!important;
+  min-width:44px!important;
+  max-width:44px!important;
+  height:44px!important;
+  min-height:44px!important;
+  padding:0!important;
+  font-size:19px!important;
+  line-height:1!important;
+}
+#townOverlay .town-pad button[data-town-move="0,-1"]{grid-column:2;grid-row:1}
+#townOverlay .town-pad button[data-town-move="-1,0"]{grid-column:1;grid-row:2}
+#townOverlay .town-pad button[data-town-move="1,0"]{grid-column:3;grid-row:2}
+#townOverlay .town-pad button[data-town-move="0,1"]{grid-column:2;grid-row:3}
+#townOverlay .town-pad button#townWait,
+#townOverlay .town-pad button[data-town-move="0,0"]{grid-column:2;grid-row:2;font-size:13px!important}
+#townOverlay .town-actions{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:6px!important;
+  min-width:0!important;
+  width:100%!important;
+}
+#townOverlay .town-interact,
+#townOverlay #townJobs,
+#townOverlay #townArchive{
+  width:100%!important;
+  min-width:0!important;
+  min-height:44px!important;
+  font-size:14px!important;
+  padding:4px 6px!important;
+}
+#townOverlay .town-interact{grid-column:1 / -1!important;min-height:50px!important}
+#townOverlay .town-economy{font-size:10px!important;line-height:1.35!important;margin-top:2px!important}
+#townOverlay .town-message{font-size:11px!important;line-height:1.45!important;min-height:48px!important;max-height:64px!important;overflow:hidden!important}
+
+@media (max-width:420px){
+  #townOverlay .town-dialog{padding:8px!important}
+  #townOverlay .town-controls{grid-template-columns:146px minmax(0,1fr)!important;gap:8px!important}
+  #townOverlay .town-pad{grid-template-columns:repeat(3,42px)!important;grid-template-rows:repeat(3,42px)!important;width:146px!important;min-width:146px!important}
+  #townOverlay .town-pad button{width:42px!important;min-width:42px!important;max-width:42px!important;height:42px!important;min-height:42px!important}
+  #townOverlay .town-interact,#townOverlay #townJobs,#townOverlay #townArchive{min-height:42px!important;font-size:13px!important}
+}
+@media (max-width:360px){
+  #townOverlay .town-controls{grid-template-columns:138px minmax(0,1fr)!important;gap:6px!important}
+  #townOverlay .town-pad{grid-template-columns:repeat(3,40px)!important;grid-template-rows:repeat(3,40px)!important;width:138px!important;min-width:138px!important}
+  #townOverlay .town-pad button{width:40px!important;min-width:40px!important;max-width:40px!important;height:40px!important;min-height:40px!important;font-size:17px!important}
+  #townOverlay .town-pad button#townWait,#townOverlay .town-pad button[data-town-move="0,0"]{font-size:12px!important}
+  #townOverlay .town-interact,#townOverlay #townJobs,#townOverlay #townArchive{font-size:12px!important}
+}
+
+
+/* v4.9.3 additional iPhone layout protection: grid placeholders must not create implicit rows */
+#townOverlay .town-pad>span{display:none!important}
+#townOverlay .town-pad .town-center{grid-column:2!important;grid-row:2!important;font-size:15px!important}
+#townOverlay .town-stage{flex:1 1 0!important;overflow:hidden!important}
+#townOverlay .town-stage canvas{max-height:100%!important;object-fit:contain!important}
+#townOverlay .town-controls{flex:0 0 auto!important;min-height:0!important}
+#townOverlay .town-actions{align-self:center!important}
+#townOverlay .town-keys-hint{grid-column:1/-1;text-align:center;font-size:10px;line-height:1.2}
+@media(max-height:690px){
+ #townOverlay .town-dialog{height:calc(100dvh - 12px)!important;max-height:none!important;padding:6px!important}
+ #townOverlay .town-dialog>.note{display:none!important}
+ #townOverlay .town-controls{margin:2px 0!important}
+ #townOverlay .town-pad{grid-template-rows:repeat(3,36px)!important;grid-template-columns:repeat(3,36px)!important;width:124px!important;min-width:124px!important;gap:3px!important}
+ #townOverlay .town-pad button{width:36px!important;min-width:36px!important;max-width:36px!important;height:36px!important;min-height:36px!important}
+ #townOverlay .town-controls{grid-template-columns:124px minmax(0,1fr)!important}
+ #townOverlay .town-message{min-height:32px!important;max-height:45px!important}
+}
+
+/* v4.9.4: Stair confirmation centered independently of console dialogue. */
+#overlay:has(> .dialog.stairs-dialog){
+ align-items:center!important;
+ justify-content:center!important;
+ padding:max(12px,env(safe-area-inset-top,0px)) 14px max(12px,env(safe-area-inset-bottom,0px))!important;
+}
+#overlay .dialog.stairs-dialog{
+ width:min(100%,420px)!important;
+ max-height:min(70dvh,380px)!important;
+ min-height:0!important;
+ margin:auto!important;
+ border-radius:14px!important;
+ padding:18px 16px!important;
+ box-shadow:0 0 0 2px #123d4c,0 14px 44px #000b!important;
+}
+#overlay .dialog.stairs-dialog #modalTitle{text-align:center!important;font-size:16px!important}
+#overlay .dialog.stairs-dialog #modalBody{flex:0 1 auto!important;text-align:center!important;padding:10px 2px!important;overflow:visible!important}
+#overlay .dialog.stairs-dialog #modalButtons{max-height:none!important}
+
+
+/* v4.9.5: Position action/confirmation dialogs centrally, preserving bottom-anchored speech. */
+#overlay.centered-overlay{
+ align-items:center!important;
+ justify-content:center!important;
+ padding:max(12px,env(safe-area-inset-top,0px)) 12px max(12px,env(safe-area-inset-bottom,0px))!important;
+}
+#overlay .dialog.centered-dialog{
+ width:min(100%,460px)!important;
+ max-height:calc(100dvh - max(24px,env(safe-area-inset-top,0px)) - max(24px,env(safe-area-inset-bottom,0px)))!important;
+ min-height:0!important;
+ margin:auto!important;
+ padding:14px!important;
+ border-radius:14px!important;
+ overflow:hidden!important;
+ display:flex!important;
+ flex-direction:column!important;
+ gap:8px!important;
+ box-shadow:0 0 0 2px #123d4c,0 14px 44px #000b!important;
+}
+#overlay .dialog.centered-dialog #modalTitle{
+ flex:0 0 auto!important;
+ text-align:center!important;
+ line-height:1.35!important;
+ margin:0!important;
+ font-size:16px!important;
+}
+#overlay .dialog.centered-dialog #modalBody{
+ flex:0 1 auto!important;
+ min-height:0!important;
+ margin:0!important;
+ padding:4px 2px!important;
+ overflow-x:hidden!important;
+ overflow-y:auto!important;
+ overscroll-behavior:contain;
+ -webkit-overflow-scrolling:touch;
+ font-size:13px!important;
+ line-height:1.55!important;
+}
+#overlay .dialog.centered-dialog #modalButtons{
+ flex:0 1 auto!important;
+ min-height:0!important;
+ max-height:min(38dvh,290px)!important;
+ overflow-y:auto!important;
+ overscroll-behavior:contain;
+ -webkit-overflow-scrolling:touch;
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:6px!important;
+ padding:1px!important;
+}
+#overlay .dialog.centered-dialog #modalButtons button{
+ min-width:0!important;
+ min-height:34px!important;
+ margin:0!important;
+ white-space:normal!important;
+ overflow-wrap:anywhere;
+}
+#overlay .dialog.centered-dialog #modalButtons button:only-child{grid-column:1/-1}
+#overlay .dialog.centered-dialog.finale-dialog{
+ max-height:calc(100dvh - 28px)!important;
+ overflow:hidden!important;
+}
+@media(max-height:620px){
+ #overlay .dialog.centered-dialog{padding:10px!important;gap:5px!important}
+ #overlay .dialog.centered-dialog #modalButtons{max-height:34dvh!important}
+ #overlay .dialog.centered-dialog #modalButtons button{min-height:30px!important;padding:5px!important}
+}
+
 </style></head><body>
 <section id="startScreen" class="start-screen" aria-label="ゲームスタート画面" role="dialog" aria-modal="true">
  <div class="start-stars" aria-hidden="true"></div>
@@ -680,16 +890,16 @@ body.map-focus .explore-tools:has(#storyOptionalBtn:not([hidden])){display:flex!
    <button id="startContinue" type="button">つづきから <small>CONTINUE</small></button>
   </div>
   <p id="startSaveStatus" class="start-status" role="status"></p>
-  <small class="start-credit">NEON VILLAGE / SIGNAL ONLINE · v4.8.8</small>
+  <small class="start-credit">NEON VILLAGE / SIGNAL ONLINE · v5.0.7</small>
  </div>
 </section>
-<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v4.9.0 / MEMORY BEACON UX</small></div><div class="header-tools"><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div></div><div class="vitals" aria-label="HPとエネルギー"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>EN / 電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="エネルギー残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">⬡</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><div id="banner"></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="記憶表示を閉じる">×</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="credits" class="compact-credits">CREDITS 0</span><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（EN 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townClose" type="button">ダンジョンへ入る</button></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では出口の扉から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="384" height="320" aria-label="歩いて探索できる街の地図"></canvas></div>
+<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v5.0.7 / THREAT-BASED EXP</small></div><div class="header-tools"><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div></div><div class="vitals" aria-label="HPとエネルギー"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>EN / 電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="エネルギー残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">⬡</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div id="banner"></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="記憶表示を閉じる">×</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="credits" class="compact-credits">CREDITS 0</span><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（EN 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townClose" type="button">ダンジョンへ入る</button></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では出口の扉から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="384" height="320" aria-label="歩いて探索できる街の地図"></canvas></div>
 <div id="townPrologue" class="town-prologue" hidden aria-live="polite">
  <div class="prologue-top"><span>PROLOGUE · 消えた名前</span><button id="prologueSkip" type="button">スキップ</button></div>
  <div class="prologue-speaker" id="prologueSpeaker">記録音声</div>
  <div class="prologue-text" id="prologueText"></div>
  <button id="prologueNext" class="prologue-next" type="button">次へ ▸</button>
-</div><div class="town-controls"><div class="town-pad" aria-label="移動"><span></span><button data-town-move="0,-1" aria-label="街で上へ移動">▲</button><span></span><button data-town-move="-1,0" aria-label="街で左へ移動">◀</button><button type="button" class="town-center" disabled aria-label="中央">•</button><button data-town-move="1,0" aria-label="街で右へ移動">▶</button><span></span><button data-town-move="0,1" aria-label="街で下へ移動">▼</button><span></span></div><div class="town-actions"><button id="townInteract" class="town-interact" type="button">決定 / 調べる</button><button id="townJobs" type="button">ジョブ</button><button id="townArchive" type="button">記憶</button><span class="town-keys-hint">左：移動　右：決定・情報</span></div></div><div id="townEconomy" class="town-economy" aria-live="polite"></div><div id="townMessage" class="town-message" role="status">建物の前まで歩いて「調べる」を押そう。</div></div></div><div class="overlay" id="menuOverlay" hidden><div class="dialog drawer"><div class="drawer-head"><h2>EXPLORER MENU</h2><button id="menuClose" type="button">探索へ戻る</button></div><div class="menu-tabs" role="tablist" aria-label="メニュー分類"><button type="button" role="tab" id="tab-bag" data-menu-tab="bag" aria-selected="true">バッグ</button><button type="button" role="tab" id="tab-gear" data-menu-tab="gear" aria-selected="false">装備</button><button type="button" role="tab" id="tab-adventure" data-menu-tab="adventure" aria-selected="false">探索</button><button type="button" role="tab" id="tab-mochi" data-menu-tab="mochi" aria-selected="false">モチ</button><button type="button" role="tab" id="tab-info" data-menu-tab="info" aria-selected="false">情報</button><button type="button" role="tab" id="tab-settings" data-menu-tab="settings" aria-selected="false">設定</button></div><div class="menu-page" id="page-bag" role="tabpanel" aria-labelledby="tab-bag"><section class="panel"><h2>バックパック <span class="tag" id="bagCount"></span></h2><div class="inventory" id="inventory"></div></section></div><div class="menu-page" id="page-gear" role="tabpanel" aria-labelledby="tab-gear" hidden><section class="panel"><h2>装備・強化</h2><div id="equipment"></div><button id="fusionBtn" type="button">合成設備の場所を確認</button><p class="inv-note">装備はバックパックの「そうびする」で変更でき、装備中もバッグに残ります。街の合成工房または迷宮の改造端末でのみ合成できます。巻物による武器・装甲の+1強化は探索中どこでも可能です。素材は消費され、強化値を合計（最大+20）し特殊効果を付与します。武器は会心・EN吸収、装甲は毒耐性・被ダメージ軽減。合成費用20クレジット。呪われた装備は合成できません。</p></section></div><div class="menu-page" id="page-adventure" role="tabpanel" aria-labelledby="tab-adventure" hidden><section class="panel"><h2>ジョブ / スキル</h2><p id="jobInfo" class="note"></p><button id="jobMenuBtn" type="button">ジョブの詳細・変更</button></section><div class="drawer-actions"><button id="extract">あきらめる（探索終了）</button><button id="restart" hidden>新しい探索を開始</button><button id="trainingStart" type="button" hidden>訓練迷宮（全5階）</button></div><section class="panel"><h2>拠点 / セーフハウス</h2><p class="note">探索中は街に戻れません。「あきらめる」を選ぶと倒された扱いとなり、探索中の装備・所持品を失います。倉庫と出発用に指定した物資は残ります。</p><button id="hubBtn">セーフハウス・倉庫・探索記録</button><div class="note" id="hubSummary"></div></section></div><div class="menu-page" id="page-mochi" role="tabpanel" aria-labelledby="tab-mochi" hidden><section class="panel"><h2>サポートドローン / モチ</h2><p class="note" id="buddyInfo"></p><p id="mochiTechInfo" class="note"></p><button id="mochiUpgradeBtn" type="button">モチのパーツ改修</button><div class="buddy-custom"><button id="buddyTalk" type="button">モチと話す</button><label>支援モード <select id="buddyMode"><option value="heal">回復重視</option><option value="explore">探索重視</option><option value="combat">戦闘重視</option></select></label><label>モチの外装 <select id="buddySkin"><option value="cream">ミルク</option><option value="mint">ミント（親密度2）</option><option value="violet">ラベンダー（親密度3）</option><option value="gold">スター（親密度4）</option></select></label></div><p class="note">「ぴこっ！ いっしょに行こう！」<br/>小さな猫型ドローンが探索に同行します。回復重視：応急修復を強化。探索重視：ゲート・罠の探知。戦闘重視：隣接敵を妨害。親密度Lv.2以上で支援能力が成長します。自動行動なのでボタン操作は不要。モチは攻撃対象にならず、死亡時に一緒に帰還します。</p></section></div><div class="menu-page" id="page-info" role="tabpanel" aria-labelledby="tab-info" hidden><div class="info-tabs"><button type="button" data-info-tab="0">物語</button><button type="button" data-info-tab="1">端末</button><button type="button" data-info-tab="2">敵の情報</button><button type="button" data-info-tab="3">ログ</button></div><section class="panel"><h2>傍受した機密通信 <span class="tag" id="chapterLabel"></span></h2><div class="story" id="story"></div><button id="storyBtn" type="button">記録を読む</button><button id="memoryArchiveBtn" type="button">記憶アーカイブ</button><button type="button" id="fieldGuideOpenBtn">道具・特殊マスの発見ガイド</button><button id="signalBtn" type="button">機密通信に応答</button><div class="note" id="signalStatus"></div></section><section class="panel"><h2>特殊フロア / 取引端末</h2><p class="note">商人端末、医療ステーション、データ保管庫がランダム出現。紫の◇に立ち「周辺端末を調べる」で利用できます。商人の支払いは探索中に得たクレジットから。</p></section><section class="panel"><h2>敵データ / 戦闘ヒント</h2><div class="enemy-guide">全30系統の敵が階層に応じて出現。通常階では40ターンごとに離れた安全な場所へ最大1体が自然発生。200/260/290ターンで警告し、300ターンで帰還（死亡扱い）。通常敵は低確率でアイテムを床へ落とします。ボス階・訓練・特別な迷宮では発生しません。各系統の姿・攻撃傾向・特殊能力は異なります。図鑑で発見状況を確認できます。<br/>ショック弾：直線3マスに攻撃＋スタン。解毒パッチ：毒と出血を除去。</div></section><section class="panel"><h2>通信ログ</h2><div aria-live="polite" class="log" id="log"></div></section></div><div class="menu-page" id="page-settings" role="tabpanel" aria-labelledby="tab-settings" hidden><div class="footer"><button id="sound">効果音 ON</button><button id="save">手動セーブ</button><button id="diagnostics" type="button">動作診断</button><button id="balanceMenu" type="button">プレイ統計</button><button id="bossMusicBtn" type="button">BGM：OFF</button><div class="sound-controls"><label for="musicVolume">BGM音量 <output id="musicVolumeLabel">35%</output></label><input id="musicVolume" type="range" min="0" max="100" step="5" value="35" aria-label="BGM音量"><p class="note" id="musicSceneLabel">BGM：停止中（街・探索・危険・ボスの4種類）</p><p class="note">iPhoneではBGMをONにしたタップ操作から再生を始めます。外部音楽ファイル・通信は使用しません。</p></div><button id="debugToggle" type="button">デバッグ：OFF</button><button hidden="" id="debugTools" type="button">階数・HPを操作</button><button hidden id="debugAutoToggle" type="button">自動探索：開始</button><button id="exportSave">セーブを書き出す</button><button id="restoreBackup" type="button">予備セーブを確認・復元</button><button id="importSave">セーブを読み込む</button><input accept=".json,application/json" hidden="" id="importFile" type="file"/><button aria-pressed="true" id="guideToggle" type="button">ヒント：ON</button><button id="helpBottom">ルール</button></div></div></div></div><div class="overlay" id="hubOverlay" hidden><div class="dialog" style="max-height:90vh;overflow:auto;text-align:left"><h2>SAFEHOUSE / 倉庫</h2><p id="hubStats" class="note"></p><p class="note">街で物資を出発用に指定できます。ダンジョン探索中は物資の出し入れができません。</p><h3 id="warehouseTitle">倉庫</h3><p class="note">倉庫の物資を「出発用に指定」すると、次の探索へ持ち込めます（初期道具4個＋最大8個）。</p><div id="readyList" class="inventory"></div><div id="warehouseList" class="inventory"></div><h3>現在のバッグ（探索中の預け入れは不可）</h3><div id="depositList" class="inventory"></div><h3>クリア後ダンジョン</h3><p class="note">本編30階をクリアすると「NULL PROTOCOL」全20階が解放。死亡すると持ち物を失います。</p><button id="challengeStart">NULL PROTOCOLに挑戦</button><h3>特別な迷宮 / SPECIAL MODES</h3><p class="note">街からも「特別な迷宮」を選択できます。持ち込み禁止10階・ボスラッシュ3戦に挑戦。</p><button id="specialModes" type="button">特別な迷宮を選ぶ</button><p id="specialRecords" class="note"></p><h3>発見ガイド（初回説明を再確認）</h3><p class="note">初めて拾った道具や踏んだ特殊マスは自動登録されます。未発見の項目は表示されません。</p><div id="fieldGuideEntries" class="codex"></div><h3>探索図鑑</h3><p id="codexSummary" class="note"></p><div id="codexEntries" class="codex"></div><h3>実績</h3><div id="achievements" class="codex"></div><h3>プレイ統計</h3><button id="balanceDashboard" type="button">階層別死亡率・ジョブ別成績・アイテム使用</button><p class="note">端末内のみで集計。終了した通常探索が対象です。</p><h3>探索記録</h3><div id="runHistory" class="note" style="max-height:160px;overflow:auto"></div><button id="hubClose">戻る</button></div></div><div class="overlay" id="fullMapOverlay" hidden><div class="dialog"><h2>TACTICAL MAP</h2><canvas id="fullMap" width="500" height="500" aria-label="探索済みのダンジョン全体図"></canvas><p id="mapInfo"></p><button type="button" id="closeFullMap">探索に戻る</button></div></div><div class="overlay" id="overlay" hidden><div class="dialog"><h2 id="modalTitle"></h2><p id="modalBody"></p><div id="modalButtons"></div></div></div><script>
+</div><div class="town-controls"><div class="town-pad" aria-label="移動"><span></span><button data-town-move="0,-1" aria-label="街で上へ移動">▲</button><span></span><button data-town-move="-1,0" aria-label="街で左へ移動">◀</button><button type="button" class="town-center" disabled aria-label="中央">•</button><button data-town-move="1,0" aria-label="街で右へ移動">▶</button><span></span><button data-town-move="0,1" aria-label="街で下へ移動">▼</button><span></span></div><div class="town-actions"><button id="townInteract" class="town-interact" type="button">決定 / 調べる</button><button id="townJobs" type="button">ジョブ</button><button id="townArchive" type="button">記憶</button><span class="town-keys-hint">左：移動　右：決定・情報</span></div></div><div id="townEconomy" class="town-economy" aria-live="polite"></div><div id="townMessage" class="town-message" role="status">建物の前まで歩いて「調べる」を押そう。</div></div></div><div class="overlay" id="menuOverlay" hidden><div class="dialog drawer"><div class="drawer-head"><h2>EXPLORER MENU</h2><button id="menuClose" type="button">探索へ戻る</button></div><div class="menu-tabs" role="tablist" aria-label="メニュー分類"><button type="button" role="tab" id="tab-bag" data-menu-tab="bag" aria-selected="true">バッグ</button><button type="button" role="tab" id="tab-gear" data-menu-tab="gear" aria-selected="false">装備</button><button type="button" role="tab" id="tab-adventure" data-menu-tab="adventure" aria-selected="false">探索</button><button type="button" role="tab" id="tab-mochi" data-menu-tab="mochi" aria-selected="false">モチ</button><button type="button" role="tab" id="tab-info" data-menu-tab="info" aria-selected="false">情報</button><button type="button" role="tab" id="tab-settings" data-menu-tab="settings" aria-selected="false">設定</button></div><div class="menu-page" id="page-bag" role="tabpanel" aria-labelledby="tab-bag"><section class="panel"><h2>バックパック <span class="tag" id="bagCount"></span></h2><div class="inventory" id="inventory"></div></section></div><div class="menu-page" id="page-gear" role="tabpanel" aria-labelledby="tab-gear" hidden><section class="panel"><h2>装備・強化</h2><div id="equipment"></div><button id="fusionBtn" type="button">合成設備の場所を確認</button><p class="inv-note">装備はバックパックの「そうびする」で変更でき、装備中もバッグに残ります。街の合成工房または迷宮の改造端末でのみ合成できます。巻物による武器・装甲の+1強化は探索中どこでも可能です。素材は消費され、強化値を合計（最大+20）し特殊効果を付与します。武器は会心・EN吸収、装甲は毒耐性・被ダメージ軽減。合成費用20クレジット。呪われた装備は合成できません。</p></section></div><div class="menu-page" id="page-adventure" role="tabpanel" aria-labelledby="tab-adventure" hidden><section class="panel"><h2>ジョブ / スキル</h2><p id="jobInfo" class="note"></p><button id="jobMenuBtn" type="button">ジョブの詳細・変更</button></section><div class="drawer-actions"><button id="extract">あきらめる（探索終了）</button><button id="restart" hidden>新しい探索を開始</button><button id="trainingStart" type="button" hidden>訓練迷宮（全5階）</button></div><section class="panel"><h2>拠点 / セーフハウス</h2><p class="note">探索中は街に戻れません。「あきらめる」を選ぶと倒された扱いとなり、探索中の装備・所持品を失います。倉庫と出発用に指定した物資は残ります。</p><button id="hubBtn">セーフハウス・倉庫・探索記録</button><div class="note" id="hubSummary"></div></section></div><div class="menu-page" id="page-mochi" role="tabpanel" aria-labelledby="tab-mochi" hidden><section class="panel"><h2>サポートドローン / モチ</h2><p class="note" id="buddyInfo"></p><p id="mochiTechInfo" class="note"></p><button id="mochiUpgradeBtn" type="button">モチのパーツ改修</button><div class="buddy-custom"><button id="buddyTalk" type="button">モチと話す</button><label>支援モード <select id="buddyMode"><option value="heal">回復重視</option><option value="explore">探索重視</option><option value="combat">戦闘重視</option></select></label><label>モチの外装 <select id="buddySkin"><option value="cream">ミルク</option><option value="mint">ミント（親密度2）</option><option value="violet">ラベンダー（親密度3）</option><option value="gold">スター（親密度4）</option></select></label></div><p class="note">「ぴこっ！ いっしょに行こう！」<br/>小さな猫型ドローンが探索に同行します。回復重視：応急修復を強化。探索重視：ゲート・罠の探知。戦闘重視：隣接敵を妨害。親密度Lv.2以上で支援能力が成長します。自動行動なのでボタン操作は不要。モチは攻撃対象にならず、死亡時に一緒に帰還します。</p></section></div><div class="menu-page" id="page-info" role="tabpanel" aria-labelledby="tab-info" hidden><div class="info-tabs"><button type="button" data-info-tab="0">物語</button><button type="button" data-info-tab="1">端末</button><button type="button" data-info-tab="2">敵の情報</button><button type="button" data-info-tab="3">ログ</button></div><section class="panel"><h2>傍受した機密通信 <span class="tag" id="chapterLabel"></span></h2><div class="story" id="story"></div><button id="storyBtn" type="button">記録を読む</button><button id="memoryArchiveBtn" type="button">記憶アーカイブ</button><button type="button" id="fieldGuideOpenBtn">道具・特殊マスの発見ガイド</button><button id="signalBtn" type="button">機密通信に応答</button><div class="note" id="signalStatus"></div></section><section class="panel"><h2>特殊フロア / 取引端末</h2><p class="note">商人端末、医療ステーション、データ保管庫がランダム出現。紫の◇に立ち「周辺端末を調べる」で利用できます。商人の支払いは探索中に得たクレジットから。</p></section><section class="panel"><h2>敵データ / 戦闘ヒント</h2><div class="enemy-guide">通常出現する敵は52種類（登録済み敵データは62種類）。階層に応じて異なる敵が出現。通常階では40ターンごとに離れた安全な場所へ最大1体が自然発生。200/260/290ターンで警告し、300ターンで帰還（死亡扱い）。通常敵は低確率でアイテムを床へ落とします。ボス階・訓練・特別な迷宮では発生しません。各系統の姿・攻撃傾向・特殊能力は異なります。図鑑で発見状況を確認できます。<br/>ショック弾：直線3マスに攻撃＋スタン。解毒パッチ：毒と出血を除去。</div></section><section class="panel"><h2>通信ログ</h2><div aria-live="polite" class="log" id="log"></div></section></div><div class="menu-page" id="page-settings" role="tabpanel" aria-labelledby="tab-settings" hidden><div class="footer"><button id="sound">効果音 ON</button><button id="save">手動セーブ</button><button id="diagnostics" type="button">動作診断</button><button id="balanceMenu" type="button">プレイ統計</button><button id="bossMusicBtn" type="button">BGM：OFF</button><div class="sound-controls"><label for="musicVolume">BGM音量 <output id="musicVolumeLabel">35%</output></label><input id="musicVolume" type="range" min="0" max="100" step="5" value="35" aria-label="BGM音量"><p class="note" id="musicSceneLabel">BGM：停止中（街・探索・危険・ボスの4種類）</p><p class="note">iPhoneではBGMをONにしたタップ操作から再生を始めます。外部音楽ファイル・通信は使用しません。</p></div><button id="debugToggle" type="button">デバッグ：OFF</button><button hidden="" id="debugTools" type="button">階数・HPを操作</button><button hidden id="debugAutoToggle" type="button">自動探索：開始</button><button id="exportSave">セーブを書き出す</button><button id="restoreBackup" type="button">予備セーブを確認・復元</button><button id="importSave">セーブを読み込む</button><input accept=".json,application/json" hidden="" id="importFile" type="file"/><button aria-pressed="true" id="guideToggle" type="button">ヒント：ON</button><button id="helpBottom">ルール</button></div></div></div></div><div class="overlay" id="hubOverlay" hidden><div class="dialog" style="max-height:90vh;overflow:auto;text-align:left"><h2>SAFEHOUSE / 倉庫</h2><p id="hubStats" class="note"></p><p class="note">街で物資を出発用に指定できます。ダンジョン探索中は物資の出し入れができません。</p><h3 id="warehouseTitle">倉庫</h3><p class="note">倉庫の物資を「出発用に指定」すると、次の探索へ持ち込めます（初期道具4個＋最大8個）。</p><div id="readyList" class="inventory"></div><div id="warehouseList" class="inventory"></div><h3>現在のバッグ（探索中の預け入れは不可）</h3><div id="depositList" class="inventory"></div><h3>クリア後ダンジョン</h3><p class="note">本編30階をクリアすると「NULL PROTOCOL」全20階が解放。死亡すると持ち物を失います。</p><button id="challengeStart">NULL PROTOCOLに挑戦</button><h3>特別な迷宮 / SPECIAL MODES</h3><p class="note">街からも「特別な迷宮」を選択できます。持ち込み禁止10階・ボスラッシュ3戦に挑戦。</p><button id="specialModes" type="button">特別な迷宮を選ぶ</button><p id="specialRecords" class="note"></p><h3>発見ガイド（初回説明を再確認）</h3><p class="note">初めて拾った道具や踏んだ特殊マスは自動登録されます。未発見の項目は表示されません。</p><div id="fieldGuideEntries" class="codex"></div><h3>探索図鑑</h3><p id="codexSummary" class="note"></p><div id="codexEntries" class="codex"></div><h3>実績</h3><div id="achievements" class="codex"></div><h3>プレイ統計</h3><button id="balanceDashboard" type="button">階層別死亡率・ジョブ別成績・アイテム使用</button><p class="note">端末内のみで集計。終了した通常探索が対象です。</p><h3>探索記録</h3><div id="runHistory" class="note" style="max-height:160px;overflow:auto"></div><button id="hubClose">戻る</button></div></div><div class="overlay" id="fullMapOverlay" hidden><div class="dialog"><h2>TACTICAL MAP</h2><canvas id="fullMap" width="500" height="500" aria-label="探索済みのダンジョン全体図"></canvas><p id="mapInfo"></p><button type="button" id="closeFullMap">探索に戻る</button></div></div><div class="overlay" id="overlay" hidden><div class="dialog"><h2 id="modalTitle"></h2><p id="modalBody"></p><div id="modalButtons"></div></div></div><script>
 (()=>{'use strict';const $=id=>document.getElementById(id),W=25,H=25,VIEW=15,TILE=32;
 const SLOT_SELECTED_KEY='neon_abyss_selected_slot_v488',SLOT_MIGRATED_KEY='neon_abyss_slot_migrated_v488';
 const SLOT_BASE_KEYS=['neon_abyss_run_v1','neon_abyss_meta_v1','neon_abyss_recovery_a_v1','neon_abyss_recovery_b_v1','neon-abyss-story-v2-gate-checkpoint','neon_abyss_invalid_run_v1','neon_abyss_invalid_meta_v1'];
@@ -720,13 +930,41 @@ function gearName(it){return GEAR_CATALOG[it.type]?.[Number.isInteger(it.variant
 
 // v0.9.0: persistent, locally stored discovery/achievement records.
 const ACHIEVEMENTS=[['first','初めての潜入','初めてダンジョンに入る'],['floor10','第一防壁','10階に到達する'],['floor20','監査者の影','20階に到達する'],['floor30','零番の記憶','30階に到達する'],['clear','都市の選択','本編をクリアする'],['collector','収集家','異なるアイテムを8種類発見'],['hunter','機械狩り','異なる敵を5種類発見'],['challenge','深淵への再侵入','NULL PROTOCOLに挑戦する'],['nullclear','NULL PROTOCOL','クリア後ダンジョンを制覇する'],['naked','無装備からの帰還','持ち込み禁止迷宮を制覇する'],['bossrush','三重の防壁','ボスラッシュを制覇する'],['collector16','記憶の蒐集者','異なるアイテムを16種類発見する'],['hunter20','機械の観測者','異なる敵を20種類発見する'],['veteran','百戦錬磨','挑戦を10回記録する']];
-const ENEMY_FAMILIES=[{"name": "監視ドローン", "ability": "直線射撃", "color": "#ff718c", "min": 1, "shape": 0, "mark": 0}, {"name": "装甲ボット", "ability": "鈍足・高装甲", "color": "#edaa67", "min": 1, "shape": 1, "mark": 0}, {"name": "暴走アンドロイド", "ability": "出血", "color": "#fb6aab", "min": 2, "shape": 2, "mark": 0}, {"name": "妨害スパイダー", "ability": "移動妨害", "color": "#f8da71", "min": 2, "shape": 3, "mark": 0}, {"name": "汚染ユニット", "ability": "毒", "color": "#9fef6c", "min": 3, "shape": 4, "mark": 0}, {"name": "突撃ホーネット", "ability": "高速突撃", "color": "#eeb25c", "min": 3, "shape": 5, "mark": 0}, {"name": "狙撃タレット", "ability": "長距離狙撃", "color": "#ff5e77", "min": 4, "shape": 6, "mark": 0}, {"name": "電磁クラゲ", "ability": "電力減少", "color": "#7bdeff", "min": 4, "shape": 7, "mark": 0}, {"name": "修復ナノマシン", "ability": "味方修復", "color": "#87f7bb", "min": 5, "shape": 8, "mark": 0}, {"name": "爆裂マイン", "ability": "自爆", "color": "#ff704e", "min": 5, "shape": 9, "mark": 0}, {"name": "シールドガード", "ability": "防御態勢", "color": "#6fafff", "min": 6, "shape": 0, "mark": 1}, {"name": "影走り", "ability": "瞬間移動", "color": "#ba86ff", "min": 6, "shape": 1, "mark": 1}, {"name": "電力吸収体", "ability": "電力吸収", "color": "#7ae8f5", "min": 7, "shape": 2, "mark": 1}, {"name": "酸霧スライム", "ability": "腐食", "color": "#b5ef72", "min": 7, "shape": 3, "mark": 1}, {"name": "分裂コア", "ability": "分裂", "color": "#d78aff", "min": 8, "shape": 4, "mark": 1}, {"name": "磁力ゴーレム", "ability": "引き寄せ", "color": "#f5c77a", "min": 8, "shape": 5, "mark": 1}, {"name": "幻影プロジェクタ", "ability": "幻影回避", "color": "#aa8dff", "min": 9, "shape": 6, "mark": 1}, {"name": "冷却スパイダー", "ability": "減速", "color": "#78c8f7", "min": 9, "shape": 7, "mark": 1}, {"name": "熱暴走炉", "ability": "灼熱攻撃", "color": "#ff9d55", "min": 10, "shape": 8, "mark": 1}, {"name": "通信ジャマー", "ability": "通信妨害", "color": "#c6a0ff", "min": 10, "shape": 9, "mark": 1}, {"name": "クロックハウンド", "ability": "二回行動", "color": "#ff9d93", "min": 11, "shape": 0, "mark": 2}, {"name": "ステルスレイス", "ability": "光学迷彩", "color": "#8ce9ed", "min": 11, "shape": 1, "mark": 2}, {"name": "寄生プログラム", "ability": "寄生毒", "color": "#b5f17b", "min": 12, "shape": 2, "mark": 2}, {"name": "レーザーアイ", "ability": "照射レーザー", "color": "#ff728c", "min": 12, "shape": 3, "mark": 2}, {"name": "反射ミラー", "ability": "反射ダメージ", "color": "#c6e3ff", "min": 13, "shape": 4, "mark": 2}, {"name": "回復ビーコン", "ability": "味方回復", "color": "#6ff0ba", "min": 13, "shape": 5, "mark": 2}, {"name": "暴風ファンネル", "ability": "吹き飛ばし", "color": "#9ab4ff", "min": 14, "shape": 6, "mark": 2}, {"name": "時限ボマー", "ability": "時限爆破", "color": "#f5a668", "min": 14, "shape": 7, "mark": 2}, {"name": "重力アンカー", "ability": "重力拘束", "color": "#9a93ff", "min": 15, "shape": 8, "mark": 2}, {"name": "終端エグゼキュータ", "ability": "処刑攻撃", "color": "#ffdf7c", "min": 15, "shape": 9, "mark": 2},
- {"name":"スリップ・シーフ","ability":"持ち物奪取・退避","color":"#ff96c7","min":3,"shape":5,"mark":3},
- {"name":"群体ビーコン","ability":"増援召喚","color":"#a5f99a","min":5,"shape":3,"mark":3},
- {"name":"床面ハッカー","ability":"電撃床の設置","color":"#78ccff","min":7,"shape":6,"mark":3},
- {"name":"搬送ランナー","ability":"地形利用・高速接近","color":"#ffce7f","min":9,"shape":1,"mark":3}];
+const ENEMY_FAMILIES=[{"name":"監視ドローン","ability":"直線射撃","color":"#ff718c","min":1,"shape":0,"mark":0},{"name":"装甲ボット","ability":"鈍足・高装甲","color":"#edaa67","min":1,"shape":1,"mark":0},{"name":"暴走アンドロイド","ability":"出血","color":"#fb6aab","min":2,"shape":2,"mark":0,"retired":true},{"name":"妨害スパイダー","ability":"移動妨害","color":"#f8da71","min":2,"shape":3,"mark":0},{"name":"汚染ユニット","ability":"毒","color":"#9fef6c","min":3,"shape":4,"mark":0,"retired":true},{"name":"突撃ホーネット","ability":"高速突撃","color":"#eeb25c","min":3,"shape":5,"mark":0},{"name":"狙撃タレット","ability":"長距離狙撃","color":"#ff5e77","min":4,"shape":6,"mark":0},{"name":"電磁クラゲ","ability":"電力減少","color":"#7bdeff","min":4,"shape":7,"mark":0},{"name":"修復ナノマシン","ability":"味方修復","color":"#87f7bb","min":5,"shape":8,"mark":0},{"name":"爆裂マイン","ability":"自爆","color":"#ff704e","min":5,"shape":9,"mark":0},{"name":"シールドガード","ability":"防御態勢","color":"#6fafff","min":6,"shape":0,"mark":1},{"name":"影走り","ability":"瞬間移動","color":"#ba86ff","min":6,"shape":1,"mark":1},{"name":"電力吸収体","ability":"電力吸収","color":"#7ae8f5","min":7,"shape":2,"mark":1,"retired":true},{"name":"酸霧スライム","ability":"腐食","color":"#b5ef72","min":7,"shape":3,"mark":1},{"name":"分裂コア","ability":"分裂","color":"#d78aff","min":8,"shape":4,"mark":1},{"name":"磁力ゴーレム","ability":"引き寄せ","color":"#f5c77a","min":8,"shape":5,"mark":1},{"name":"幻影プロジェクタ","ability":"幻影回避","color":"#aa8dff","min":9,"shape":6,"mark":1},{"name":"冷却スパイダー","ability":"減速","color":"#78c8f7","min":9,"shape":7,"mark":1,"retired":true},{"name":"熱暴走炉","ability":"灼熱攻撃","color":"#ff9d55","min":10,"shape":8,"mark":1},{"name":"通信ジャマー","ability":"通信妨害","color":"#c6a0ff","min":10,"shape":9,"mark":1,"retired":true},{"name":"クロックハウンド","ability":"二回行動","color":"#ff9d93","min":11,"shape":0,"mark":2},{"name":"ステルスレイス","ability":"光学迷彩","color":"#8ce9ed","min":11,"shape":1,"mark":2},{"name":"寄生プログラム","ability":"寄生毒","color":"#b5f17b","min":12,"shape":2,"mark":2,"retired":true},{"name":"レーザーアイ","ability":"照射レーザー","color":"#ff728c","min":12,"shape":3,"mark":2},{"name":"反射ミラー","ability":"反射ダメージ","color":"#c6e3ff","min":13,"shape":4,"mark":2},{"name":"回復ビーコン","ability":"味方回復","color":"#6ff0ba","min":13,"shape":5,"mark":2},{"name":"暴風ファンネル","ability":"吹き飛ばし","color":"#9ab4ff","min":14,"shape":6,"mark":2,"retired":true},{"name":"時限ボマー","ability":"時限爆破","color":"#f5a668","min":14,"shape":7,"mark":2},{"name":"重力アンカー","ability":"重力拘束","color":"#9a93ff","min":15,"shape":8,"mark":2,"retired":true},{"name":"終端エグゼキュータ","ability":"処刑攻撃","color":"#ffdf7c","min":15,"shape":9,"mark":2},{"name":"スリップ・シーフ","ability":"持ち物奪取・退避","color":"#ff96c7","min":3,"shape":5,"mark":3},{"name":"群体ビーコン","ability":"増援召喚","color":"#a5f99a","min":5,"shape":3,"mark":3},{"name":"床面ハッカー","ability":"電撃床の設置","color":"#78ccff","min":7,"shape":6,"mark":3},{"name":"搬送ランナー","ability":"地形利用・高速接近","color":"#ffce7f","min":9,"shape":1,"mark":3},{"name":"遮蔽シェルター","ability":"周囲の味方に防壁を展開","color":"#8ce1ff","min":4,"shape":0,"mark":4},{"name":"共振スパーク","ability":"味方と共振して感電","color":"#ffdc70","min":5,"shape":1,"mark":4},{"name":"逆走スカウト","ability":"接近されると逃走","color":"#ffd09b","min":4,"shape":2,"mark":4,"retired":true},{"name":"霧散ドローン","ability":"電磁霧を設置","color":"#7de5df","min":6,"shape":3,"mark":4},{"name":"粘液ビルダー","ability":"粘着床を設置","color":"#b6ef74","min":8,"shape":4,"mark":4},{"name":"指揮官ノード","ability":"深層：予兆なしの一斉指令で周囲を強化（王冠アンテナ）","color":"#ff8eb9","min":9,"shape":5,"mark":4},{"name":"廃材コレクター","ability":"落ちている道具を運搬","color":"#f4c67f","min":7,"shape":6,"mark":4},{"name":"警報コンダクター","ability":"仲間を呼び寄せる","color":"#f19cd7","min":10,"shape":7,"mark":4},{"name":"弱点スキャナ","ability":"攻撃前に弱点を記録","color":"#91e9ff","min":12,"shape":8,"mark":4,"retired":true},{"name":"充電イーター","ability":"電撃床を吸収して回復","color":"#bdfb81","min":11,"shape":9,"mark":4},{"name":"戦術スイッチャ","ability":"深層：予兆なしの包囲転位（双門アンテナ）","color":"#c4aeff","min":13,"shape":0,"mark":4},{"name":"極性インバータ","ability":"深層：予兆後に電撃床を生成（極性アーム）","color":"#f9bb7e","min":15,"shape":1,"mark":4},{"name":"撹乱ウィスプ","ability":"敵をかばって位置を入れ替える","color":"#b3cbff","min":16,"shape":2,"mark":4},{"name":"残像トリックスター","ability":"退避しながら霧を残す","color":"#c1a3f3","min":18,"shape":3,"mark":4},{"name":"追跡ジャガーノート","ability":"負傷相手を二歩追跡","color":"#ff8d85","min":20,"shape":4,"mark":4},{"name":"EMPウォッチャ","ability":"深層：予兆後にENを最大10消費（レーダー）","color":"#72d4ff","min":22,"shape":5,"mark":4},{"name":"ピコぷに","ability":"攻撃されると電気の粒を散らす","color":"#83f0d3","min":2,"shape":4,"mark":5},{"name":"ネジネズミ","ability":"道具を持つと逃げる小さな泥棒","color":"#f7c68b","min":3,"shape":2,"mark":5},{"name":"バネガエル","ability":"跳躍して背後に回り込む","color":"#a6ed77","min":4,"shape":5,"mark":5},{"name":"ねむりモフ","ability":"眠気の波で近くの敵も止める","color":"#d2b1ff","min":5,"shape":4,"mark":5},{"name":"ミラーカメ","ability":"甲羅にこもり攻撃を弾く","color":"#91dfff","min":7,"shape":8,"mark":5},{"name":"ビリビリきのこ","ability":"近くの電撃床を増幅する","color":"#ffe08e","min":9,"shape":3,"mark":5},{"name":"宝箱モドキ","ability":"宝箱に擬態して接近すると襲う","color":"#f5b875","min":10,"shape":9,"mark":5},{"name":"ふうせんクラゲ","ability":"電磁ガスで敵味方を押し流す","color":"#f2a6d9","min":12,"shape":7,"mark":5},{"name":"くるくるカニ","ability":"横歩きで攻撃をかわす","color":"#ff9c8d","min":14,"shape":1,"mark":5},{"name":"うたうランタン","ability":"深層：予兆後に催眠旋律（音波リング）","color":"#f4ef9e","min":16,"shape":5,"mark":5},{"name":"でこぼこ巨人","ability":"予告後に周囲を踏み鳴らす","color":"#c3a9f6","min":19,"shape":6,"mark":5},{"name":"ふたごゼリー","ability":"攻撃を受けると小さく分かれる","color":"#a5f0fc","min":22,"shape":4,"mark":5}];
 const BOSS_FAMILIES={'MOTHER-NULL':{color:'#ff5e9d',shape:3,mark:2},'ARCHON-9':{color:'#ffd36a',shape:5,mark:2},'SERAPH-0':{color:'#b6a2ff',shape:8,mark:2},'NULL-WARDEN':{color:'#ff5a5a',shape:9,mark:2}};
-const ENEMY_CODEX=[...ENEMY_FAMILIES.map(e=>e.name),'MOTHER-NULL','ARCHON-9','SERAPH-0','NULL-WARDEN'];
+
+// v4.9.9 / Ecosystem Rebalance: old kind IDs stay stable for saved games.
+// Retired species remain valid for enemy codex and creatures loaded from older saves.
+const ENCOUNTER_ROLES={
+ thief:[30,40,51],support:[8,25,31,34,39,41,59],
+ controller:[3,32,37,38,45,49,53,55,57],
+ artillery:[0,6,23,29],splitter:[14,61]
+};
+function encounterRole(kind){for(const [role,ids] of Object.entries(ENCOUNTER_ROLES))if(ids.includes(kind))return role;return 'other';}
+function enemyEncounterPool(floor,window=10){
+ const oldest=Math.max(1,floor-(floor>=20?16:window));
+ return ENEMY_FAMILIES.map((def,kind)=>({def,kind})).filter(o=>
+  !o.def.retired&&o.def.min<=floor&&(
+   o.kind>=50?o.def.min>=Math.max(1,floor-19):o.def.min>=oldest
+  ));
+}
+function chooseEnemyFamily(floor,window=10){
+ let pool=enemyEncounterPool(floor,window);
+ // Control-heavy roles should not crowd out melee threats in a small room.
+ const roleCounts={};
+ for(const e of g.enemies||[]){if(e.boss)continue;const role=encounterRole(e.kind);roleCounts[role]=(roleCounts[role]||0)+1;}
+ const limit={thief:1,support:2,artillery:2,splitter:2};
+ const filtered=pool.filter(o=>(roleCounts[encounterRole(o.kind)]||0)<(limit[encounterRole(o.kind)]??999));
+ if(filtered.length)pool=filtered;
+ const creatures=pool.filter(o=>o.kind>=50);
+ const machines=pool.filter(o=>o.kind<50);
+ // Early floors teach one mechanic at a time; monster-like foes gain greater presence deeper down.
+ const creatureChance=floor<=3?.32:floor<=10?.43:floor<=20?.47:.50;
+ const pick=creatures.length&&(!machines.length||Math.random()<creatureChance)?creatures:machines.length?machines:pool;
+ const chosen=pick.length?pick[rnd(pick.length)]:{def:ENEMY_FAMILIES[0],kind:0};
+ return chosen;
+}
+const ENEMY_CODEX=[...ENEMY_FAMILIES.filter(e=>!e.retired).map(e=>e.name),'MOTHER-NULL','ARCHON-9','SERAPH-0','NULL-WARDEN'];
 
 // v4.6.6: readable speaker identity and persistent first-discovery reference guide.
 const ITEM_GUIDE={
@@ -1085,14 +1323,14 @@ function memoryBeaconInit(rooms){
  const room=rooms[0],positions=[];
  for(let y=room.y;y<room.y+room.h;y++)for(let x=room.x;x<room.x+room.w;x++){
   const d=Math.abs(g.p.x-x)+Math.abs(g.p.y-y);
-  if(d<2||d>5||!walk(x,y)||g.enemies.some(e=>e.x===x&&e.y===y)||g.items.some(e=>e.x===x&&e.y===y)||g.traps?.some(e=>e.x===x&&e.y===y)||g.special&&(g.special.x===x&&g.special.y===y)||x===g.stair.x&&y===g.stair.y)continue;
+  if(d<2||d>5||!walk(x,y)||g.enemies.some(e=>e.x===x&&e.y===y)||g.items.some(e=>e.x===x&&e.y===y)||g.traps?.some(e=>e.x===x&&e.y===y)||g.terrain?.some(e=>e.x===x&&e.y===y)||g.gimmicks?.some(e=>e.x===x&&e.y===y)||g.special&&(g.special.x===x&&g.special.y===y)||x===g.stair.x&&y===g.stair.y)continue;
   positions.push({x,y});
  }
  if(!positions.length){
   // Boss arenas replace the room geometry. Choose a safe visible-range floor tile instead.
   for(let y=Math.max(1,g.p.y-4);y<=Math.min(H-2,g.p.y+4);y++)for(let x=Math.max(1,g.p.x-4);x<=Math.min(W-2,g.p.x+4);x++){
    const d=Math.abs(g.p.x-x)+Math.abs(g.p.y-y);
-   if(d<2||d>4||!walk(x,y)||g.enemies.some(e=>bossCells(e).some(c=>c.x===x&&c.y===y))||g.items.some(e=>e.x===x&&e.y===y)||g.traps?.some(e=>e.x===x&&e.y===y)||g.special&&(g.special.x===x&&g.special.y===y)||x===g.stair.x&&y===g.stair.y)continue;
+   if(d<2||d>4||!walk(x,y)||g.enemies.some(e=>bossCells(e).some(c=>c.x===x&&c.y===y))||g.items.some(e=>e.x===x&&e.y===y)||g.traps?.some(e=>e.x===x&&e.y===y)||g.terrain?.some(e=>e.x===x&&e.y===y)||g.gimmicks?.some(e=>e.x===x&&e.y===y)||g.special&&(g.special.x===x&&g.special.y===y)||x===g.stair.x&&y===g.stair.y)continue;
    positions.push({x,y});
   }
  }
@@ -1391,7 +1629,7 @@ function balanceDashboard(){
  rows.push('<p class="note">集計は最大100回の終了済み探索を保存。死亡率は「その階に到達した探索のうち、その階で死亡した割合」です。少数のサンプルは参考値です。</p>');
  closeMenu();$('hubOverlay').hidden=true;modal('BALANCE LAB / プレイ統計',rows.join(''),[['閉じる',()=>{if(g?.atTown)townOpen()}]]);
 }
-function recordRun(result){if(!g||g.recorded||g.training)return;g.recorded=true;cityInit();balanceRecord(result);if(!g.debugUsed){const earned=Math.floor(Math.max(0,g.credits||0)*.7)+Math.max(0,g.floor-1)*4;meta.cityCredits+=earned;log('街へ持ち帰る探索報酬：+'+earned+'Cr');} if(g.buddy)meta.mochiBond=Math.max(meta.mochiBond||0,g.buddy.affinity||0);if(!g.debugUsed)meta.bestFloor=Math.max(meta.bestFloor,g.floor);if(result==='クリア'&&!g.debugUsed)meta.clears++;if(result==='深淵制覇')meta.challengeClears=(meta.challengeClears||0)+1;if(!g.debugUsed&&g.specialMode&&['naked','rush'].includes(g.specialMode)&&result.includes('制覇')){cityInit();meta.specialClears[g.specialMode]=(meta.specialClears[g.specialMode]||0)+1;}meta.history.push({result:result+(g.specialMode?' / '+(g.specialMode==='rush'?'BOSS RUSH':'NO-CARRY'):''),floor:g.floor,level:g.p.level,turn:g.turn,debug:!!g.debugUsed,at:new Date().toLocaleDateString('ja-JP')});meta.history=meta.history.slice(-50);metaSave();checkAchievements()}
+function recordRun(result){if(!g||g.recorded||g.training)return;g.recorded=true;cityInit();balanceRecord(result);if(!g.debugUsed){const earned=Math.floor(Math.max(0,g.credits||0)*.7)+Math.max(0,g.floor-1)*4;meta.cityCredits+=earned;log('街へ持ち帰る探索報酬：+'+earned+'Cr');} if(g.buddy)meta.mochiBond=Math.max(meta.mochiBond||0,g.buddy.affinity||0);if(!g.debugUsed)meta.bestFloor=Math.max(meta.bestFloor,g.floor);if(result==='クリア'&&!g.debugUsed)meta.clears++;if(result==='深淵制覇')meta.challengeClears=(meta.challengeClears||0)+1;if(!g.debugUsed&&g.specialMode&&['naked','rush'].includes(g.specialMode)&&result.includes('制覇')){cityInit();meta.specialClears[g.specialMode]=(meta.specialClears[g.specialMode]||0)+1;}meta.history.push({result:result+(g.specialMode?' / '+(g.specialMode==='rush'?'BOSS RUSH':'NO-CARRY'):''),floor:g.floor,level:g.p.level,turn:g.turn,debug:!!g.debugUsed,v5:{...v5Stats()},at:new Date().toLocaleDateString('ja-JP')});meta.history=meta.history.slice(-50);metaSave();checkAchievements()}
 function hubOpen(){if(modalOpen||!g||!$('fullMapOverlay').hidden)return;closeMenu();$('hubOverlay').hidden=false;hubRender()}
 function hubClose(){$('hubOverlay').hidden=true;if(g?.atTown){townOpen();}}
 function hubRender(){if(!g)return;$('hubStats').textContent=`探索回数 ${meta.attempts} / 最高到達 ${meta.bestFloor}F / クリア ${meta.clears}回 / 倉庫 ${cityTotalStorage()}/${warehouseLimit()} / 結末 ${Object.keys(meta.endings||{}).length}/3`;
@@ -1404,7 +1642,7 @@ const wh=$('warehouseList'),dep=$('depositList'),ready=$('readyList');wh.replace
  if(!meta.readyItems.length)ready.textContent='出発用の物資は未指定';
  if(g.atTown){dep.textContent='探索前の物資整理は上の倉庫・出発用の欄で行えます。';}
  else {dep.textContent='探索中は街の倉庫を操作できません。';}
-$('runHistory').replaceChildren();[...meta.history].reverse().slice(0,15).forEach(r=>{const p=document.createElement('p');p.textContent=`${r.at} / ${r.result} / ${r.floor}F / Lv.${r.level} / ${r.turn}T`;$('runHistory').append(p)});if(!meta.history.length)$('runHistory').textContent='記録なし';codexRender();}
+$('runHistory').replaceChildren();[...meta.history].reverse().slice(0,15).forEach(r=>{const p=document.createElement('p');p.textContent=`${r.at} / ${r.result} / ${r.floor}F / Lv.${r.level} / ${r.turn}T${r.v5?' / 特異区画出現'+(r.v5.zones||0)+'・異常個体'+(r.v5.elites||0)+'・地形撃破'+(r.v5.terrain||0):''}`;$('runHistory').append(p)});if(!meta.history.length)$('runHistory').textContent='記録なし';codexRender();}
 function extract(){
  if(!g||g.dead||g.win||g.atTown)return;
  closeMenu();
@@ -1447,11 +1685,9 @@ function naturalSpawn(){
  });
  if(!safe.length)return false;
  const pos=safe[rnd(safe.length)],floor=g.floor;
- const available=ENEMY_FAMILIES.filter(f=>f.min<=floor&&f.min>=Math.max(1,floor-9));
- const family=available[rnd(available.length)]||ENEMY_FAMILIES[0];
- const kind=ENEMY_FAMILIES.indexOf(family),hp=7+floor*3+(kind%5===2?5:0);
- g.enemies.push({...pos,hp,max:hp,atk:regularEnemyAttack(floor,kind),def:kind%5===1?2:0,
-  kind,stun:0,slow:0,name:family.name,xp:Math.min(25,5+Math.floor(floor*1.2))+Math.floor(kind/5)*2,natural:true});
+ const {def:family,kind}=chooseEnemyFamily(floor,10);
+ const hp=7+floor*3+(kind%5===2?5:0);
+ const enemy={...pos,hp,max:hp,atk:regularEnemyAttack(floor,kind),def:kind%5===1?2:0,kind,stun:0,slow:0,name:family.name,natural:true};enemy.xp=regularEnemyXP(floor,enemy);g.enemies.push(enemy);
  g.naturalSpawnCount=(g.naturalSpawnCount||0)+1;
  log('通信：遠方で敵性反応を検知。新たなモンスターが出現した。');
  return true;
@@ -1473,7 +1709,7 @@ function enforceFloorLimit(){
 }
 // Only ordinary defeated enemies drop loot. Rate is fixed for auditable balancing.
 const ENEMY_LOOT_RATE=0.12;
-function enemyDrop(e){if(e.bossOwner)return false;
+function enemyDrop(e){v5EliteDefeated(e);if(e.carryItem){g.items.push({...e.carryItem,x:e.x,y:e.y});e.carryItem=null;log(e.name+'が運んでいた道具を落とした');}if(e.bossOwner)return false;
  if(!g||!e||e.boss||g.dead||g.win||g.atTown||g.training||g.challenge||g.specialMode)return false;
  if(Math.random()>=ENEMY_LOOT_RATE)return false;
  if(g.items.length>=18||!walk(e.x,e.y))return false;
@@ -1488,6 +1724,73 @@ function enemyDrop(e){if(e.bossOwner)return false;
  if(!pos)return false;
  g.items.push({...pos,type,monsterLoot:true});g.enemyLootCount=(g.enemyLootCount||0)+1;
  log(e.name+'が'+itemTypes[type].name+'を落とした！');return true;
+}
+// FINAL ECHO v5.0.0: optional elite hunts, ecology rooms and transparent run statistics.
+// All changes are additions to the current floor; existing enemy IDs and endings are untouched.
+const V5_ZONE_TYPES={electric:{name:'雷鳴回廊',hint:'電撃床は敵にも有効。導電する敵を誘導しよう。'},sticky:{name:'粘着の巣',hint:'敵の進路を粘着床で塞ぎ、距離を作ろう。'},fog:{name:'迷彩の霧',hint:'電磁霧で敵の遠距離照準を乱せる。'}};
+function v5Stats(){if(!g)return {zones:0,elites:0,terrain:0};if(!g.v5Stats||typeof g.v5Stats!=='object')g.v5Stats={zones:0,elites:0,terrain:0};return g.v5Stats;}
+function v5FloorSetup(floor,rooms){
+ g.v5Zone=null;g.v5Elite=null;
+ if(g.training||g.challenge||g.specialMode||[10,20,30].includes(floor)||floor<4)return;
+ // Place optional ecology clusters strictly on walkable, unoccupied tiles, never the stair or player.
+ if(rnd(100)<46){
+  const types=['electric','sticky','fog'];const type=types[rnd(types.length)];
+  const room=rooms.slice(1,-1).filter(r=>r.w*r.h>=12).sort(()=>Math.random()-.5)[0];
+  if(room){let count=0;
+   for(let yy=room.y;yy<room.y+room.h;yy++)for(let xx=room.x;xx<room.x+room.w;xx++){
+    if(rnd(100)>=58||!walk(xx,yy)||g.terrain.some(t=>t.x===xx&&t.y===yy)||g.gimmicks.some(t=>t.x===xx&&t.y===yy)||g.traps.some(t=>t.x===xx&&t.y===yy)||g.items.some(t=>t.x===xx&&t.y===yy)||g.enemies.some(t=>t.x===xx&&t.y===yy)||(g.stair.x===xx&&g.stair.y===yy)||(g.p.x===xx&&g.p.y===yy)||(g.special&&g.special.x===xx&&g.special.y===yy))continue;
+    g.terrain.push({x:xx,y:yy,type});count++;
+   }
+   if(count>=2){g.v5Zone={type,name:V5_ZONE_TYPES[type].name};v5Stats().zones++;log('特異区画「'+g.v5Zone.name+'」を検出。'+V5_ZONE_TYPES[type].hint);}
+  }
+ }
+ // One marked elite per qualifying floor. Fighting it is entirely optional.
+ if(rnd(100)<47){const choices=g.enemies.filter(e=>!e.boss&&!e.house&&e.kind!==6&&e.kind!==9&&e.kind!==27&&!e.asleep);
+  if(choices.length){const e=choices[rnd(choices.length)];e.elite=true;e.hp=Math.ceil(e.hp*1.22);e.max=e.hp;e.atk+=1;e.xp+=Math.max(4,Math.floor(floor*.55));g.v5Elite={name:e.name,cleared:false};log('異常個体を感知：「'+e.name+'」強敵だが、撃破で補給品を確保できる。');}
+ }
+}
+function v5EliteDefeated(e){
+ if(!g||!e?.elite||e.eliteClaimed)return;
+ e.eliteClaimed=true;v5Stats().elites++;
+ if(g.v5Elite)g.v5Elite.cleared=true;
+ const reward=g.energy<45?'battery':g.p.hp<g.p.max*.55?'med':(rnd(2)?'med':'battery');
+ const positions=[{x:e.x,y:e.y},...dirs.map(([dx,dy])=>({x:e.x+dx,y:e.y+dy}))];
+ const pos=positions.find(q=>walk(q.x,q.y)&&!(q.x===g.stair.x&&q.y===g.stair.y)&&!g.items.some(i=>i.x===q.x&&i.y===q.y)&&!g.enemies.some(o=>o!==e&&o.x===q.x&&o.y===q.y));
+ if(pos&&g.items.length<28){g.items.push({...pos,type:reward});log('異常個体撃破！ '+itemTypes[reward].name+'が出現。');}
+ else{g.energy=Math.min(100,g.energy+12);log('異常個体撃破！ 補給EN +12');}
+ g.credits+=12+g.floor;flash('ELITE CLEAR');
+}
+function v5RunResult(){const r=v5Stats();return `特異区画出現 ${r.zones||0} / 異常個体撃破 ${r.elites||0} / 地形撃破 ${r.terrain||0}`;}
+
+// v5.0.7: Experience is based on encounter threat, never on species registration order.
+// Basic floor XP follows the original progression. Attack, armor and unique behavior
+// determine the small additional reward. Boss and summoned enemies retain their rules.
+const ENEMY_XP_RISK={
+  // Tier 1: simple attacks or predictable defensive habits.
+  監視ドローン:1,装甲ボット:1,暴走アンドロイド:2,妨害スパイダー:2,汚染ユニット:2,
+  突撃ホーネット:2,狙撃タレット:3,電磁クラゲ:2,修復ナノマシン:2,爆裂マイン:3,
+  シールドガード:2,影走り:3,電力吸収体:2,酸霧スライム:2,分裂コア:3,
+  磁力ゴーレム:3,幻影プロジェクタ:3,冷却スパイダー:2,熱暴走炉:4,
+  通信ジャマー:2,クロックハウンド:4,ステルスレイス:3,寄生プログラム:3,
+  レーザーアイ:4,反射ミラー:3,回復ビーコン:3,暴風ファンネル:3,
+  時限ボマー:4,重力アンカー:3,終端エグゼキュータ:4,
+  スリップ・シーフ:3,群体ビーコン:4,床面ハッカー:3,搬送ランナー:2,
+  遮蔽シェルター:3,共振スパーク:3,逆走スカウト:1,霧散ドローン:2,
+  粘液ビルダー:3,指揮官ノード:4,廃材コレクター:1,警報コンダクター:3,
+  弱点スキャナ:2,充電イーター:2,戦術スイッチャ:4,極性インバータ:4,
+  撹乱ウィスプ:3,残像トリックスター:3,追跡ジャガーノート:4,
+  EMPウォッチャ:4,ピコぷに:1,ネジネズミ:3,バネガエル:3,
+  ねむりモフ:2,ミラーカメ:2,ビリビリきのこ:3,宝箱モドキ:3,
+  ふうせんクラゲ:3,くるくるカニ:2,うたうランタン:4,
+  でこぼこ巨人:4,ふたごゼリー:3
+};
+function regularEnemyXP(floor,enemy){
+  const base=Math.min(25,5+Math.floor(floor*1.2));
+  const baselineAtk=2+Math.floor(floor*.7)-(floor<=3?1:0);
+  const offensive=Math.max(0,Math.min(2,(enemy.atk||0)-baselineAtk));
+  const armor=Math.max(0,Math.min(2,enemy.def||0));
+  const risk=Object.prototype.hasOwnProperty.call(ENEMY_XP_RISK,enemy.name)?ENEMY_XP_RISK[enemy.name]:1;
+  return Math.max(1,Math.round(base+offensive+armor+risk));
 }
 function regularEnemyAttack(floor,kind){return Math.max(1,2+Math.floor(floor*.7)+(kind%5===2?2:0)-(floor<=3?1:0));}
 function bossSpecialDamage(atk,phase){return Math.max(4,Math.floor(atk*(phase===2?.8:.6)));}
@@ -1513,7 +1816,7 @@ function secureFloorExitRoute(){
  // layout and remove only forced-displacement gadgets for this floor.
  g.gimmicks=g.gimmicks.filter(t=>!['conveyor','spring','portal'].includes(t.type));
 }
-function generate(floor){memorySceneClose();$('mapWrap').classList.remove('memory-presence');g.floorTurn=0;g.enemyLootCount=0;g.floorLimitDeath=false;g.naturalSpawnCount=0;g.lastNaturalSpawnTick=0;bossMusicStop();g.bossArena=null;g.tiles=Array.from({length:H},()=>Array(W).fill(1));g.seen=Array.from({length:H},()=>Array(W).fill(false));g.enemies=[];g.items=[];g.traps=[];g.special=null;g.monsterHouse=null;g.floorHazard=null;g.terrain=[];g.gimmicks=[];let rooms=[];for(let tries=0;tries<170&&rooms.length<rand(8,11);tries++){let w=rand(3,6),h=rand(3,6),x=rand(1,W-w-2),y=rand(1,H-h-2),r=room(x,y,w,h);if(rooms.some(q=>x<=q.x+q.w+1&&x+w+1>=q.x&&y<=q.y+q.h+1&&y+h+1>=q.y))continue;for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)carve(xx,yy);if(rooms.length)dig(rooms[rooms.length-1],r);rooms.push(r)}if(rooms.length<2){g.tiles=Array.from({length:H},(_,y)=>Array.from({length:W},(_,x)=>x===0||y===0||x===W-1||y===H-1?1:0));rooms=[room(2,2,4,4),room(18,18,4,4)]}g.p.x=rooms[0].midX;g.p.y=rooms[0].midY;g.stair={x:rooms[rooms.length-1].midX,y:rooms[rooms.length-1].midY};let candidates=[];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++)if(walk(x,y)&&Math.abs(x-g.p.x)+Math.abs(y-g.p.y)>4&&!(x===g.stair.x&&y===g.stair.y))candidates.push({x,y});const take=()=>{if(!candidates.length)return null;return candidates.splice(rnd(candidates.length),1)[0]};for(let i=0;i<Math.min(candidates.length,enemyCountForFloor(floor));i++){let p=take();if(!p)break;const available=ENEMY_FAMILIES.filter((f,i)=>f.min<=floor&&f.min>=Math.max(1,floor-9));const family=available[rnd(available.length)]||ENEMY_FAMILIES[0];const kind=ENEMY_FAMILIES.indexOf(family),hp=7+floor*3+(kind%5===2?5:0);g.enemies.push({...p,hp,max:hp,atk:regularEnemyAttack(floor,kind),def:kind%5===1?2:0,kind,stun:0,slow:0,name:family.name,xp:Math.min(25,5+Math.floor(floor*1.2))+Math.floor(kind/5)*2})}for(let i=0;i<Math.min(5,candidates.length);i++){let p=take();if(!p)break;const type=['med','med','emp','blade','armor','blade','armor','battery','shock','antidote','upgrade','scanner','smoke','repair','purge','overdrive','bikill','scala'][rnd(18)];g.items.push({...p,...((type==='blade'||type==='armor')?gearDrop(type,floor):{type})})}
+function generate(floor){memorySceneClose();$('mapWrap').classList.remove('memory-presence');g.floorTurn=0;g.enemyLootCount=0;g.floorLimitDeath=false;g.naturalSpawnCount=0;g.lastNaturalSpawnTick=0;bossMusicStop();g.bossArena=null;g.tiles=Array.from({length:H},()=>Array(W).fill(1));g.seen=Array.from({length:H},()=>Array(W).fill(false));g.enemies=[];g.items=[];g.traps=[];g.special=null;g.monsterHouse=null;g.floorHazard=null;g.terrain=[];g.gimmicks=[];let rooms=[];for(let tries=0;tries<170&&rooms.length<rand(8,11);tries++){let w=rand(3,6),h=rand(3,6),x=rand(1,W-w-2),y=rand(1,H-h-2),r=room(x,y,w,h);if(rooms.some(q=>x<=q.x+q.w+1&&x+w+1>=q.x&&y<=q.y+q.h+1&&y+h+1>=q.y))continue;for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)carve(xx,yy);if(rooms.length)dig(rooms[rooms.length-1],r);rooms.push(r)}if(rooms.length<2){g.tiles=Array.from({length:H},(_,y)=>Array.from({length:W},(_,x)=>x===0||y===0||x===W-1||y===H-1?1:0));rooms=[room(2,2,4,4),room(18,18,4,4)]}g.p.x=rooms[0].midX;g.p.y=rooms[0].midY;g.stair={x:rooms[rooms.length-1].midX,y:rooms[rooms.length-1].midY};let candidates=[];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++)if(walk(x,y)&&Math.abs(x-g.p.x)+Math.abs(y-g.p.y)>4&&!(x===g.stair.x&&y===g.stair.y))candidates.push({x,y});const take=()=>{if(!candidates.length)return null;return candidates.splice(rnd(candidates.length),1)[0]};for(let i=0;i<Math.min(candidates.length,enemyCountForFloor(floor));i++){let p=take();if(!p)break;const {def:family,kind}=chooseEnemyFamily(floor,10);const hp=7+floor*3+(kind%5===2?5:0);const enemy={...p,hp,max:hp,atk:regularEnemyAttack(floor,kind),def:kind%5===1?2:0,kind,stun:0,slow:0,name:family.name};enemy.xp=regularEnemyXP(floor,enemy);g.enemies.push(enemy)}for(let i=0;i<Math.min(5,candidates.length);i++){let p=take();if(!p)break;const type=['med','med','emp','blade','armor','blade','armor','battery','shock','antidote','upgrade','scanner','smoke','repair','purge','overdrive','bikill','scala'][rnd(18)];g.items.push({...p,...((type==='blade'||type==='armor')?gearDrop(type,floor):{type})})}
 // Survival resources are guaranteed on the first two floors and ahead of major bosses.
  if(floor===1||floor===2||floor===9||floor===19||floor===29){
    for(const type of (floor===1?['med','battery']:floor===2?['med']:['med','battery'])){
@@ -1545,10 +1848,10 @@ if(floor>=4&&!([10,20,30].includes(floor))&&rooms.length>3&&rnd(3)===0){
    for(let yy=r.y;yy<r.y+r.h;yy++)for(let xx=r.x;xx<r.x+r.w;xx++)
     if(walk(xx,yy)&&!occupiedCells.has(xx+','+yy)&&!(xx===g.stair.x&&yy===g.stair.y))spots.push({x:xx,y:yy});
    if(!spots.length)break;
-   const pos=spots[rnd(spots.length)],pool=ENEMY_FAMILIES.filter(f=>f.min<=floor&&f.min>=Math.max(1,floor-8));
-   const fam=pool[rnd(pool.length)]||ENEMY_FAMILIES[0],kind=ENEMY_FAMILIES.indexOf(fam);
+   const pos=spots[rnd(spots.length)];
+   const {def:fam,kind}=chooseEnemyFamily(floor,9);
    const hp=9+floor*3;
-   g.enemies.push({...pos,hp,max:hp,atk:2+Math.floor(floor*.7),def:kind%5===1?2:0,kind,stun:0,slow:0,name:fam.name,xp:7+floor,house:true,asleep:true});
+   const enemy={...pos,hp,max:hp,atk:2+Math.floor(floor*.7),def:kind%5===1?2:0,kind,stun:0,slow:0,name:fam.name,house:true,asleep:true};enemy.xp=regularEnemyXP(floor,enemy);g.enemies.push(enemy);
    occupiedCells.add(pos.x+','+pos.y);
   }
   for(let n=0;n<2;n++){const spots=[];for(let yy=r.y;yy<r.y+r.h;yy++)for(let xx=r.x;xx<r.x+r.w;xx++)if(!g.items.some(it=>it.x===xx&&it.y===yy)&&!occupiedCells.has(xx+','+yy))spots.push({x:xx,y:yy});if(spots.length){const pos=spots[rnd(spots.length)];g.items.push({...pos,type:['med','emp','battery','repair'][rnd(4)]});}}
@@ -1611,7 +1914,7 @@ if(g.training){for(const e of g.enemies){if(e.boss){e.hp=55;e.max=55;e.atk=9;e.d
  boss.hp=180;boss.max=180;boss.atk=24;boss.def=7;boss.phase=1;boss.form='veil';
  log('SERAPH-0 / 封印形態。中枢の記憶を解放するまで終端は開かれない。');
  }}}
- secureFloorExitRoute();memoryBeaconInit(rooms);
+ v5FloorSetup(floor,rooms);secureFloorExitRoute();memoryBeaconInit(rooms);
  for(const e of g.enemies)if(visible(e.x,e.y))discoverEnemy(e.name);
  log(`第${floor}層へ侵入。出口を探せ。`);reveal();if(!g.training){meta.bestFloor=Math.max(meta.bestFloor,g.challenge?meta.bestFloor:floor);checkAchievements();metaSave()}}
 // Boss arenas are built from scratch to guarantee a navigable fight and reachable portals.
@@ -2292,8 +2595,19 @@ function drawBattleFx(t,offsetX,offsetY){
   t.restore();
  }
 }
-function hit(enemy){let damage=Math.max(1,(g.p.atk+(g.gear?.weapon?.bonus||0)+(g.overdrive>0?5:0))+rand(0,3)-enemy.def);if(g.gear?.weapon?.effect==='crit'&&rnd(5)===0){damage=Math.ceil(damage*1.6);log('会心の一撃！')}if(g.gear?.weapon?.effect==='siphon'&&g.energy<100){g.energy=Math.min(100,g.energy+2);log('武器のEN吸収：+2')}if(enemy.kind===16&&rnd(4)===0){log(enemy.name+'は幻影で回避した');return;}
+// Player basic melee attacks (attack button and bump attacks) have 93% accuracy.
+// Misses consume the caller's normal turn and trigger no damage, weapon effect or retaliation.
+const PLAYER_BASIC_HIT_RATE=93;
+function hit(enemy){
+ if(rnd(100)>=PLAYER_BASIC_HIT_RATE){
+  log('空振り！ '+enemy.name+'への通常攻撃は当たらなかった');
+  beep(135,.07,'triangle');
+  return;
+ }
+ let damage=Math.max(1,(g.p.atk+(g.gear?.weapon?.bonus||0)+(g.overdrive>0?5:0))+rand(0,3)-enemy.def);if(g.gear?.weapon?.effect==='crit'&&rnd(5)===0){damage=Math.ceil(damage*1.6);log('会心の一撃！')}if(g.gear?.weapon?.effect==='siphon'&&g.energy<100){g.energy=Math.min(100,g.energy+2);log('武器のEN吸収：+2')}if(enemy.kind===16&&rnd(4)===0){log(enemy.name+'は幻影で回避した');return;}
  if(enemy.kind===10&&g.turn%3===0)damage=Math.max(1,Math.floor(damage/2));
+ if(enemy.barrier>0){damage=Math.max(1,damage-2);log(enemy.name+'の防壁がダメージを軽減');enemy.barrier--;}
+ if(enemy.shellGuard>0){damage=Math.max(1,Math.ceil(damage/2));enemy.shellGuard--;log(enemy.name+'の甲羅が攻撃を受け流した');}
  enemy.hp-=damage;addBattleFx('attack',enemy.x,enemy.y,'#8deeff');addBattleFx('hit',enemy.x,enemy.y,'#ff9c76');log(`${enemy.name}へ${damage}ダメージ`);
  if(enemy.kind===24&&enemy.hp>0&&hurt(Math.max(1,Math.floor(damage/5)),enemy.name+'の反射ダメージ'))return;beep(190,.1,'sawtooth');if(enemy.hp<=0&&!bossTransform(enemy)){if(enemy.boss)bossMusicStop();addBattleFx('death',enemy.x,enemy.y,(ENEMY_FAMILIES[enemy.kind]||{}).color||'#ff5d91');discoverEnemy(enemy.name);log(`${enemy.name}を撃破。EXP +${enemy.xp}`);enemyDrop(enemy);g.enemies=g.enemies.filter(e=>e!==enemy);g.p.xp+=enemy.xp;g.credits+=3+Math.floor(g.floor/2)+(enemy.boss?50:0);while(g.p.xp>=g.p.level*12){g.p.xp-=g.p.level*12;g.p.level++;g.p.max+=5;g.p.hp=Math.min(g.p.max,g.p.hp+8);g.p.atk++;if(g.p.level%3===0)g.p.def++;jobOnLevel();log(`LEVEL UP! Lv.${g.p.level}`);beep(660,.25)}}}
 function inflict(type,turns){storyInit();if(type==='poison'&&g.gear?.armor?.effect==='poisonGuard'){log('装甲の毒耐性で毒を防いだ');return}g.status[type]=Math.max(g.status[type]||0,turns);log(({poison:'毒',bleed:'出血',slow:'移動妨害'})[type]+'を受けた！')} 
@@ -2359,7 +2673,7 @@ function dangerTelegraph(e,dist){
     const nx=e.x+dx,ny=e.y+dy;
     if(nx===g.p.x&&ny===g.p.y){if(hurt(Math.max(2,e.atk+2-g.p.def-(g.gear?.armor?.bonus||0)),e.name+'の突進'))return true;break;}
     if(!walk(nx,ny)||g.enemies.some(a=>a!==e&&a.x===nx&&a.y===ny))break;
-    e.x=nx;e.y=ny;
+    e.x=nx;e.y=ny;enemyTerrainReaction(e);if(!g.enemies.includes(e))break;
    }
    log(e.name+'が予告方向に突進した');
   }
@@ -2375,7 +2689,11 @@ function enemyStrike(e,dist){
  addBattleFx('attack',g.p.x,g.p.y,(ENEMY_FAMILIES[e.kind]||{}).color||'#ff647d');
  const k=e.kind,bonus=(g.gear?.armor?.bonus||0),base=Math.max(1,e.atk+rand(0,2)-g.p.def-bonus);
  const dmg=(k===1||k===10)?Math.max(1,base-2):base;
- if(hurt(dmg,e.name+'の攻撃'))return;
+ const commandBonus=e.commandBoost>0?2:0; if(e.commandBoost>0)e.commandBoost--;
+ const scanBonus=e.weaknessScan>0?2:0;if(e.weaknessScan>0)e.weaknessScan=0;
+ if(hurt(dmg+commandBonus+scanBonus,e.name+'の攻撃'))return;
+ // Reinforced foes disrupt the power bus on contact. Avoids extra raw damage.
+ if(g.floor>=21&&commandBonus>0&&!e.boss){const drain=Math.min(g.energy,2);if(drain){g.energy-=drain;log('連携攻撃でEN -'+drain);}}
  if(e.boss){if(rnd(3)===0)inflict('poison',3);}
  else switch(k){
  case 2:case 22:if(rnd(3)===0)inflict(k===2?'bleed':'poison',g.floor<=5?2:4);break;
@@ -2389,14 +2707,133 @@ function enemyStrike(e,dist){
  case 23:if(rnd(4)===0)hurt(4,'レーザー追撃');break;
  case 29:if(g.p.hp<g.p.max/3)hurt(6,'処刑プログラム');break;
  }
+ // v5.0.2: deeper-floor enemy personality. Extra attacks are signaled and gated,
+ // rather than a flat HP/ATK boost. Bosses and early floors are unaffected.
+ lateEnemySignature(e);
  beep(100,.12,'triangle');
+}
+// Enemy traits become more demanding beyond floor 16; each archetype has a counter.
+function lateEnemySignature(e){
+ if(e.boss||g.floor<17||g.training||g.dead)return;
+ const k=e.kind;
+ // Only active species with clear identities, never retired machine variants.
+ if(![14,18,20,23,24,25,29,31,32,34,38,39,44,45,46,47,48,49,51,52,54,55,57,59,60,61].includes(k))return;
+ const cd=g.floor>=25?1:2;
+ if(g.turn-(e.lastSignatureTurn??-100)<cd)return;
+ // Frequent archetype-specific pressure, not general stat inflation.
+ if(rnd(g.floor>=25?1:2)!==0)return;
+ e.lastSignatureTurn=g.turn;
+ if([14,20,48,52,60,61].includes(k)){
+  const damage=g.floor>=25?4:3;
+  log(e.name+'の追撃！ '+damage+'ダメージ');hurt(damage,e.name+'の追撃');
+ }else if([18,23,29,32,49,55].includes(k)){
+  const drain=g.floor>=25?6:4;
+  g.energy=Math.max(0,g.energy-drain);
+  log(e.name+'の電力妨害！ EN -'+drain);
+ }else if([24,38,44,45,47,57].includes(k)){
+  g.status.slow=Math.max(g.status.slow||0,2);
+  log(e.name+'のかく乱！ 移動妨害 2ターン');
+ }else if([25,31,34,39,46,59].includes(k)){
+  const ally=g.enemies.find(o=>o!==e&&!o.boss&&o.hp>0&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=3);
+  if(ally){ally.barrier=Math.max(ally.barrier||0,1);log(e.name+'が味方の防壁を補強した');}
+ }else if([51,54].includes(k)){
+  e.shellGuard=Math.max(e.shellGuard||0,1);
+  log(e.name+'が身を固めた！');
+ }
 }
 // v2.7: unique tactics. Skills take the enemy action and respect existing stun / hacking.
 function freeEnemyTile(x,y,self){
  return walk(x,y)&&!(x===g.p.x&&y===g.p.y)&&!g.enemies.some(o=>o!==self&&bossCells(o).some(c=>c.x===x&&c.y===y));
 }
+// v4.9.7: behavioral ecology. Every special consumes one enemy action, is range/cooldown gated,
+// and does not change boss rules or save schema. Per-enemy ephemeral flags serialize naturally.
+function ecologyEnemySpecial(e,dist){
+ const k=e.kind,near=(o,n=3)=>Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=n;
+ const allies=()=>g.enemies.filter(o=>o!==e&&!o.boss&&near(o));
+ const openAround=(x,y)=>dirs.map(([dx,dy])=>({x:x+dx,y:y+dy})).filter(q=>
+  freeEnemyTile(q.x,q.y,e)&&!(q.x===g.stair.x&&q.y===g.stair.y));
+ const createTerrain=(type,center,limit)=>{
+  if((e.ecologyPlaced||0)>=limit)return false;
+  const spots=openAround(center.x,center.y).filter(q=>!terrainAt(q.x,q.y)&&!gimmickAt(q.x,q.y));
+  if(!spots.length)return false;
+  const q=spots[rnd(spots.length)];g.terrain.push({...q,type});e.ecologyPlaced=(e.ecologyPlaced||0)+1;
+  addBattleFx('hit',q.x,q.y,type==='fog'?'#8de8e1':'#c8ee75');return true;
+ };
+ if(k===34&&dist<=5&&g.turn%5===0){const targets=allies().filter(o=>!o.barrier).slice(0,2);
+  if(targets.length){targets.forEach(o=>o.barrier=2);log(e.name+'が味方に防壁を展開！');return true;}}
+ if(k===35&&dist<=2&&g.turn%4===0&&allies().length){g.energy=Math.max(0,g.energy-2);
+  log(e.name+'が仲間と共振！ EN -2');addBattleFx('hit',g.p.x,g.p.y,'#ffe779');return true;}
+ if(k===36&&dist<=2){const safe=openAround(e.x,e.y).sort((a,b)=>(Math.abs(b.x-g.p.x)+Math.abs(b.y-g.p.y))-(Math.abs(a.x-g.p.x)+Math.abs(a.y-g.p.y)))[0];
+  if(safe&&Math.abs(safe.x-g.p.x)+Math.abs(safe.y-g.p.y)>dist){e.x=safe.x;e.y=safe.y;log(e.name+'は間合いを外した');enemyTerrainReaction(e);return true;}}
+ if(k===37&&dist<=5&&g.turn%5===0&&createTerrain('fog',e,2)){log(e.name+'が電磁霧を散布');return true;}
+ if(k===38&&dist<=4&&g.turn%5===0&&createTerrain('sticky',g.p,2)){log(e.name+'が粘着床を設置');return true;}
+ if(k===39&&dist<=5&&g.turn%5===0){const targets=allies().filter(o=>!o.commandBoost).slice(0,2);
+  if(targets.length){targets.forEach(o=>o.commandBoost=2);log(e.name+'が味方の攻撃を指揮！');return true;}}
+ if(k===40&&!e.carryItem&&dist<=6&&g.turn%3===0){const item=(g.items||[]).filter(q=>near(q,2)).sort((a,b)=>(Math.abs(a.x-e.x)+Math.abs(a.y-e.y))-(Math.abs(b.x-e.x)+Math.abs(b.y-e.y)))[0];
+  if(item){g.items=g.items.filter(q=>q!==item);e.carryItem={...item};log(e.name+'が道具を回収！ 倒すと取り戻せる');return true;}}
+ if(k===41&&dist<=6&&g.turn%5===0){const targets=g.enemies.filter(o=>o!==e&&!o.boss&&near(o,5)).slice(0,3);
+  if(targets.length){targets.forEach(o=>o.alertTurns=3);log(e.name+'の警報！ 周囲の敵が追跡を開始');return true;}}
+ if(k===42&&dist<=3&&g.turn%5===0&&!e.weaknessScan){e.weaknessScan=1;log(e.name+'が弱点を解析！ 次の近接攻撃に注意');addBattleFx('hit',g.p.x,g.p.y,'#8ed9ff');return true;}
+ if(k===43&&e.hp<=e.max-3&&g.turn%4===0){const t=(g.terrain||[]).find(q=>q.type==='electric'&&near(q,1));
+  if(t){g.terrain=g.terrain.filter(q=>q!==t);e.hp=Math.min(e.max,e.hp+6);log(e.name+'が電撃床を吸収して修復！');return true;}}
+ if(k===44&&dist<=5&&g.turn%4===0){const friends=allies().filter(o=>Math.abs(o.x-g.p.x)+Math.abs(o.y-g.p.y)>=2);
+  const ally=friends[0];if(ally){const ax=ally.x,ay=ally.y;ally.x=e.x;ally.y=e.y;e.x=ax;e.y=ay;log(e.name+'が味方と配置を交換！');return true;}}
+ if(k===45&&dist<=5&&g.turn%5===0&&(e.ecologyPlaced||0)<3){const t=(g.terrain||[]).find(q=>(q.type==='electric'||q.type==='sticky')&&near(q,2));
+  if(t){t.type=t.type==='electric'?'sticky':'electric';e.ecologyPlaced=(e.ecologyPlaced||0)+1;log(e.name+'が床の極性を反転！');return true;}}
+ if(k===46&&dist<=3&&g.turn%4===0){const ally=allies().find(o=>o.hp<o.max*.6&&Math.abs(o.x-g.p.x)<=2);
+  if(ally){const ax=ally.x,ay=ally.y;ally.x=e.x;ally.y=e.y;e.x=ax;e.y=ay;log(e.name+'が負傷した仲間をかばった');return true;}}
+ if(k===47&&dist<=2&&g.turn%4===0){const old={x:e.x,y:e.y};const safe=openAround(e.x,e.y).sort((a,b)=>(Math.abs(b.x-g.p.x)+Math.abs(b.y-g.p.y))-(Math.abs(a.x-g.p.x)+Math.abs(a.y-g.p.y)))[0];
+  if(safe&&Math.abs(safe.x-g.p.x)>0){e.x=safe.x;e.y=safe.y;
+   if(!terrainAt(old.x,old.y)&&!gimmickAt(old.x,old.y)&&(e.ecologyPlaced||0)<2){g.terrain.push({...old,type:'fog'});e.ecologyPlaced=(e.ecologyPlaced||0)+1;}
+   log(e.name+'が残像を残して回避');enemyTerrainReaction(e);return true;}}
+ if(k===48&&g.p.hp<g.p.max*.5&&dist>=3&&dist<=6&&g.turn%3===0){const spots=dirs.map(([dx,dy])=>({x:e.x+2*dx,y:e.y+2*dy,mx:e.x+dx,my:e.y+dy})).filter(q=>freeEnemyTile(q.mx,q.my,e)&&freeEnemyTile(q.x,q.y,e));
+  spots.sort((a,b)=>(Math.abs(a.x-g.p.x)+Math.abs(a.y-g.p.y))-(Math.abs(b.x-g.p.x)+Math.abs(b.y-g.p.y)));const q=spots[0];
+  if(q){e.x=q.x;e.y=q.y;log(e.name+'が弱った獲物へ急接近！');enemyTerrainReaction(e);return true;}}
+ if(k===49&&dist<=3&&g.turn%5===0){if(e.empArmed){e.empArmed=false;g.energy=Math.max(0,g.energy-4);log(e.name+'のEMPパルス！ EN -4');addBattleFx('hit',g.p.x,g.p.y,'#70caff');}
+  else{e.empArmed=true;log('警告：'+e.name+'がEMP充填を開始！ 距離を取ろう');}return true;}
+ return false;
+}
+
+// v4.9.8: original, creature-like foes with readable counters and bounded effects.
+function storybookEnemySpecial(e,dist){
+ const k=e.kind,adj=dist===1;
+ const stepOptions=()=>dirs.map(([dx,dy])=>({x:e.x+dx,y:e.y+dy})).filter(q=>freeEnemyTile(q.x,q.y,e));
+ if(k===50&&adj&&g.turn%5===0){g.energy=Math.max(0,g.energy-1);log(e.name+'が静電気を放った！ EN -1');return true;}
+ if(k===51&&adj&&g.turn%5===0&&g.bag.length&&!e.carryItem){
+  const available=g.bag.map((it,i)=>({it,i})).filter(q=>q.it!==g.gear?.weapon&&q.it!==g.gear?.armor);
+  if(!available.length)return false;const selected=available[rnd(available.length)];
+  e.carryItem={...selected.it};g.bag.splice(selected.i,1);log(e.name+'が道具をくわえて逃げた！ 倒すと落とす');return true;
+ }
+ if(k===51&&e.carryItem&&dist<=5){const q=stepOptions().sort((a,b)=>(Math.abs(b.x-g.p.x)+Math.abs(b.y-g.p.y))-(Math.abs(a.x-g.p.x)+Math.abs(a.y-g.p.y)))[0];
+  if(q&&Math.abs(q.x-g.p.x)+Math.abs(q.y-g.p.y)>dist){e.x=q.x;e.y=q.y;log(e.name+'が道具をくわえて逃げる');enemyTerrainReaction(e);return true;}}
+ if(k===52&&dist>=2&&dist<=4&&g.turn%4===0){
+  const spots=dirs.map(([dx,dy])=>({x:g.p.x+dx,y:g.p.y+dy})).filter(q=>freeEnemyTile(q.x,q.y,e));
+  const q=spots.length?spots[rnd(spots.length)]:null;
+  if(q){e.x=q.x;e.y=q.y;log(e.name+'がぴょんと跳んできた！');enemyTerrainReaction(e);return true;}}
+ if(k===53&&dist<=3&&g.turn%5===0){const friends=g.enemies.filter(o=>o!==e&&!o.boss&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=2);
+  friends.forEach(o=>o.stun=Math.max(o.stun,1));log(e.name+'がふわふわの子守歌。仲間も眠ってしまった！');return true;}
+ if(k===54&&dist<=2&&g.turn%4===0){e.shellGuard=2;log(e.name+'が甲羅に隠れた！ 次の攻撃が通りにくい');return true;}
+ if(k===55&&dist<=3&&g.turn%5===0){const t=(g.terrain||[]).find(q=>q.type==='electric'&&Math.abs(q.x-e.x)+Math.abs(q.y-e.y)<=2);
+  if(t){g.energy=Math.max(0,g.energy-2);log(e.name+'が電撃床を増幅した！ EN -2');return true;}}
+ if(k===56&&!e.mimicRevealed&&dist<=2){e.mimicRevealed=true;log('宝箱だと思ったら'+e.name+'だった！');e.commandBoost=1;return true;}
+ if(k===57&&dist<=3&&g.turn%5===0){const q=dirs.map(([dx,dy])=>({x:g.p.x+dx,y:g.p.y+dy})).filter(q=>walk(q.x,q.y)&&!enemyAt(q.x,q.y));
+  if(q.length){const dest=q[rnd(q.length)];g.p.x=dest.x;g.p.y=dest.y;log(e.name+'の風船ガスで1マス流された！');environmentAfterMove();reveal();return true;}}
+ if(k===58&&dist<=2&&g.turn%3===0){const options=stepOptions().filter(q=>Math.abs(q.x-g.p.x)+Math.abs(q.y-g.p.y)>=dist);
+  if(options.length){const q=options[rnd(options.length)];e.x=q.x;e.y=q.y;log(e.name+'が横歩きで身をかわした');enemyTerrainReaction(e);return true;}}
+ if(k===59&&dist<=5&&g.turn%5===0){const friends=g.enemies.filter(o=>o!==e&&!o.boss&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=3).slice(0,2);
+  if(friends.length){friends.forEach(o=>o.commandBoost=Math.max(o.commandBoost||0,1));log(e.name+'の歌に仲間が奮い立った！');return true;}}
+ if(k===60&&dist<=2&&g.turn%4===0){if(e.stompReady){e.stompReady=false;if(dist<=2){hurt(Math.max(2,Math.floor(g.floor/6)),'足踏みの衝撃');}log(e.name+'が地面を踏み鳴らした！');}
+  else{e.stompReady=true;log('注意：'+e.name+'が足踏みを準備！ 離れよう');}return true;}
+ if(k===61&&e.hp<e.max*.55&&!e.storySplit&&g.turn%3===0){const q=stepOptions()[0];e.storySplit=true;
+  if(q){const hp=Math.max(2,Math.floor(e.hp/2));e.hp=hp;e.max=Math.max(hp,Math.floor(e.max/2));
+   g.enemies.push({...e,x:q.x,y:q.y,hp,max:e.max,xp:Math.max(1,Math.floor(e.xp/2)),storySplit:true,terrainTurn:g.turn});
+   log(e.name+'が二つに分かれた！');return true;}}
+ return false;
+}
 function advancedEnemySpecial(e,dist){
  if(e.boss)return false;
+ if(e.kind>=50&&storybookEnemySpecial(e,dist))return true;
+ if(e.kind>=34&&e.kind<50&&ecologyEnemySpecial(e,dist))return true;
  // Loot remains recoverable in the current floor even if the thief escapes.
  if(e.kind===30){
   if(e.escapeTurns>0){
@@ -2567,6 +3004,130 @@ function terrainEnter(){
  }else if(tile.type==='fog')log('電磁霧：このマスでは周囲の視界が狭くなる');
  return false;
 }
+// v4.9.6: terrain is a tactical tool for both sides; no changes to floor generation.
+function enemyTerrainReaction(e){
+ if(!e||e.boss||!g.enemies.includes(e)||e.terrainTurn===g.turn)return;
+ const tile=terrainAt(e.x,e.y),device=gimmickAt(e.x,e.y);
+ if(!tile&&!device)return;
+ e.terrainTurn=g.turn;
+ if(tile?.type==='electric'){
+  // Electrical enemies resist their own element; armored units conduct it.
+  const damage=(e.kind===7||e.kind===12)?0:Math.min(5,2+Math.floor(g.floor/10)+(e.kind===1?1:0));
+  if(damage){e.hp-=damage;log('電撃床が'+e.name+'に'+damage+'ダメージ');addBattleFx('hit',e.x,e.y,'#7ccfff');
+   if(e.hp<=0){v5Stats().terrain++;log(e.name+'が電撃床で停止した');enemyDrop(e);g.enemies=g.enemies.filter(v=>v!==e);g.p.xp+=e.xp||0;g.credits+=2;levelUp();return;}
+  }
+ }else if(tile?.type==='sticky'){
+  e.terrainSlow=Math.max(e.terrainSlow||0,2);log(e.name+'が粘着床で足止めされた');
+ }else if(tile?.type==='fog'){
+  // The fog conceals the player from ranged units until they leave the tile.
+  if([0,6,23].includes(e.kind))log(e.name+'の照準が電磁霧で乱れた');
+ }
+ if(device?.type==='conveyor'){
+  const nx=e.x+(device.dx||0),ny=e.y+(device.dy||0);
+  if((nx!==e.x||ny!==e.y)&&freeEnemyTile(nx,ny,e)){
+   e.x=nx;e.y=ny;log('搬送床が'+e.name+'を移動させた');
+  }
+ }
+}
+function enemyAvoidsCloseCombat(e,dist){
+ // Snipers reposition at close range rather than behaving like melee soldiers.
+ if(![6,23].includes(e.kind)||dist>2||g.turn%3!==0)return false;
+ const options=dirs.map(([dx,dy])=>({x:e.x+dx,y:e.y+dy})).filter(q=>freeEnemyTile(q.x,q.y,e)&&!terrainAt(q.x,q.y)?.type?.includes('electric'))
+  .sort((a,b)=>(Math.abs(b.x-g.p.x)+Math.abs(b.y-g.p.y))-(Math.abs(a.x-g.p.x)+Math.abs(a.y-g.p.y)));
+ const spot=options[0];if(!spot||Math.abs(spot.x-g.p.x)+Math.abs(spot.y-g.p.y)<=dist)return false;
+ e.x=spot.x;e.y=spot.y;e.aim=null;log(e.name+'が距離を取った');enemyTerrainReaction(e);return true;
+}
+// v5.0.2: late-floor enemies can exert pressure before reaching melee range.
+// One coordinated ability per turn, short range and cooldown, so group encounters remain readable.
+function lateEnemyRangedTactic(e,dist){
+ if(e.boss||g.floor<18||dist<2||dist>4)return false;
+ if(g.lateTacticTurn===g.turn&&(g.lateTacticCount||0)>=(g.floor>=25?2:1))return false;
+ const k=e.kind;
+ if(![18,23,24,25,29,31,32,34,38,39,44,45,46,47,48,49,54,55,57,59,60,61].includes(k))return false;
+ if(g.turn-(e.lastRangedTactic??-100)<(g.floor>=25?3:4))return false;
+ if(rnd(g.floor>=25?3:4)!==0)return false;
+ e.lastRangedTactic=g.turn;
+ if(g.lateTacticTurn!==g.turn)g.lateTacticCount=0;
+ g.lateTacticTurn=g.turn;g.lateTacticCount=(g.lateTacticCount||0)+1;
+ if([18,23,29,32,49,55].includes(k)){
+  const power=g.floor>=25?9:6;
+  g.energy=Math.max(0,g.energy-power);
+  log(e.name+'が遠隔干渉！ EN -'+power);
+ }else if([24,38,44,45,47,57].includes(k)){
+  g.status.slow=Math.max(g.status.slow||0,3);
+  log(e.name+'の妨害波！ 移動妨害');
+ }else if([25,31,34,39,46,59].includes(k)){
+  const allies=g.enemies.filter(o=>o!==e&&!o.boss&&o.hp>0&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=3).slice(0,2);
+  if(allies.length){for(const a of allies)a.barrier=Math.max(a.barrier||0,3);log(e.name+'が周囲の味方へ防壁を投射');}
+  else return false;
+ }else{
+  // Threatening movement is telegraphed, rather than unavoidable direct damage.
+  e.commandBoost=Math.max(e.commandBoost||0,1);
+  log(e.name+'が攻勢を準備！ 接近に注意');
+ }
+ addBattleFx('hit',e.x,e.y,'#ffbb75');
+ return true;
+}
+// v5.0.4: five late-floor specialists. Visible one-turn windups and real positional
+// counters make each ability dangerous without adding artificial first-hit guards.
+function deepEnemySpecial(e,dist){
+ if(!e||e.boss||g.floor<21||g.training||g.dead||e.hacked>0)return false;
+ const k=e.kind;
+ if(![39,44,45,49,59].includes(k))return false;
+ // Resolve the announced move before deciding anything else. Stun and defeat cancel it
+ // because this hook runs after the normal incapacitation checks.
+ if(e.deepIntent){
+  const intent=e.deepIntent;e.deepIntent=null;
+  if(dist>4||(![39,44].includes(k)&&!lineClear(e.x,e.y,g.p.x,g.p.y))){log(e.name+'の大技は届かなかった');return true;}
+  if(k===39){
+   const allies=g.enemies.filter(o=>o!==e&&!o.boss&&o.hp>0&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=4).slice(0,3);
+   if(allies.length){for(const a of allies){a.commandBoost=Math.max(a.commandBoost||0,3);a.alertTurns=Math.max(a.alertTurns||0,4);}
+    log(e.name+'の一斉指令！ '+allies.length+'体が攻勢に入った');}
+   else log(e.name+'の指令を受ける仲間がいない');
+  }else if(k===44){
+   const allies=g.enemies.filter(o=>o!==e&&!o.boss&&o.hp>0&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=4);
+   const destinations=dirs.map(([dx,dy])=>({x:g.p.x+dx,y:g.p.y+dy})).filter(q=>freeEnemyTile(q.x,q.y,e)&&!(q.x===g.stair.x&&q.y===g.stair.y));
+   if(allies.length&&destinations.length){
+    let moved=0;
+    for(const a of allies.slice(0,3)){
+     const free=destinations.filter(q=>freeEnemyTile(q.x,q.y,a));
+     if(!free.length)break;
+     const q=free[rnd(free.length)];a.x=q.x;a.y=q.y;a.aim=null;a.intent=null;
+     addBattleFx('hit',q.x,q.y,'#d8a6ff');enemyTerrainReaction(a);moved++;
+    }
+    if(moved)log(e.name+'の包囲転位！ '+moved+'体が隣に現れた');
+    else log(e.name+'の包囲転位は不発に終わった');
+   }else log(e.name+'の包囲転位は不発に終わった');
+  }else if(k===45){
+   const spots=dirs.map(([dx,dy])=>({x:g.p.x+dx,y:g.p.y+dy})).filter(q=>walk(q.x,q.y)&&!enemyAt(q.x,q.y)&&!(q.x===g.stair.x&&q.y===g.stair.y)&&!terrainAt(q.x,q.y)&&!gimmickAt(q.x,q.y));
+   if(spots.length&&(e.deepPlaced||0)<2){const q=spots[rnd(spots.length)];g.terrain.push({...q,type:'electric'});e.deepPlaced=(e.deepPlaced||0)+1;
+    log(e.name+'が逃げ道に電撃床を生成！');addBattleFx('hit',q.x,q.y,'#80cfff');}
+   else log(e.name+'の地形改変は不発に終わった');
+  }else if(k===49){
+   if(dist<=3){const drain=Math.min(g.energy,10);g.energy-=drain;log(e.name+'のEMP放電！ EN -'+drain);addBattleFx('hit',g.p.x,g.p.y,'#ffe28f');}
+   else log(e.name+'のEMP放電は射程外に外れた');
+  }else if(k===59){
+   if(dist<=3){g.status.slow=Math.max(g.status.slow||0,3);log(e.name+'の催眠旋律！ 移動妨害');addBattleFx('hit',g.p.x,g.p.y,'#b9a2f8');}
+   else log(e.name+'の催眠旋律は届かなかった');
+  }
+  return true;
+ }
+ if(dist<2||dist>4||(![39,44].includes(k)&&!lineClear(e.x,e.y,g.p.x,g.p.y))||g.turn-(e.lastDeepTurn??-100)<5)return false;
+ // Never have several specialist windups start on the same player turn.
+ if(g.deepWarningTurn===g.turn)return false;
+ if(rnd(g.floor>=26?2:3)!==0)return false;
+ if(k===39&&!g.enemies.some(o=>o!==e&&!o.boss&&o.hp>0&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=4))return false;
+ if(k===44&&!g.enemies.some(o=>o!==e&&!o.boss&&o.hp>0&&Math.abs(o.x-e.x)+Math.abs(o.y-e.y)<=4))return false;
+ if(k===45&&(e.deepPlaced||0)>=2)return false;
+ e.lastDeepTurn=g.turn;g.deepWarningTurn=g.turn;
+ // The identifiable commander and switcher can act without a warning turn.
+ // These moves cause no immediate HP / EN damage; the normal cooldown still applies.
+ if(k===39||k===44){e.deepIntent={turn:g.turn};return deepEnemySpecial(e,dist);}
+ e.deepIntent={turn:g.turn};
+ const warnings={39:'周囲の敵に一斉指令を準備',44:'仲間をプレイヤーの隣へ転位する構え',45:'周辺の床を書き換える予兆',49:'EMP放電を充電中',59:'催眠旋律を歌い始めた'};
+ log('【予兆】'+e.name+'が'+warnings[k]+'！ 次の行動に注意');
+ addBattleFx('hit',e.x,e.y,'#ffcb73');return true;
+}
 function endTurn(){
  checkSpecialFloor();
  for(const e of g.enemies)if(visible(e.x,e.y))discoverEnemy(e.name);
@@ -2579,7 +3140,11 @@ function endTurn(){
  buddyAct();
  for(const e of [...g.enemies]){
   if(g.dead)break;
+  if(!g.enemies.includes(e))continue;
   if(e.asleep)continue;
+  enemyTerrainReaction(e);
+  if(!g.enemies.includes(e))continue;
+  if(e.terrainSlow>0)e.terrainSlow--;
   if(e.hacked>0){
    e.hacked--;const opponents=g.enemies.filter(o=>o!==e&&!(o.hacked>0)&&bossCells(o).some(c=>Math.abs(c.x-e.x)+Math.abs(c.y-e.y)<=2));
    if(opponents.length){const target=opponents[0];const dmg=Math.max(3,Math.floor(e.atk*.9));target.hp-=dmg;log('ハックされた'+e.name+'が'+target.name+'へ'+dmg+'ダメージ');
@@ -2587,15 +3152,21 @@ function endTurn(){
    else log(e.name+'はハッキング中、プレイヤーを攻撃しない');
    continue;
   }
-  if(e.stun>0){if(e.boss&&g.bossArena&&Math.random()<.38){e.bossCharge=null;bossCleanse(e);continue;}e.stun--;e.aim=null;e.intent=null;if(e.boss)e.bossCharge=null;log(e.name+'はスタンしている');continue}
+  if(e.stun>0){e.deepIntent=null;if(e.boss&&g.bossArena&&Math.random()<.38){e.bossCharge=null;bossCleanse(e);continue;}e.stun--;e.aim=null;e.intent=null;if(e.boss)e.bossCharge=null;log(e.name+'はスタンしている');continue}
   if(e.boss&&g.bossArena){bossTurn(e);continue;}
   let dist=Math.abs(e.x-g.p.x)+Math.abs(e.y-g.p.y);
   if(g.tacticalCloak>0&&dist>=2)continue;
+  if(enemyAvoidsCloseCombat(e,dist))continue;
+  // A sniper standing in electromagnetic fog cannot acquire a clear shot.
+  if(terrainAt(e.x,e.y)?.type==='fog'&&[0,6,23].includes(e.kind)){e.aim=null;continue;}
+  if(deepEnemySpecial(e,dist))continue;
   if(rangedTelegraph(e,dist))continue;
   if(dangerTelegraph(e,dist))continue;
-  if(e.kind===30&&dist===1&&advancedEnemySpecial(e,dist))continue;
+  if((e.kind===30||e.kind>=34)&&dist===1&&advancedEnemySpecial(e,dist))continue;
   if(dist===1){enemyStrike(e,dist);if(e.kind===20&&!g.dead)enemyStrike(e,dist);continue}
-  if(dist>7||!lineClear(e.x,e.y,g.p.x,g.p.y))continue;
+  if(dist>7||(!lineClear(e.x,e.y,g.p.x,g.p.y)&&!(e.alertTurns>0&&dist<=6)))continue;
+  if(e.alertTurns>0)e.alertTurns--;
+  if(lateEnemyRangedTactic(e,dist))continue;
   if(advancedEnemySpecial(e,dist))continue;
   if(enemySpecial(e,dist))continue;
   if(e.kind===5&&g.turn%2===0&&dist<=5){/* hornet gets a faster approach */}
@@ -2606,8 +3177,9 @@ function endTurn(){
    continue;
   }
   if((e.kind===1||e.kind===10||e.kind===15)&&g.turn%2===1)continue;
+  if(e.terrainSlow>0&&g.turn%2===0)continue;
   let moves=[...dirs].sort((a,b)=>(Math.abs(e.x+a[0]-g.p.x)+Math.abs(e.y+a[1]-g.p.y))-(Math.abs(e.x+b[0]-g.p.x)+Math.abs(e.y+b[1]-g.p.y)));
-  for(const [dx,dy] of moves){let nx=e.x+dx,ny=e.y+dy;if(walk(nx,ny)&&!(nx===g.p.x&&ny===g.p.y)&&!g.enemies.some(other=>other!==e&&other.x===nx&&other.y===ny)){e.x=nx;e.y=ny;break}}
+  for(const [dx,dy] of moves){let nx=e.x+dx,ny=e.y+dy;if(walk(nx,ny)&&!(nx===g.p.x&&ny===g.p.y)&&!g.enemies.some(other=>other!==e&&other.x===nx&&other.y===ny)){e.x=nx;e.y=ny;enemyTerrainReaction(e);break}}
  }
  if(g.tacticalCloak>0)g.tacticalCloak--;
  if(!g.dead&&!g.win)naturalSpawn();
@@ -3072,7 +3644,7 @@ function die(){bossMusicStop();
  const floor=g.floor,level=g.p.level,turn=g.turn,training=!!g.training;
  if(!training)recordRun('死亡');
  g.dead=true;localStorage.removeItem(SAVE);render();
- modal(training?'訓練終了':'街へ帰還',training?'訓練中にHPが0になりました。街へ戻って再挑戦できます。':`第${floor}層で${g.floorLimitDeath?'300ターンの滞在制限により迷宮が崩壊しました':'倒れました'}。<br>Lv.${level} / ${turn}ターン<br>直接原因：${escapeText(trace.fatal.source)}<br><br>レベルと探索中の所持品を失い、街に戻ります。`,[['街へ戻る',returnToTownAfterDefeat]]);
+ modal(training?'訓練終了':'街へ帰還',training?'訓練中にHPが0になりました。街へ戻って再挑戦できます。':`第${floor}層で${g.floorLimitDeath?'300ターンの滞在制限により迷宮が崩壊しました':'倒れました'}。<br>Lv.${level} / ${turn}ターン<br>直接原因：${escapeText(trace.fatal.source)}<br>${v5RunResult()}<br><br>レベルと探索中の所持品を失い、街に戻ります。`,[['街へ戻る',returnToTownAfterDefeat]]);
 }
 function active(){return g&&!g.dead&&!g.win&&!modalOpen&&$('menuOverlay').hidden&&$('hubOverlay').hidden&&$('fullMapOverlay').hidden&&$('townOverlay').hidden&&$('commLogOverlay').hidden}
 function modalPages(body){
@@ -3112,6 +3684,13 @@ function modalPages(body){
 }
 function modal(title,body,buttons){
  const dialog=$('overlay').querySelector('.dialog');
+ // Action/confirmation menus belong at screen center; spoken dialogue remains bottom-anchored.
+ // Keep this distinction independent from button count and text pagination.
+ const dialogueTitle=/^(?:F\d+ \/ .* — 通信|MOCHI \/|モチ \/|整備士 \/ 未解析の回路)/.test(String(title));
+ const centered=!dialogueTitle;
+ dialog.classList.toggle('stairs-dialog',title==='階段を発見');
+ dialog.classList.toggle('centered-dialog',centered);
+ $('overlay').classList.toggle('centered-overlay',centered);
  if(!String(title).includes(' END — ')){dialog.classList.remove('finale-dialog');dialog.removeAttribute('data-ending');}
  modalOpen=true;
  const pages=modalPages(body);let page=0;
@@ -3275,9 +3854,37 @@ function paintBoss(t,e,px,py){
  t.fillStyle='#190e25';t.fillRect(px+2,py+59,60,4);
  t.fillStyle=phase?'#ff486f':palette[1];t.fillRect(px+2,py+59,60*Math.max(0,e.hp/Math.max(1,e.max)),4);
 }
+
+// Pixel-art silhouettes: each family has a distinctive fantasy-creature profile.
+function drawStorybookSprite(t,e,x,y,def){
+ const k=e.kind-50,c=def.color;
+ t.save();t.translate(x+16,y+15);t.lineWidth=1;t.strokeStyle='#162332';
+ const r=(a,b,w,h,col)=>{t.fillStyle=col||c;t.fillRect(a,b,w,h)};
+ const ball=(a,b,radius,col)=>{t.beginPath();t.arc(a,b,radius,0,Math.PI*2);t.fillStyle=col||c;t.fill();t.stroke()};
+ const eyes=(dy=-2)=>{r(-6,dy,3,4,'#122333');r(3,dy,3,4,'#122333');r(-5,dy,1,1,'#fff');r(4,dy,1,1,'#fff')};
+ if(k===0||k===11){ball(0,2,12);r(-9,10,7,4);r(3,10,7,4);eyes(0);if(k===11){ball(-10,-10,4,'#e3ffff');ball(10,-10,4,'#e3ffff')}}
+ else if(k===1){ball(0,3,10);ball(-9,-8,5);ball(9,-8,5);r(8,7,7,5,'#d0a16f');r(-3,11,4,4,'#fff3d3');eyes(1)}
+ else if(k===2){ball(0,2,11);ball(-8,-9,4);ball(8,-9,4);r(-13,11,8,3);r(5,11,8,3);eyes(0)}
+ else if(k===3){ball(0,2,11);ball(-8,-8,6);ball(8,-8,6);r(-4,0,8,4,'#e5d5ff');eyes(-4)}
+ else if(k===4){ball(0,2,11);r(-13,-3,26,7,'#325d72');r(-9,-10,18,5,'#497e9d');eyes(4)}
+ else if(k===5){r(-3,-15,6,10,'#f4ddb1');ball(0,3,11);ball(-9,-7,5);ball(9,-7,5);eyes(2)}
+ else if(k===6){r(-13,-9,26,21,'#b37b48');r(-13,-9,26,5,'#f7d68c');r(-11,5,22,7,'#805434');r(-4,-5,8,5,'#ffefcc');r(-9,-2,4,4,'#301929');r(6,-2,4,4,'#301929')}
+ else if(k===7){ball(0,-3,10);r(-4,-15,8,5);r(-12,8,5,7);r(-2,8,5,8);r(8,8,5,7);eyes(-4)}
+ else if(k===8){ball(0,2,10);r(-16,-5,6,15);r(10,-5,6,15);r(-12,-11,7,5);r(5,-11,7,5);eyes(-1)}
+ else if(k===9){r(-11,-11,22,23,'#93743e');r(-7,-15,14,5,'#ffed98');r(-3,-20,6,7,'#fff4b0');r(-9,7,18,5,c);eyes(-4)}
+ else if(k===10){r(-13,-9,26,21);r(-10,-14,20,6,'#9d8bd4');r(-16,8,8,6);r(8,8,8,6);eyes(-2);r(-4,9,8,3,'#513971')}
+ if(k===9){ // Lantern: golden sound rings identify the song support role.
+  r(-18,-7,4,3,'#fff4b0');r(14,-7,4,3,'#fff4b0');
+  r(-21,-3,3,3,'#e9acfb');r(18,-3,3,3,'#e9acfb');
+  r(-3,-25,6,5,'#fff1ac');
+ }
+ if(e.stun>0)r(-3,-19,6,3,'#fff5a5');
+ t.restore();
+}
 function drawEnemySprite(t,e,x,y){
  const def=BOSS_FAMILIES[e.name]||ENEMY_FAMILIES[e.kind]||ENEMY_FAMILIES[0];
  const shape=def.shape,mark=def.mark,color=def.color;
+ if(e.kind>=50&&e.kind<=61){drawStorybookSprite(t,e,x,y,def);return;}
  t.save();t.translate(x+16,y+15);t.shadowColor=color;t.shadowBlur=4+2*Math.sin((g.turn+(e.x||0))*0.7);t.fillStyle=color;t.strokeStyle='#07131e';t.lineWidth=1.5;
  const rect=(a,b,w,h,c)=>{t.fillStyle=c||color;t.fillRect(a,b,w,h)};
  const poly=pts=>{t.beginPath();t.moveTo(...pts[0]);pts.slice(1).forEach(q=>t.lineTo(...q));t.closePath();t.fill();t.stroke()};
@@ -3307,11 +3914,45 @@ function drawEnemySprite(t,e,x,y){
  else{rect(-12,12,24,3,'#182d46');rect(-2,14,4,3,shade);}
  if(tier===1){rect(-12,-1,4,3,'#ffe38a');rect(8,-1,4,3,'#ffe38a');}
  if(tier===2){rect(-12,-11,3,3,'#dcb1ff');rect(9,-11,3,3,'#dcb1ff');}
+ // v5.0.5: silhouettes are distinct at 32 px, not merely color swaps.
+ // Crown antenna = commander; paired portal prongs = switcher;
+ // forked polarity = inverter; satellite dish = EMP watch.
+ if(family===39){
+  rect(-12,-17,5,10,'#ffeff9');rect(7,-17,5,10,'#ffeff9');
+  rect(-3,-21,6,8,'#ff6796');rect(-11,-21,5,4,'#ffeff9');rect(6,-21,5,4,'#ffeff9');
+  rect(-13,10,26,4,'#482037');rect(-2,-6,4,10,'#ffffff');
+ }else if(family===44){
+  rect(-17,-15,6,27,'#bdf7ff');rect(11,-15,6,27,'#bdf7ff');
+  rect(-20,-18,12,5,'#7457f7');rect(8,-18,12,5,'#7457f7');
+  rect(-5,-5,10,10,'#f3e0ff');rect(-2,-9,4,18,'#271f74');
+ }else if(family===45){
+  rect(-18,-12,10,5,'#ffdb7a');rect(8,8,10,5,'#82d8ff');
+  rect(-3,-20,6,11,'#ffdb7a');rect(-3,8,6,12,'#82d8ff');
+  rect(-15,13,12,3,'#ffdb7a');rect(3,-16,12,3,'#82d8ff');
+ }else if(family===49){
+  rect(-15,-19,30,5,'#8ceaff');rect(-3,-24,6,7,'#c8f8ff');
+  rect(-14,-12,5,18,'#59a9db');rect(9,-12,5,18,'#59a9db');
+  rect(-7,-5,14,8,'#f4ee72');rect(-4,-10,8,5,'#102d4f');
+ }
  // Silhouette accents: special AI remains visually identifiable even without labels.
  if(e.name==='スリップ・シーフ'){t.fillStyle='#ffe9a1';t.fillRect(8,5,7,9);t.fillStyle='#111b29';t.fillRect(10,7,3,3)}
  else if(e.name==='群体ビーコン'){t.strokeStyle='#a3ffda';t.lineWidth=2;t.beginPath();t.arc(0,-2,14,-.9,.15);t.stroke();t.fillStyle='#a3ffda';t.fillRect(-2,-15,4,5)}
  else if(e.name==='床面ハッカー'){t.strokeStyle='#79d9ff';t.lineWidth=2;t.beginPath();t.moveTo(-15,12);t.lineTo(0,6);t.lineTo(15,12);t.stroke()}
  else if(e.name==='搬送ランナー'){t.fillStyle='#ffcb75';t.beginPath();t.moveTo(-15,7);t.lineTo(-7,-2);t.lineTo(-7,5);t.lineTo(2,5);t.lineTo(-8,11);t.closePath();t.fill()}
+ // v4.9.7: sixteen recognisable silhouettes and colored diagnostic markings.
+ if(family>=34&&family<=49){
+  const kind=family-34;t.shadowBlur=0;
+  const glyph=[0,1,2,3][kind%4];
+  t.strokeStyle='#e6faff';t.lineWidth=2;
+  if(glyph===0){t.strokeRect(-13,-12,26,24);rect(-2,-16,4,7,'#fff5c7');}
+  if(glyph===1){t.beginPath();t.moveTo(-13,9);t.lineTo(0,-15);t.lineTo(13,9);t.stroke();}
+  if(glyph===2){t.beginPath();t.arc(0,0,14,Math.PI*.1,Math.PI*1.8);t.stroke();}
+  if(glyph===3){rect(-15,-3,30,5,'#1c364a');rect(-3,-15,6,30,'#e8f8ff');}
+  const marks=[[-10,-10],[9,-10],[-10,9],[9,9]];
+  for(let z=0;z<4;z++){const [ax,ay]=marks[z];if((kind+z)%3!==0)rect(ax,ay,4,4,z%2?'#fff0b7':'#a4e8ff');}
+  // Unique number of luminous stripes per family, even on 32px tiles.
+  const bars=1+Math.floor(kind/4);for(let b=0;b<bars;b++)rect(-10+b*6,13,4,3,color);
+ }
  if(e.tacticalHacked>0||e.hacked>0){t.strokeStyle='#78ffc3';t.lineWidth=2;t.beginPath();t.arc(0,0,14,0,Math.PI*2);t.stroke()}
  // Three visually different marking patterns across the 30 families.
  if(mark===0){rect(-5,-4,10,4,'#07131e');rect(-3,-4,2,3,'#f4ffff');rect(2,-4,2,3,'#f4ffff');}
@@ -3526,6 +4167,7 @@ function draw(){
   t.save();t.fillStyle='#00000077';t.beginPath();t.ellipse(px+16,py+25,e.boss&&e.large?14:10,e.boss&&e.large?7:5,0,0,Math.PI*2);t.fill();t.restore();
   if(e.boss&&e.large){paintBoss(t,e,px,py);continue;}
   drawEnemySprite(t,e,px,py);
+  if(e.elite){t.save();t.strokeStyle='#ffdf82';t.lineWidth=2;t.strokeRect(px+1,py+1,30,30);t.fillStyle='#fff1a8';t.font='bold 11px sans-serif';t.fillText('◆',px+2,py+11);t.restore();}
   if(e.intent){t.strokeStyle='#ffad54';t.lineWidth=2;t.strokeRect(px+1,py+1,30,30);}if(e.aim){t.strokeStyle='#ff596e';t.lineWidth=2;t.strokeRect(px+2,py+2,28,28);t.lineWidth=1;}
   if(e.stun>0){t.fillStyle='#b4eaff';t.font='bold 13px monospace';t.fillText('✦',px+22,py+10);}t.fillStyle='#f15a7a';t.fillRect(px+4,py+27,24,2);t.fillStyle='#7bffc4';t.fillRect(px+4,py+27,24*Math.max(0,e.hp/e.max),2)
  }
@@ -3617,7 +4259,7 @@ function updateActionAvailability(){
   b.setAttribute('aria-label',enabled?b.textContent.trim():b.textContent.trim()+'（使用不可）');
  }
 }
-function render(){if(!g)return;balanceVisit();musicRefresh();updateBattleLog();const terminalReady=!!(g.special&&!g.special.used&&g.p.x===g.special.x&&g.p.y===g.special.y);$('terminalBtn').hidden=!terminalReady;const [hintText,hintStyle]=beginnerHint();$('nextHint').textContent=hintText;$('nextHint').hidden=!guideEnabled;$('nextHint').className='next-hint'+(hintStyle?' '+hintStyle:'');updateGuideToggle();for(const e of g.enemies)if(visible(e.x,e.y))discoverEnemy(e.name);$('hubSummary').textContent=`倉庫 ${cityTotalStorage()}/${warehouseLimit()}　|　最高到達 ${meta.bestFloor}F`;$('battery').textContent=g.energy+' / 100';$('batteryBar').style.width=Math.max(0,Math.min(100,g.energy))+'%';$('batteryBar').parentElement.setAttribute('aria-valuenow',String(Math.max(0,Math.min(100,g.energy))));storyRender();memorySceneFlush();memoryBeaconFeedback();$('floor').textContent=`${g.floor} / ${g.specialMode==='naked'?10:g.specialMode==='rush'?30:g.training?5:g.challenge?20:30}${g.specialMode==='naked'?' NO-CARRY':g.specialMode==='rush'?' RUSH':g.training?' TRAINING':g.challenge?' NULL':''}`;$('level').textContent=`${g.p.level} / ${g.p.xp}`;$('hp').textContent=`${g.p.hp} / ${g.p.max}`;$('hpbar').style.width=Math.max(0,Math.min(100,100*g.p.hp/Math.max(1,g.p.max)))+'%';$('hpbar').parentElement.setAttribute('aria-valuenow',String(Math.max(0,g.p.hp)));$('hpbar').parentElement.setAttribute('aria-valuemax',String(g.p.max));$('power').textContent=`${g.p.atk+(g.gear?.weapon?.bonus||0)} / ${g.p.def+(g.gear?.armor?.bonus||0)}`;$('empCount').textContent=`(${g.bag.filter(i=>i.type==='emp').length})`;$('healCount').textContent=`(${g.bag.filter(i=>i.type==='med').length})`;$('shockCount').textContent=`(${g.bag.filter(i=>i.type==='shock').length})`;$('antidoteCount').textContent=`(${g.bag.filter(i=>i.type==='antidote').length})`;$('buddyBadge').textContent='◕ モチ '+buddyRank()+' '+({heal:'♡',explore:'◇',combat:'⚡'}[g.buddy?.mode]||'♡');buddyUi();jobInit();$('jobInfo').textContent='現在：'+jobLabel()+'　｜次回：'+JOBS[meta.job].name+'　｜'+JOBS[g.job].desc+'　｜スキル再使用：'+Math.max(0,4-(g.turn-g.jobLastSkill))+'T';$('jobSkill').textContent='スキル：'+JOBS[g.job].skill+' ('+({vanguard:18,hacker:20,runner:15}[g.job])+'EN)';$('combatStatus').textContent=Object.entries(g.status||{}).filter(([k,v])=>v>0).map(([k,v])=>({poison:'毒',bleed:'出血',slow:'移動妨害'}[k]||k)+' '+v+'T').join(' / ')||'STATUS: NORMAL';const warnings=g.enemies.filter(e=>e.aim&&visible(e.x,e.y)).length;if(warnings)$('combatStatus').textContent+=' / ⚠ 射撃予告 '+warnings;const danger=g.enemies.filter(e=>e.intent&&visible(e.x,e.y)).length;if(danger)$('combatStatus').textContent+=' / ⚠ 範囲・突進 '+danger;if(g.jobShield>0)$('combatStatus').textContent+=' / 防壁 '+g.jobShield+'T';if(g.tacticalCloak>0)$('combatStatus').textContent+=' / 光学迷彩 '+g.tacticalCloak+'T';if(g.monsterHouse?.triggered&&!g.monsterHouse.cleared)$('combatStatus').textContent+=' / ⚠ MONSTER HOUSE';if(g.floorHazard)$('combatStatus').textContent+=' / '+({blackout:'停電',drain:'EN漏出',supply:'補給'}[g.floorHazard.type]||'');if(floorLimitActive())$('combatStatus').textContent+=' / 階層滞在 '+(g.floorTurn||0)+'/300T'+((g.floorTurn||0)>=200?' ⚠':'');const terrainHere=terrainAt(g.p.x,g.p.y);if(terrainHere)$('combatStatus').textContent+=' / '+({electric:'電撃床',sticky:'粘着床',fog:'電磁霧'}[terrainHere.type]);$('bagCount').textContent=`${g.bag.length} / 12`;$('quickBagCount').textContent=`${g.bag.length}`;const weapon=g.gear?.weapon||null,armor=g.gear?.armor||null;
+function render(){if(!g)return;balanceVisit();musicRefresh();updateBattleLog();const terminalReady=!!(g.special&&!g.special.used&&g.p.x===g.special.x&&g.p.y===g.special.y);$('terminalBtn').hidden=!terminalReady;const [hintText,hintStyle]=beginnerHint();$('nextHint').textContent=hintText;$('nextHint').hidden=!guideEnabled;$('nextHint').className='next-hint'+(hintStyle?' '+hintStyle:'');updateGuideToggle();for(const e of g.enemies)if(visible(e.x,e.y))discoverEnemy(e.name);$('hubSummary').textContent=`倉庫 ${cityTotalStorage()}/${warehouseLimit()}　|　最高到達 ${meta.bestFloor}F`;$('battery').textContent=g.energy+' / 100';$('batteryBar').style.width=Math.max(0,Math.min(100,g.energy))+'%';$('batteryBar').parentElement.setAttribute('aria-valuenow',String(Math.max(0,Math.min(100,g.energy))));storyRender();memorySceneFlush();memoryBeaconFeedback();$('floor').textContent=`${g.floor} / ${g.specialMode==='naked'?10:g.specialMode==='rush'?30:g.training?5:g.challenge?20:30}${g.specialMode==='naked'?' NO-CARRY':g.specialMode==='rush'?' RUSH':g.training?' TRAINING':g.challenge?' NULL':''}`;$('level').textContent=`${g.p.level} / ${g.p.xp}`;$('hp').textContent=`${g.p.hp} / ${g.p.max}`;$('hpbar').style.width=Math.max(0,Math.min(100,100*g.p.hp/Math.max(1,g.p.max)))+'%';$('hpbar').parentElement.setAttribute('aria-valuenow',String(Math.max(0,g.p.hp)));$('hpbar').parentElement.setAttribute('aria-valuemax',String(g.p.max));$('power').textContent=`${g.p.atk+(g.gear?.weapon?.bonus||0)} / ${g.p.def+(g.gear?.armor?.bonus||0)}`;$('empCount').textContent=`(${g.bag.filter(i=>i.type==='emp').length})`;$('healCount').textContent=`(${g.bag.filter(i=>i.type==='med').length})`;$('shockCount').textContent=`(${g.bag.filter(i=>i.type==='shock').length})`;$('antidoteCount').textContent=`(${g.bag.filter(i=>i.type==='antidote').length})`;$('buddyBadge').textContent='◕ モチ '+buddyRank()+' '+({heal:'♡',explore:'◇',combat:'⚡'}[g.buddy?.mode]||'♡');buddyUi();jobInit();$('jobInfo').textContent='現在：'+jobLabel()+'　｜次回：'+JOBS[meta.job].name+'　｜'+JOBS[g.job].desc+'　｜スキル再使用：'+Math.max(0,4-(g.turn-g.jobLastSkill))+'T';$('jobSkill').textContent='スキル：'+JOBS[g.job].skill+' ('+({vanguard:18,hacker:20,runner:15}[g.job])+'EN)';$('combatStatus').textContent=Object.entries(g.status||{}).filter(([k,v])=>v>0).map(([k,v])=>({poison:'毒',bleed:'出血',slow:'移動妨害'}[k]||k)+' '+v+'T').join(' / ')||'STATUS: NORMAL';const warnings=g.enemies.filter(e=>e.aim&&visible(e.x,e.y)).length;if(warnings)$('combatStatus').textContent+=' / ⚠ 射撃予告 '+warnings;const danger=g.enemies.filter(e=>e.intent&&visible(e.x,e.y)).length;if(danger)$('combatStatus').textContent+=' / ⚠ 範囲・突進 '+danger;if(g.jobShield>0)$('combatStatus').textContent+=' / 防壁 '+g.jobShield+'T';if(g.tacticalCloak>0)$('combatStatus').textContent+=' / 光学迷彩 '+g.tacticalCloak+'T';if(g.monsterHouse?.triggered&&!g.monsterHouse.cleared)$('combatStatus').textContent+=' / ⚠ MONSTER HOUSE';if(g.v5Zone)$('combatStatus').textContent+=' / '+g.v5Zone.name;if(g.v5Elite&&!g.v5Elite.cleared)$('combatStatus').textContent+=' / ◆異常個体';if(g.floorHazard)$('combatStatus').textContent+=' / '+({blackout:'停電',drain:'EN漏出',supply:'補給'}[g.floorHazard.type]||'');if(floorLimitActive())$('combatStatus').textContent+=' / 階層滞在 '+(g.floorTurn||0)+'/300T'+((g.floorTurn||0)>=200?' ⚠':'');const terrainHere=terrainAt(g.p.x,g.p.y);if(terrainHere)$('combatStatus').textContent+=' / '+({electric:'電撃床',sticky:'粘着床',fog:'電磁霧'}[terrainHere.type]);$('bagCount').textContent=`${g.bag.length} / 12`;$('quickBagCount').textContent=`${g.bag.length}`;const weapon=g.gear?.weapon||null,armor=g.gear?.armor||null;
  for(const [slot,it,label,stat] of [['Weapon',weapon,'ATK','weapon'],['Armor',armor,'DEF','armor']]){
   const btn=$('equipped'+slot),name=$('equipped'+slot+'Name'),bonus=$('equipped'+slot+'Stat');
   name.textContent=it?itemLabel(it):'未装備';
@@ -3650,7 +4292,7 @@ function showEquippedDetails(slot){
  const body=it?('現在装備中：'+itemLabel(it)+'<br>レアリティ：'+gearRarity(it).name+'<br>'+stat+'：+'+(it.bonus||0)+'<br>特殊効果：'+(GEAR_EFFECTS[it.effect]||'なし')+'<br>呪い：'+(it.cursed?'あり（装備変更不可）':'なし')+'<br><br>新しい装備はバッグから選択してください。'):('現在、'+name+'は装備していません。<br>バッグの武器・装甲を選び「そうびする」で装備できます。');
  modal(name+' / EQUIPPED',body,[['閉じる',()=>{}],['バッグを確認',()=>{openMenu()}]]);
 }
-function help(){modal('OPERATION MANUAL','<b>NEON ABYSS — 電脳迷宮</b><br>方向キーで1マス移動。1回の行動につき敵も1ターン行動します。隣接した敵へ移動すると近接攻撃します。<br><br>◆ 緑の階段に乗ると「おりる」「やめる」を選べます<br>◆ 新戦術アイテム：位相アンカー・重力パルス・時間凍結・光学迷彩・ハッキング・緊急転送。アイテムをタップ→つかう→対象選択で使用。<br>◆ アイテムをタップすると効果説明が開きます。装備は「そうびする」でバッグに保持、道具は「つかう」「なげる」「おく」を選択できます。投げる方向は最後に移動した方向（最大5マス）。足元に置いた道具は移動して戻ると回収。モチのボタンから探索中に会話できます<br>◆ 第30層の最終ボス撃破後は探索履歴に応じてエンディングが自動分岐。全30階で任意通信を収集可能。第7・14・17・24・27層で重要な記憶の痕跡を探せ。街の整備士がモチの認証回路を修復できる<br>◆ エネルギーは5ターンごとに1減少。0になるとHP減少<br>◆ 追加の特殊敵：スリップ・シーフ（盗んだ物資は敵のいた床から回収可能）、群体ビーコン（増援は最大2体）、床面ハッカー（電撃床を最大2枚設置）、搬送ランナー（2マス突進と床利用）。スタンやハッキングで妨害可能。<br>◆ 敵ごとに行動パターンが異なります。ショック弾は最後に向いた方向へ発射します。毒・出血・移動妨害は解毒パッチで除去できます。<br>◆ 紫の◇は特殊端末。マス上で「周辺端末を調べる」を押すと商人・医療・データ解読を利用可能。敵撃破でクレジット獲得。<br>◆ 全体マップボタンで探索済み範囲を確認（ターン消費なし）<br>◆ 武器・装甲はそれぞれ30種類。未鑑定装備は装備時に判明。装備後もバッグに残ります。呪いは装備変更不可。街の合成工房か迷宮の改造端末で合成できます。付け替えはいつでも可能。バイキルトの巻物は武器、スカラの巻物は装甲を探索中どこでも+1強化します。鑑定スキャナ・改造チップも活用<br>◆ 新地形：矢印＝搬送床／⇧＝跳躍床／＋＝HPとENを一度回復／◎＝転送床／亀裂壁＝向きを合わせて攻撃で破壊。重力パルスでも破壊可能。<br>◆ 電磁地雷に注意。高密度セルで電力回復<br>◆ 灯の街：道具屋で売買、診療所で補給、リラや広場で依頼を受注、整備士に施設の改修を頼めます。セーフハウスで出発用の道具を指定できます。街の所持金は帰還時に精算されます。<br>◆ 探索中は街へ戻れません。「あきらめる」を選ぶと死亡扱いで街へ帰還し、探索中の装備・所持品を失います。倉庫と出発用に指定した物資は残ります。<br>◆ 倒れると街へ戻ります。再挑戦は街の迷宮入口から<br><br>探索途中は自動保存。オフラインで動作します。',[['探索へ戻る',()=>{}]])}
+function help(){modal('OPERATION MANUAL','<b>NEON ABYSS — 電脳迷宮</b><br>方向キーで1マス移動。1回の行動につき敵も1ターン行動します。隣接した敵へ移動すると近接攻撃します。通常攻撃の命中率は93%（空振り7%）。空振りでも1ターン経過します。スキルや道具には適用されません。<br><br>◆ 緑の階段に乗ると「おりる」「やめる」を選べます<br>◆ 新戦術アイテム：位相アンカー・重力パルス・時間凍結・光学迷彩・ハッキング・緊急転送。アイテムをタップ→つかう→対象選択で使用。<br>◆ アイテムをタップすると効果説明が開きます。装備は「そうびする」でバッグに保持、道具は「つかう」「なげる」「おく」を選択できます。投げる方向は最後に移動した方向（最大5マス）。足元に置いた道具は移動して戻ると回収。モチのボタンから探索中に会話できます<br>◆ 第30層の最終ボス撃破後は探索履歴に応じてエンディングが自動分岐。全30階で任意通信を収集可能。第7・14・17・24・27層で重要な記憶の痕跡を探せ。街の整備士がモチの認証回路を修復できる<br>◆ エネルギーは5ターンごとに1減少。0になるとHP減少<br>◆ 追加の特殊敵：スリップ・シーフ（盗んだ物資は敵のいた床から回収可能）、群体ビーコン（増援は最大2体）、床面ハッカー（電撃床を最大2枚設置）、搬送ランナー（2マス突進と床利用）。スタンやハッキングで妨害可能。<br>◆ 敵ごとに行動パターンが異なります。ショック弾は最後に向いた方向へ発射します。毒・出血・移動妨害は解毒パッチで除去できます。<br>◆ 紫の◇は特殊端末。マス上で「周辺端末を調べる」を押すと商人・医療・データ解読を利用可能。敵撃破でクレジット獲得。<br>◆ 全体マップボタンで探索済み範囲を確認（ターン消費なし）<br>◆ 武器・装甲はそれぞれ30種類。未鑑定装備は装備時に判明。装備後もバッグに残ります。呪いは装備変更不可。街の合成工房か迷宮の改造端末で合成できます。付け替えはいつでも可能。バイキルトの巻物は武器、スカラの巻物は装甲を探索中どこでも+1強化します。鑑定スキャナ・改造チップも活用<br>◆ 新地形：矢印＝搬送床／⇧＝跳躍床／＋＝HPとENを一度回復／◎＝転送床／亀裂壁＝向きを合わせて攻撃で破壊。重力パルスでも破壊可能。<br>◆ 電磁地雷に注意。高密度セルで電力回復<br>◆ 灯の街：道具屋で売買、診療所で補給、リラや広場で依頼を受注、整備士に施設の改修を頼めます。セーフハウスで出発用の道具を指定できます。街の所持金は帰還時に精算されます。<br>◆ 探索中は街へ戻れません。「あきらめる」を選ぶと死亡扱いで街へ帰還し、探索中の装備・所持品を失います。倉庫と出発用に指定した物資は残ります。<br>◆ 倒れると街へ戻ります。再挑戦は街の迷宮入口から<br><br>探索途中は自動保存。オフラインで動作します。',[['探索へ戻る',()=>{}]])}
 const TOWN_W=12,TOWN_H=10,TOWN_CELL=32;
 const townBuildings=[
  {id:'home',x:1,y:1,w:3,h:2,name:'セーフハウス',icon:'⌂',color:'#2d6688'},
@@ -3989,6 +4631,21 @@ function autoStop(message='自動探索を停止しました'){
  autoUi();if(g&&message){log('[AUTO] '+message);render();}
 }
 function autoPress(button){if(!button)return false;autoInternalClick=true;try{button.click()}finally{autoInternalClick=false;}return true;}
+// v4.9.2: Finish every queued memory/conversation page before the next AI move.
+// Uses the same page-advance code as manual play, preserving event side effects.
+function autoFinishMemoryDialogue(){
+ if(!autoRunning)return false;
+ const scene=$('memoryScene');
+ if(scene.hidden&&!memorySceneQueue.length)return false;
+ let steps=0;
+ while((!scene.hidden||memorySceneQueue.length)&&steps++<512){
+  if(scene.hidden){const next=memorySceneQueue.shift();if(next)memorySceneShow(next.title,next.lines,next.important);}
+  else memorySceneAdvance();
+ }
+ if(!scene.hidden||memorySceneQueue.length){autoStop('会話を最後まで処理できなかったため安全停止');return true;}
+ return true;
+}
+
 function autoModal(){
  if(!modalOpen)return false;
  const title=$('modalTitle').textContent;
@@ -3999,6 +4656,11 @@ function autoModal(){
  }
  if(title.includes('最後の選択')){autoPress(buttons[0]);return true;}
  if(title.startsWith('BOSS /')||title.startsWith('EXPLORER /')||title.includes(' — 通信')){autoPress(buttons[0]);return true;}
+ // Non-branching narrative and information screens can advance safely.
+ if(/通信|会話|記録音声|プロローグ|回想|メッセージ/.test(title)){
+  const next=buttons.find(b=>/^(次へ|通信を閉じる|閉じる|確認|続ける|戻る)$/.test(b.textContent.trim()));
+  if(next){autoPress(next);return true;}
+ }
  if(g?.win||g?.dead){autoStop(g.win?'クリア！':'探索終了（死亡）');return true;}
  autoStop('確認画面「'+title+'」で停止。手動で確認してください');return true;
 }
@@ -4009,6 +4671,8 @@ function autoStart(){
  g.debugUsed=true;save();autoSteps=0;autoStalls=0;autoLastPosition='';autoNavigation={floor:g.floor,positions:[],stuck:0,avoid:new Map(),lastReason:''};autoRunning=true;
  log('[AUTO] 自動探索開始。速度×'+autoSpeed+'。結果は通常の戦績から除外');
  autoUi();render();
+ // An already-open communication from before auto-play must not obscure the map.
+ autoFinishMemoryDialogue();
  autoTimer=setInterval(()=>{
   if(!autoRunning)return;
   try{
@@ -4016,10 +4680,16 @@ function autoStart(){
    for(let n=0;n<autoSpeed&&autoRunning;n++){
     if(autoSteps>=2000){autoStop('安全上限2,000行動に到達');break;}
     if(g.dead||g.win){autoStop(g.win?'クリア！':'探索終了（死亡）');break;}
-    if(modalOpen){autoModal();if(modalOpen)break;continue;}
+    if(modalOpen){autoModal();if(!autoRunning||modalOpen)break;autoFinishMemoryDialogue();continue;}
+    // Drain the entire communication queue before moving again (all speed settings).
+    if(autoFinishMemoryDialogue()){if(!autoRunning)break;continue;}
     if(!$('menuOverlay').hidden||!$('townOverlay').hidden||!$('hubOverlay').hidden||!$('fullMapOverlay').hidden||!$('commLogOverlay').hidden){autoStop('別画面が開いたため停止');break;}
     const before=g.turn,prevFloor=g.floor,prevPosition=g.floor+':'+g.p.x+','+g.p.y;
     autoStep();
+    // A move can create several consecutive story/guide transmissions.
+    // Complete them immediately instead of leaving a panel on the dungeon map.
+    if(autoRunning)autoFinishMemoryDialogue();
+    if(!autoRunning)break;
     autoNavTick(prevPosition.split(':')[1]);
     if(!autoRunning)break;
     autoSteps++;
