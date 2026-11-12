@@ -1,0 +1,5 @@
+v5.0.9 GUI/REGEN checks
+- Chromium embedded-document: initial town, left/right pad switch, 16×12 dimensions, east/south passable outer cells, 12-turn recovery, no JS exceptions: PASS
+- 390×844 viewport screenshot inspection, town controls and message not clipped: PASS
+- JS syntax node --check: PASS
+- iPhone real device / PWA offline / 30F AI balance: NOT TESTED
