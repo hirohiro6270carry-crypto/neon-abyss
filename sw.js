@@ -1,4 +1,4 @@
-const CACHE='neon-abyss-v561-visual-tutorial';
+const CACHE='neon-abyss-v564-item-details';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
