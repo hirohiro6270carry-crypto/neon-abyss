@@ -1054,7 +1054,7 @@ body.map-focus .dungeon-objective[hidden]{display:none!important}
   <small class="start-credit">NEON VILLAGE / SIGNAL ONLINE · v5.5.5</small>
  </div>
 </section>
-<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v5.6.4 / ITEM DETAILS</small></div><div class="header-tools"><button id="padSideToggle" type="button" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div><div class="stat gold-stat">ゴールド<strong id="credits" aria-live="polite">0</strong></div></div><div class="vitals" aria-label="HPと電力"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="電力残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔️</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">🛡️</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="dungeonObjective" class="dungeon-objective" role="status" aria-live="polite"><span class="objective-title">目的</span><strong id="dungeonObjectiveText">階段を目指そう！</strong></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="miniMapToggle" type="button" aria-pressed="true">透過地図 ON</button><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><canvas id="miniMap" width="200" height="200" aria-label="探索済み範囲の透過全体マップ" aria-hidden="true"></canvas><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div id="banner"></div><div id="levelMochiToast" class="level-mochi-toast" role="status" aria-live="polite" hidden></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="次の会話へ進む">»</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（電力 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townPadSide" type="button" class="town-pad-toggle" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="townClose" type="button">ダンジョンへ入る</button></div><div id="townObjective" class="town-objective" hidden role="status" aria-live="polite"><span class="objective-title">目的</span><strong>まずはダンジョンを目指そう</strong></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では正面の人・家具を調べられ、出口から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="384" height="320" aria-label="歩いて探索できる街の地図"></canvas></div>
+<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v5.6.6 / TOWN VISIBILITY</small></div><div class="header-tools"><button id="padSideToggle" type="button" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div><div class="stat gold-stat">ゴールド<strong id="credits" aria-live="polite">0</strong></div></div><div class="vitals" aria-label="HPと電力"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="電力残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔️</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">🛡️</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="dungeonObjective" class="dungeon-objective" role="status" aria-live="polite"><span class="objective-title">目的</span><strong id="dungeonObjectiveText">階段を目指そう！</strong></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="miniMapToggle" type="button" aria-pressed="true">透過地図 ON</button><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><canvas id="miniMap" width="200" height="200" aria-label="探索済み範囲の透過全体マップ" aria-hidden="true"></canvas><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div id="banner"></div><div id="levelMochiToast" class="level-mochi-toast" role="status" aria-live="polite" hidden></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="次の会話へ進む">»</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（電力 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townPadSide" type="button" class="town-pad-toggle" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="townClose" type="button">ダンジョンへ入る</button></div><div id="townObjective" class="town-objective" hidden role="status" aria-live="polite"><span class="objective-title">目的</span><strong>まずはダンジョンを目指そう</strong></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では正面の人・家具を調べられ、出口から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="384" height="320" aria-label="歩いて探索できる街の地図"></canvas></div>
 <div id="townPrologue" class="town-prologue" hidden aria-live="polite">
  <div class="prologue-top"><span>PROLOGUE · 消えた名前</span><button id="prologueSkip" type="button">スキップ</button></div>
  <div class="prologue-speaker" id="prologueSpeaker">記録音声</div>
@@ -1146,13 +1146,25 @@ const TILE_GUIDE={
  boss_pad:['ボス転送床','ボス戦で対角位置へ移動する回避用パッド。'],blackout:['停電区画','通常より視界が制限される特殊階層。'],drain:['電力漏出区画','一定間隔で電力が減る階層。長居しないこと。'],supply:['補給区画','追加の補給物資を発見できる階層。']
 };
 function fieldGuideInit(){codexInit();if(!meta.codex.tiles||typeof meta.codex.tiles!=='object')meta.codex.tiles={};}
+// First-pickup guidance is separate from the permanent item codex. The codex can
+// be populated by an earlier run, city purchases, or the legacy starter kit.
 function fieldGuideLearn(kind,id){
- fieldGuideInit();const entries=kind==='item'?meta.codex.items:meta.codex.tiles;
- if(entries[id])return;
- entries[id]=true;metaSave();
- if(g?.debugUsed||autoRunning||g?.training&&false)return;
- const entry=kind==='item'?[itemTypes[id]?.name,ITEM_GUIDE[id]]:TILE_GUIDE[id];if(!entry||!entry[0])return;
- // A single non-destructive briefing, shown after the triggering move. Existing cinematic queue is reused.
+ fieldGuideInit();
+ const isItem=kind==='item';
+ const entry=isItem?[itemTypes[id]?.name,ITEM_GUIDE[id]]:TILE_GUIDE[id];
+ if(!entry||!entry[0])return;
+ if(isItem){
+  if(!meta.firstPickupGuideSeen||typeof meta.firstPickupGuideSeen!=='object'||Array.isArray(meta.firstPickupGuideSeen))meta.firstPickupGuideSeen={};
+  if(!meta.codex.items[id])meta.codex.items[id]=true;
+  if(meta.firstPickupGuideSeen[id]){metaSave();return;}
+  meta.firstPickupGuideSeen[id]=true;
+ }else{
+  if(meta.codex.tiles[id])return;
+  meta.codex.tiles[id]=true;
+ }
+ metaSave();
+ if(g?.debugUsed||autoRunning)return;
+ // Queues behind any active cinematic transmission without interrupting it.
  memorySceneReveal('モチの発見ガイド / '+entry[0],['モチ「'+entry[0]+'を見つけたよ！」','モチ「'+(entry[1]||'この発見を探索図鑑に登録したよ。')+'」','モチ「発見ガイドに記録したよ！ あしもとから、いつでも説明を読み直せるからね。」']);
 }
 function fieldGuideOpen(){
@@ -5456,24 +5468,44 @@ function drawTownInteriorDetails(t,room,th){
  for(const x of [45,166,324])light(x,42,15,3,th.light);
 }
 
+function townTextLabel(t,text,x,y,{fg='#ecfbff',bg='rgba(7,19,31,0.76)',stroke='#06131d',padX=4,padY=2,font='bold 11px sans-serif',align='center'}={}){
+ t.save();
+ t.font=font;t.textAlign=align;t.textBaseline='middle';
+ const m=t.measureText(text),h=Math.max(12,Math.ceil((m.actualBoundingBoxAscent||7)+(m.actualBoundingBoxDescent||4))+padY*2),w=Math.ceil(m.width)+padX*2;
+ const left=align==='left'?x:align==='right'?x-w:x-w/2;
+ t.fillStyle=bg;t.fillRect(left,y-h/2,w,h);
+ t.lineWidth=3;t.strokeStyle=stroke;t.lineJoin='round';t.strokeText(text,x,y+0.5);
+ t.fillStyle=fg;t.fillText(text,x,y+0.5);
+ t.restore();
+}
+function drawOutdoorWalkTile(t,px,py){
+ t.fillStyle='#1b3a4a';t.fillRect(px,py,31,31);
+ t.fillStyle='#22485a';t.fillRect(px+2,py+2,27,27);
+ t.strokeStyle='#2d5e73';t.lineWidth=1;t.strokeRect(px+4.5,py+4.5,22,22);
+}
+function drawIndoorWalkTile(t,px,py){
+ t.fillStyle='#2a3947';t.fillRect(px+1,py+1,30,30);
+ t.fillStyle='#334756';t.fillRect(px+3,py+3,26,26);
+ t.strokeStyle='#4f697a';t.lineWidth=1;t.strokeRect(px+6.5,py+6.5,19,19);
+}
 function indoorDraw(){
  const c=$('townCanvas'),t=c.getContext('2d');if(!t)return;
  const npcProfile=indoorNPC[townInterior];
  const themes={
-  home:{bg:'#101824',floorA:'#314152',floorB:'#394b5f',trim:'#657d8e',counter:'#b88a55',light:'#ccb7ef',decor:'#8bd8ff'},
-  shop:{bg:'#1c1510',floorA:'#4e3b28',floorB:'#5d4630',trim:'#8a6a44',counter:'#a57a46',light:'#f2d783',decor:'#d0a261'},
-  clinic:{bg:'#0f1f25',floorA:'#d4efef',floorB:'#c0e1e3',trim:'#6ea0b0',counter:'#90c9c5',light:'#7ef2d1',decor:'#8fd7ff'},
-  square:{bg:'#172028',floorA:'#45505a',floorB:'#54636e',trim:'#83919d',counter:'#a37f5d',light:'#dfe9f0',decor:'#b6c9da'},
-  workshop:{bg:'#18151d',floorA:'#4b3b48',floorB:'#5a4758',trim:'#8c6a80',counter:'#86615d',light:'#8adcc5',decor:'#f0c94a'},
-  gate:{bg:'#111924',floorA:'#2f4652',floorB:'#395667',trim:'#6e8fa0',counter:'#6b8a74',light:'#89f0d1',decor:'#9dd0ff'}
+  home:{bg:'#101824',trim:'#60798b',counter:'#b88a55',light:'#ccb7ef',decor:'#8bd8ff'},
+  shop:{bg:'#1c1510',trim:'#8a6a44',counter:'#a57a46',light:'#f2d783',decor:'#d0a261'},
+  clinic:{bg:'#0f1f25',trim:'#6ea0b0',counter:'#90c9c5',light:'#7ef2d1',decor:'#8fd7ff'},
+  square:{bg:'#172028',trim:'#83919d',counter:'#a37f5d',light:'#dfe9f0',decor:'#b6c9da'},
+  workshop:{bg:'#18151d',trim:'#8c6a80',counter:'#86615d',light:'#8adcc5',decor:'#f0c94a'},
+  gate:{bg:'#111924',trim:'#6e8fa0',counter:'#6b8a74',light:'#89f0d1',decor:'#9dd0ff'}
  };
  const th=themes[npcProfile.theme]||themes.home;
  t.fillStyle=th.bg;t.fillRect(0,0,384,320);
  for(let y=0;y<10;y++)for(let x=0;x<12;x++){
-  t.fillStyle=(x===0||y===0||x===11||y===9)?th.trim:((x+y)%2?th.floorA:th.floorB);t.fillRect(x*32+1,y*32+1,30,30);
-  if(x>0&&x<11&&y>0&&y<9&&(x+y)%3===0){t.fillStyle='#ffffff10';t.fillRect(x*32+6,y*32+6,5,2)}
+  if(x===0||y===0||x===11||y===9){t.fillStyle=th.trim;t.fillRect(x*32+1,y*32+1,30,30)}
+  else drawIndoorWalkTile(t,x*32,y*32);
  }
- t.fillStyle='#3e8d74';t.fillRect(3*32+3,9*32+2,26,29);t.fillStyle='#d6ffdd';t.font='bold 13px sans-serif';t.textAlign='center';t.fillText('出口',3*32+16,9*32+17);
+ t.fillStyle='#3e8d74';t.fillRect(3*32+3,9*32+2,26,29);townTextLabel(t,'出口',3*32+16,9*32+17,{fg:'#d6ffdd',bg:'rgba(14,43,40,0.78)',font:'bold 13px sans-serif'});
  // Render fixed interior scenery first so the NPC remains visible.
  drawTownInteriorDetails(t,townInterior,th);
  drawIndoorWalkability(t,townInterior);
@@ -5494,14 +5526,14 @@ function indoorDraw(){
  t.fillStyle=th.counter;t.fillRect(2*32,2*32,3*32,32);t.fillStyle='#00000022';t.fillRect(2*32+3,2*32+3,3*32-6,26);
  for(const actor of indoorActors(townInterior)){
   paintCitizen(t,actor.x*32+16,actor.y*32+16,actor,1);
-  t.fillStyle='#f4f8ff';t.font='bold 12px sans-serif';t.fillText(actor.name,actor.x*32+16,actor.y*32-5);
+  townTextLabel(t,actor.name,actor.x*32+16,actor.y*32-5,{font:'bold 11px sans-serif'});
  }
  if(townInterior==='gate'){
   for(const door of [{x:7,name:'通常',color:'#58edb9',locked:false},{x:9,name:'特別',color:'#c88fff',locked:meta.clears<1}]){
    t.fillStyle=door.locked?'#303443':door.color;t.fillRect(door.x*32+3,4*32+3,26,27);
    t.fillStyle='#0d1a29';t.fillRect(door.x*32+7,4*32+8,18,22);
    t.strokeStyle=door.locked?'#777d97':door.color;t.lineWidth=2;t.strokeRect(door.x*32+4,4*32+4,24,24);
-   t.fillStyle='#f3fbff';t.font='bold 10px sans-serif';t.textAlign='center';t.fillText(door.locked?'封鎖':door.name,door.x*32+16,4*32-6);
+   townTextLabel(t,door.locked?'封鎖':door.name,door.x*32+16,4*32-6,{font:'bold 10px sans-serif',fg:'#f3fbff'});
   }
  }
  const front=townFrontTile(),hasFrontTarget=!!(townGateNearby()||townNPCNearby()||townIndoorInspectableNearby());
@@ -5533,72 +5565,13 @@ function townDraw(){
  t.fillStyle=baseBg;t.fillRect(0,0,canvas.width,canvas.height);
  t.save();t.translate(townOffsetX,townOffsetY);t.scale(townScale,townScale);
  // Show the whole town at once instead of scrolling the camera.
- // sky glow and distant skyline
- const sky=t.createLinearGradient(0,0,0,160);sky.addColorStop(0,'#102334');sky.addColorStop(1,baseBg);t.fillStyle=sky;t.fillRect(0,0,worldW,160);
- for(const tower of [{x:12,w:18,h:80},{x:44,w:24,h:96},{x:78,w:16,h:72},{x:118,w:22,h:88},{x:172,w:18,h:64},{x:228,w:20,h:82},{x:284,w:20,h:88},{x:316,w:26,h:104},{x:350,w:18,h:76},{x:394,w:24,h:92},{x:432,w:16,h:68},{x:466,w:18,h:84}]){
-  t.fillStyle='#112334';t.fillRect(tower.x,44+(104-tower.h),tower.w,tower.h);
-  for(let wy=0;wy<tower.h-8;wy+=10){t.fillStyle='#7dd9ff22';t.fillRect(tower.x+3,44+(104-tower.h)+wy+4,3,2);t.fillRect(tower.x+tower.w-7,44+(104-tower.h)+wy+1,2,2)}
- }
- // ground tiles and roads
- for(let y=0;y<TOWN_H;y++)for(let x=0;x<TOWN_W;x++){
-  const px=x*32,py=y*32;
-  const road=(y===4||x===7||x===12||(y===9&&x>=2&&x<=14));
-  const plaza=((x>=1&&x<=3&&y>=6&&y<=8)||(x>=9&&x<=10&&y>=6&&y<=7));
-  if(road){
-   t.fillStyle=((x+y)%2===0)?'#25495a':'#294f61';t.fillRect(px,py,31,31);
-   t.fillStyle='#132a39';t.fillRect(px+2,py+2,28,28);
-   t.fillStyle='#315e70';t.fillRect(px+4,py+4,24,24);
-   if(y===4||y===9){t.fillStyle='#5dd6ff33';t.fillRect(px+6,py+20,20,2);if(x!==7){t.fillStyle='#b7f1ff55';t.fillRect(px+12,py+15,8,1)}}
-   if(x===7||x===12){t.fillStyle='#b9f6ff44';t.fillRect(px+15,py+5,2,20);if(y!==4){t.fillStyle='#5dd6ff33';t.fillRect(px+14,py+12,4,8)}}
-   t.fillStyle='#ffffff08';t.fillRect(px+3,py+3,6,2);
-  }else if(plaza){
-   t.fillStyle=((x+y)%2===0)?'#304e58':'#385a65';t.fillRect(px,py,31,31);
-   t.fillStyle='#456b75';t.fillRect(px+3,py+3,25,25);
-   t.strokeStyle='#9fe9e433';t.lineWidth=1;t.strokeRect(px+6.5,py+6.5,18,18);
-  }else{
-   t.fillStyle=((x+y)%2===0)?'#183744':'#1c3c48';t.fillRect(px,py,31,31);
-   t.fillStyle='#122935';t.fillRect(px+1,py+1,29,29);
-   if((x*3+y*5)%7===0){t.fillStyle='#2b5d59';t.fillRect(px+5,py+6,6,4);t.fillRect(px+13,py+18,5,4)}
-   if((x+y)%5===0){t.fillStyle='#ffffff08';t.fillRect(px+3,py+3,6,2)}
-   if((x*5+y*2)%8===0){t.fillStyle='#0e2733';t.fillRect(px+25,py+2,2,27)}
+ // simplified background for clear walkability
+  t.fillStyle=baseBg;t.fillRect(0,0,worldW,worldH);
+  for(let y=0;y<TOWN_H;y++)for(let x=0;x<TOWN_W;x++){
+   if(townBuildings.some(b=>x>=b.x&&x<b.x+b.w&&y>=b.y&&y<b.y+b.h))continue;
+   drawOutdoorWalkTile(t,x*32,y*32);
   }
- }
- // public props and tiny scenery
- const props=[
-  {x:0,y:4,type:'lamp'},{x:5,y:4,type:'lamp'},{x:10,y:4,type:'lamp'},{x:15,y:4,type:'lamp'},
-  {x:7,y:0,type:'lamp'},{x:12,y:0,type:'lamp'},{x:7,y:9,type:'lamp'},{x:12,y:9,type:'lamp'},
-  {x:2,y:5,type:'bench'},{x:9,y:5,type:'bench'},{x:13,y:6,type:'bench'},{x:10,y:10,type:'bench'},
-  {x:5,y:2,type:'crate'},{x:10,y:2,type:'crate'},{x:8,y:7,type:'crate'},{x:14,y:8,type:'crate'},
-  {x:0,y:6,type:'banner'},{x:15,y:3,type:'banner'},{x:15,y:8,type:'banner'},{x:0,y:2,type:'planter'},
-  {x:4,y:10,type:'planter'},{x:6,y:5,type:'planter'},{x:11,y:5,type:'planter'},{x:13,y:10,type:'planter'},
-  {x:8,y:4,type:'drone'},{x:9,y:4,type:'kiosk'},{x:14,y:2,type:'kiosk'},{x:10,y:6,type:'vending'},
-  {x:2,y:10,type:'planter'},{x:14,y:10,type:'planter'}
- ];
- for(const prop of props){
-  const px=prop.x*32,py=prop.y*32;
-  if(prop.type==='lamp'){
-   t.fillStyle='#324c5f';t.fillRect(px+15,py+8,2,16);t.fillStyle='#ffec9c';t.fillRect(px+12,py+5,8,5);
-   t.fillStyle='rgba(255,241,180,'+(0.16+0.12*pulse)+')';t.fillRect(px+9,py+10,14,8);
-  }else if(prop.type==='bench'){
-   t.fillStyle='#8f6a41';t.fillRect(px+8,py+17,16,4);t.fillRect(px+10,py+12,12,3);t.fillStyle='#4d3623';t.fillRect(px+10,py+20,2,5);t.fillRect(px+20,py+20,2,5);
-  }else if(prop.type==='banner'){
-   t.fillStyle='#37597a';t.fillRect(px+12,py+3,3,22);t.fillStyle='#7ef2d1';t.fillRect(px+15,py+6,8,10);t.fillStyle='#ffffff88';t.fillRect(px+16,py+7,6,2);
-  }else if(prop.type==='crate'){
-   t.fillStyle='#7a5b3f';t.fillRect(px+10,py+12,12,12);t.fillStyle='#b68c5f';t.fillRect(px+11,py+13,10,3);t.fillStyle='#5a412e';t.fillRect(px+15,py+12,2,12);
-  }else if(prop.type==='planter'){
-   t.fillStyle='#526a78';t.fillRect(px+8,py+18,16,6);t.fillStyle='#2c6a58';t.fillRect(px+9,py+13,14,6);t.fillStyle='#65d2a1';t.fillRect(px+12,py+10,2,5);t.fillRect(px+17,py+11,2,4);
-  }else if(prop.type==='kiosk'){
-   t.fillStyle='#40566d';t.fillRect(px+9,py+8,14,16);t.fillStyle='#88efff';t.fillRect(px+11,py+10,10,8);t.fillStyle='#e8feff';t.fillRect(px+13,py+20,6,2);
-  }else if(prop.type==='vending'){
-   t.fillStyle='#475f73';t.fillRect(px+10,py+8,12,18);t.fillStyle='#f5a6da';t.fillRect(px+11,py+9,10,3);t.fillStyle='#9dfcf6';t.fillRect(px+12,py+14,8,5);t.fillStyle='#d3ebff';t.fillRect(px+14,py+21,4,2);
-  }else if(prop.type==='drone'){
-   t.fillStyle='#7deaff';t.fillRect(px+12,py+8,8,4);t.fillStyle='#385c6e';t.fillRect(px+10,py+9,2,2);t.fillRect(px+20,py+9,2,2);t.fillStyle='#ffd787';t.fillRect(px+15,py+12,2,2);
-  }
- }
- // plaza monument
- t.fillStyle='#48636c';t.fillRect(2*32+10,6*32+12,44,26);t.fillStyle='#274b59';t.fillRect(2*32+16,6*32+8,32,8);
- t.fillStyle='#85f0ff';t.fillRect(2*32+29,6*32+2,6,18);t.fillStyle=neon('#85f0ff',.35);t.fillRect(2*32+24,6*32+0,16,4);
- if(finale){
+  if(finale){
   t.save();t.globalAlpha=finale==='control'?.28:.17;
   t.fillStyle=finale==='freedom'?'#b7fff0':finale==='control'?'#c4a2ff':'#ffe0a4';
   for(let i=0;i<20;i++){const x=(i*67+17)%worldW,y=(i*47+21)%worldH;t.fillRect(x,y,finale==='control'?2:3,finale==='control'?2:3)}
@@ -5653,17 +5626,15 @@ function townDraw(){
   // cables and satellite bits
   t.fillStyle='#39566a';t.fillRect(X+5,Y+2,8,2);t.fillRect(X+W-18,Y+2,9,2);t.fillRect(X+W-14,Y+0,2,6);
   t.strokeStyle=nearby===b?'#f7e394':'#8fb9c9';t.lineWidth=nearby===b?3:1.5;t.strokeRect(X+2,Y+4,W-4,H-6);
-  t.fillStyle='#e8f9ff';t.textAlign='center';t.font='bold 19px sans-serif';t.fillText(b.icon,X+W/2,Y+29);
-  t.font='bold 11px sans-serif';t.fillText(b.name,X+W/2,Y+46);
+  t.save();t.shadowColor='rgba(0,0,0,0.45)';t.shadowBlur=4;t.fillStyle='#e8f9ff';t.textAlign='center';t.textBaseline='middle';t.font='bold 19px sans-serif';t.fillText(b.icon,X+W/2,Y+29);t.restore();
+  townTextLabel(t,b.name,X+W/2,Y+46,{font:'bold 11px sans-serif'});
  }
- // ambient decals and subtle reflections in roads after buildings for layering
- for(let x=0;x<TOWN_W;x++){const px=x*32;t.fillStyle='rgba(110,220,255,'+(0.05+0.03*pulse)+')';t.fillRect(px+8,4*32+23,16,2)}
- for(const n of townResidents){const x=n.x*32+16,y=n.y*32+16;paintCitizen(t,x,y,n,townResidents.indexOf(n));t.font='bold 10px sans-serif';t.textAlign='center';t.fillStyle='#f2faff';t.fillText(n.name,x,y-17)}
+ for(const n of townResidents){const x=n.x*32+16,y=n.y*32+16;paintCitizen(t,x,y,n,townResidents.indexOf(n));townTextLabel(t,n.name,x,y-17,{font:'bold 10px sans-serif'});}
  const front=townFrontTile(),frontTarget=townNearby()||townNPCNearby();
  if(frontTarget){t.save();t.strokeStyle='#fff5a8';t.lineWidth=2;t.strokeRect(front.x*32+3,front.y*32+3,26,26);t.restore();}
  const px=townPlayer.x*32+16,py=townPlayer.y*32+16;
  animateTownAvatar(t,px,py);
- t.fillStyle='#ffffff';t.textAlign='center';t.font='bold 10px sans-serif';t.fillText('YOU',px,py-17);
+ townTextLabel(t,'YOU',px,py-17,{font:'bold 10px sans-serif',fg:'#ffffff',bg:'rgba(0,25,45,0.82)'});
  t.restore();
  const npc=townNPCNearby();$('townEconomy').textContent=cityStatus();$('townInteract').disabled=!nearby&&!npc;$('townInteract').textContent=npc?'話す：'+npc.name:(nearby?'入る：'+nearby.name:'調べる（'+townFacingName()+'）');
 }
@@ -6314,7 +6285,7 @@ function titleNew(){
   $('startScreen').hidden=true;
   // Existing chronicles and city upgrades are not erased by NEW GAME.
   // The active run is reset, and the prologue begins at the town hub.
-  fresh();g.bag=[];g.firstDungeonEmptyStart=true;g.atTown=true;meta.firstTownObjectivePending=true;metaSave();memorySceneClose();memorySceneQueue.length=0;g.prologuePending=true;save();render();introStart();
+  fresh();g.bag=[];g.firstDungeonEmptyStart=true;g.atTown=true;meta.firstTownObjectivePending=true;meta.firstPickupGuideSeen={};metaSave();memorySceneClose();memorySceneQueue.length=0;g.prologuePending=true;save();render();introStart();
  };
  if(g&&validSave(g)){
   $('startScreen').hidden=true;
