@@ -1051,10 +1051,10 @@ body.map-focus .dungeon-objective[hidden]{display:none!important}
    <button id="startContinue" type="button">つづきから <small>CONTINUE</small></button>
   </div>
   <p id="startSaveStatus" class="start-status" role="status"></p>
-  <small class="start-credit">NEON VILLAGE / SIGNAL ONLINE · v5.6.7</small>
+  <small class="start-credit">NEON VILLAGE / SIGNAL ONLINE · v5.7.0</small>
  </div>
 </section>
-<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v5.6.9 / HI-RES TOWN PIXELS</small></div><div class="header-tools"><button id="padSideToggle" type="button" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div><div class="stat gold-stat">ゴールド<strong id="credits" aria-live="polite">0</strong></div></div><div class="vitals" aria-label="HPと電力"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="電力残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔️</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">🛡️</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="dungeonObjective" class="dungeon-objective" role="status" aria-live="polite"><span class="objective-title">目的</span><strong id="dungeonObjectiveText">階段を目指そう！</strong></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="miniMapToggle" type="button" aria-pressed="true">透過地図 ON</button><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><canvas id="miniMap" width="200" height="200" aria-label="探索済み範囲の透過全体マップ" aria-hidden="true"></canvas><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div id="banner"></div><div id="levelMochiToast" class="level-mochi-toast" role="status" aria-live="polite" hidden></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="次の会話へ進む">»</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（電力 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townPadSide" type="button" class="town-pad-toggle" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="townClose" type="button">ダンジョンへ入る</button></div><div id="townObjective" class="town-objective" hidden role="status" aria-live="polite"><span class="objective-title">目的</span><strong>まずはダンジョンを目指そう</strong></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では正面の人・家具を調べられ、出口から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="768" height="640" aria-label="歩いて探索できる街の地図"></canvas></div>
+<header><div><h1>NEON ABYSS <small>電脳迷宮</small></h1><small>RELEASE v5.7.5 / ENEMY BOSS THEME PASS</small></div><div class="header-tools"><button id="padSideToggle" type="button" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="viewMode" type="button" aria-pressed="true">マップ優先 ON</button><button id="helpBtn">？</button></div></header><main class="app"><div class="stats"><div class="stat">FLOOR<strong id="floor">1 / 30</strong></div><div class="stat">LV / EXP<strong id="level">1 / 0</strong></div><div class="stat">ATK / DEF<strong id="power">5 / 1</strong></div><div class="stat gold-stat">ゴールド<strong id="credits" aria-live="polite">0</strong></div></div><div class="vitals" aria-label="HPと電力"><div class="vital vital-hp"><div class="vital-head"><span>HP / 体力</span><strong id="hp">30 / 30</strong></div><div class="vital-track" role="progressbar" aria-label="HP残量" aria-valuemin="0"><div class="vital-fill" id="hpbar"></div></div></div><div class="vital vital-en"><div class="vital-head"><span>電力</span><strong id="battery">100 / 100</strong></div><div class="vital-track" role="progressbar" aria-label="電力残量" aria-valuemin="0" aria-valuemax="100"><div class="vital-fill" id="batteryBar"></div></div></div></div><div class="equipped-strip" aria-label="現在の装備"><button type="button" id="equippedWeapon" class="equipped-slot"><span class="equipped-icon">⚔️</span><span class="equipped-copy"><small>武器 / WEAPON</small><strong id="equippedWeaponName">未装備</strong></span><span id="equippedWeaponStat" class="equipped-bonus">ATK +0</span></button><button type="button" id="equippedArmor" class="equipped-slot"><span class="equipped-icon">🛡️</span><span class="equipped-copy"><small>装甲 / ARMOR</small><strong id="equippedArmorName">未装備</strong></span><span id="equippedArmorStat" class="equipped-bonus">DEF +0</span></button></div><div id="dungeonObjective" class="dungeon-objective" role="status" aria-live="polite"><span class="objective-title">目的</span><strong id="dungeonObjectiveText">階段を目指そう！</strong></div><div id="nextHint" class="next-hint" role="status" aria-live="polite">まずは方向キーで移動しよう</div><div id="mapWrap"><div class="map-top-tools"><button id="miniMapToggle" type="button" aria-pressed="true">透過地図 ON</button><button id="mapZoom" type="button" aria-pressed="true">拡大表示 11×11</button></div><canvas id="map" width="480" height="480" aria-label="ダンジョンマップ"></canvas><canvas id="miniMap" width="200" height="200" aria-label="探索済み範囲の透過全体マップ" aria-hidden="true"></canvas><div class="explore-tools"><button id="terminalBtn" type="button" hidden>端末を調べる</button><button id="storyTraceBtn" type="button" hidden>記憶の痕跡を調べる</button><button id="storyOptionalBtn" type="button" hidden>周辺の記憶を聴く</button><span id="floorEventLabel" class="note"></span></div><div id="banner"></div><div id="levelMochiToast" class="level-mochi-toast" role="status" aria-live="polite" hidden></div><div id="memoryScene" class="memory-scene" hidden aria-live="polite"><div class="memory-scene-bar"><span id="memorySceneLabel">MEMORY SIGNAL</span><button type="button" id="memorySceneHide" aria-label="次の会話へ進む">»</button></div><div id="speakerLine" class="speaker-line"><canvas id="speakerPortrait" class="speaker-portrait" width="40" height="40" aria-hidden="true"></canvas><div class="speaker-identity"><strong id="speakerName">記録音声</strong><small id="speakerRole">MEMORY TRANSMISSION</small></div></div><p id="memorySceneText"></p><button type="button" id="memorySceneNext">次の通信 →</button></div></div><div id="autoBar" class="auto-bar" hidden aria-label="デバッグ自動探索操作"><div class="auto-line"><strong id="autoStatus" role="status">AUTO OFF / 手動操作</strong><button id="autoRun" type="button">開始 / 停止</button></div><div class="auto-speeds" aria-label="自動探索速度"><button type="button" data-auto-speed="1" aria-pressed="true">×1</button><button type="button" data-auto-speed="2" aria-pressed="false">×2</button><button type="button" data-auto-speed="4" aria-pressed="false">×4</button><button type="button" data-auto-speed="8" aria-pressed="false">×8</button><button type="button" data-auto-speed="16" aria-pressed="false">×16</button></div></div><section class="battle-log-panel is-collapsed" aria-label="戦闘ログ"><div class="battle-log-heading"><strong>戦闘ログ / BATTLE LOG</strong><button id="battleLogToggle" type="button" aria-expanded="false">通信ログを拡大</button></div><div id="battleLogRecent" class="battle-log-recent" role="log" aria-live="polite" aria-relevant="additions text"></div></section><div id="fieldAlert" class="field-alert" role="status" aria-live="polite" hidden></div><div class="compact-hud"><span id="combatStatus" class="combat-status"></span><button id="buddyBadge" type="button" class="buddy-badge" title="モチと会話">◕ モチと話す</button></div><div class="controls"><div class="dpad"><span></span><button data-move="0,-1">▲</button><span></span><button data-move="-1,0">◀</button><button id="wait" aria-label="1ターン待つ" title="1ターン待つ">待機</button><button data-move="1,0">▶</button><span></span><button data-move="0,1">▼</button><span></span></div><div class="actions"><button id="attack" aria-label="隣接する敵を攻撃">⚔ 攻撃</button><button id="jobSkill" type="button">固有スキル</button><button id="bossDodge" type="button" hidden>緊急回避（電力 15）</button><button id="pulse">EMP <span id="empCount"></span></button><button id="heal">回復 <span id="healCount"></span></button><button id="shock">射撃 <span id="shockCount"></span></button><button id="antidote">解毒 <span id="antidoteCount"></span></button></div></div><section class="live-inventory collapsed" id="inventorySection" aria-label="所持アイテム一覧"><div class="live-inventory-head"><button id="bagExpand" type="button" aria-expanded="false">▸ 持ち物を表示</button><span id="liveBagCount">0 / 12</span></div><div class="live-inventory-grid" id="liveInventory"></div></section><nav class="quickbar" aria-label="探索メニュー"><button id="footInspect" type="button" aria-label="あしもとを調べる">あしもと</button><button id="quickBag" type="button">持ち物 <span id="quickBagCount"></span></button><button id="quickMap" type="button">地図</button><button id="quickMore" type="button">メニュー</button><button id="debugQuick" type="button" hidden>🛠 階数変更</button></nav></main><div class="overlay" id="commLogOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="commLogTitle"><div class="comm-dialog"><div class="comm-header"><h2 id="commLogTitle">通信ログ / COMMUNICATION LOG</h2><button id="commLogClose" type="button">探索に戻る</button></div><div id="commLogEntries" role="log"></div></div></div><div class="overlay" id="townOverlay" hidden><div class="dialog town-dialog"><div class="drawer-head"><h2>NEON VILLAGE / 灯の街</h2><button id="townPadSide" type="button" class="town-pad-toggle" aria-label="十字キーの左右を切り替える">十字キー：右</button><button id="townClose" type="button">ダンジョンへ入る</button></div><div id="townObjective" class="town-objective" hidden role="status" aria-live="polite"><span class="objective-title">目的</span><strong>まずはダンジョンを目指そう</strong></div><p class="note">方向キーで歩き、住民や建物の隣で「調べる」。室内では正面の人・家具を調べられ、出口から街に戻れます。準備ができたら右上の「ダンジョンへ入る」。街ではターン・電力を消費しません。</p><div class="town-stage"><canvas id="townCanvas" width="768" height="640" aria-label="歩いて探索できる街の地図"></canvas></div>
 <div id="townPrologue" class="town-prologue" hidden aria-live="polite">
  <div class="prologue-top"><span>PROLOGUE · 消えた名前</span><button id="prologueSkip" type="button">スキップ</button></div>
  <div class="prologue-speaker" id="prologueSpeaker">記録音声</div>
@@ -4492,23 +4492,24 @@ function flash(text){$('banner').textContent=text;$('banner').classList.add('sho
 // Coordinates are relative to each tile, so zoom 11x11 and 15x15 share the same art.
 function paintExplorer(t,x,y,scale=1){
  t.save();t.translate(x,y);t.scale(scale,scale);
- const glow=t.createRadialGradient(0,0,2,0,0,17);glow.addColorStop(0,'#56f6fc33');glow.addColorStop(1,'#56f6fc00');
+ const p=(a,b,w,h,c)=>{t.fillStyle=c;t.fillRect(a,b,w,h)};
+ const glow=t.createRadialGradient(0,0,3,0,0,18);glow.addColorStop(0,'#67f5ff33');glow.addColorStop(1,'#67f5ff00');
  t.fillStyle=glow;t.fillRect(-18,-18,36,36);
- t.strokeStyle='#65f5ff';t.lineWidth=1.8;t.beginPath();t.arc(0,0,14,-2.4,1.4);t.stroke();
- t.strokeStyle='#fff4b4';t.lineWidth=1;t.beginPath();t.arc(0,0,14,1.6,1.92);t.stroke();
- // asymmetric exosuit and separated arm modules
- t.fillStyle='#101927';t.beginPath();t.moveTo(-9,-4);t.lineTo(6,-8);t.lineTo(10,9);t.lineTo(-3,12);t.lineTo(-11,6);t.closePath();t.fill();
- t.fillStyle='#29acc5';t.fillRect(-12,-2,5,11);t.fillStyle='#e7a55f';t.fillRect(8,-5,4,12);
- t.fillStyle='#27495b';t.fillRect(-7,7,5,6);t.fillRect(2,8,6,5);
- // fractured porcelain mask, one distinct red memory-eye
- t.fillStyle='#f2f9ff';t.beginPath();t.moveTo(-8,-12);t.lineTo(3,-13);t.lineTo(8,-7);t.lineTo(5,1);t.lineTo(-4,3);t.lineTo(-9,-3);t.closePath();t.fill();
- t.strokeStyle='#5ccfe4';t.lineWidth=1;t.beginPath();t.moveTo(-2,-11);t.lineTo(0,-6);t.lineTo(-2,0);t.stroke();
- t.fillStyle='#fa5d8b';t.fillRect(2,-8,5,3);t.fillStyle='#152336';t.fillRect(-6,-7,3,3);
- t.fillStyle='#f5c47a';t.fillRect(-2,5,5,4);
- // Visually legible asymmetric thruster, shoulder beacon, suit emblems.
- t.fillStyle='#8dfff2';t.fillRect(-14,-6,4,3);t.fillStyle='#f4ca83';t.fillRect(9,-8,5,4);
- t.fillStyle='#112a3e';t.fillRect(-6,6,12,5);t.fillStyle='#83e9f5';t.fillRect(-3,7,6,2);
- t.fillStyle='#ffba78';t.fillRect(-10,13,4,4);t.fillStyle='#5de9ff';t.fillRect(5,12,4,5);
+ p(-10,13,20,3,'#06111b88');
+ // backpack / silhouette
+ p(-9,-2,18,16,'#162635');p(-7,-4,14,2,'#22384b');p(-11,-1,2,10,'#2e5165');p(9,-1,2,10,'#d79e61');
+ // legs / boots
+ p(-7,10,5,6,'#1f3545');p(2,10,5,6,'#1f3545');p(-8,15,6,3,'#ffbc7b');p(2,15,6,3,'#65efff');
+ // chest details
+ p(-6,2,12,8,'#264557');p(-4,3,8,2,'#8de9f6');p(-2,6,4,3,'#101a24');p(5,5,3,5,'#f0b171');p(-9,-6,4,3,'#8dfff3');p(8,-8,5,4,'#f3c686');
+ // head / visor
+ p(-8,-13,16,3,'#678ea3');p(-9,-10,18,9,'#eff8ff');p(-8,-1,16,2,'#cfdde7');p(-10,-7,2,4,'#6cd5e9');p(8,-7,2,4,'#ff8abc');
+ p(-5,-8,3,3,'#17293b');p(3,-8,4,3,'#ff628e');p(-1,-11,2,5,'#5cc9df');p(-3,-5,6,1,'#b9c6cf');
+ p(-6,-12,12,1,'#ffffff77');p(-7,-9,2,1,'#ffffff99');p(4,-9,2,1,'#ffffff99');
+ // arms
+ p(-12,-2,3,11,'#2cb1c9');p(9,-4,3,12,'#e4a05c');p(-12,8,3,3,'#17293b');p(9,8,3,3,'#17293b');
+ // outline accents
+ t.strokeStyle='#07131e';t.lineWidth=1;t.strokeRect(-9.5,-9.5,19,19);t.strokeRect(-8.5,1.5,17,13);
  t.restore();
 }
 function paintCitizen(t,x,y,info,variant=0){
@@ -4517,66 +4518,58 @@ function paintCitizen(t,x,y,info,variant=0){
  const profile=typeof info==='object'&&info?info:{color:info,variant};
  const tone=profile.color||fallback[variant%fallback.length]||'#cfd8ea';
  const kind=profile.sprite||profile.role||profile.name||('v'+variant);
- const skin=profile.skin||'#f0d8c4',hair=profile.hair||(variant===0?'#6f427d':variant===1?'#d7b062':'#3c5d72');
- const outfit=profile.outfit||tone,accent=profile.accent||'#80f7ef',tool=profile.tool||'';
- const px=(a,b,w,h,c)=>{t.fillStyle=c;t.fillRect(a,b,w,h)};
- const border=(a,b,w,h,c)=>{t.strokeStyle=c;t.lineWidth=1;t.strokeRect(a+.5,b+.5,w-1,h-1)};
- // soft shadow / ground contact
- t.fillStyle='#08121dbb';t.fillRect(-9,11,18,3);
- // feet and lower robe / pants
- px(-5,8,4,5,'#162131');px(1,8,4,5,'#162131');
- px(-8,0,16,10,outfit);px(-7,-2,14,4,profile.secondary||'#1b2f43');
- // torso contour and sleeves
- px(-10,0,2,8,profile.secondary||'#25384c');px(8,0,2,8,profile.secondary||'#25384c');
- px(-9,2,18,1,'#ffffff18');
- // neck + head
- px(-2,-1,4,2,skin);t.fillStyle=skin;t.beginPath();t.arc(0,-8,6,0,Math.PI*2);t.fill();
- // hair / hats / silhouette by role
+ const skin=profile.skin||'#efd4be';
+ const hair=profile.hair||(variant===0?'#765083':variant===1?'#d7b16c':'#436377');
+ const outfit=profile.outfit||tone,accent=profile.accent||'#80f7ef';
+ const secondary=profile.secondary||'#25384c';
+ const tool=profile.tool||'';
+ const p=(a,b,w,h,c)=>{t.fillStyle=c;t.fillRect(a,b,w,h)};
+ // shadow
+ p(-9,12,18,3,'#07121cb0');
+ // legs + shoes
+ p(-6,8,4,6,'#1b2834');p(2,8,4,6,'#1b2834');p(-7,13,5,2,'#93a7b6');p(2,13,5,2,'#93a7b6');
+ // torso base
+ p(-8,0,16,10,outfit);p(-9,0,2,9,secondary);p(7,0,2,9,secondary);p(-7,-2,14,3,secondary);p(-6,2,12,1,'#ffffff22');
+ // arms + cuffs
+ p(-10,1,2,8,outfit);p(8,1,2,8,outfit);p(-10,7,2,2,accent);p(8,7,2,2,accent);
+ // neck and head
+ p(-2,-1,4,2,skin);p(-6,-13,12,3,hair);p(-7,-10,14,10,skin);p(-6,0,12,1,'#d0dee8');
+ // eyes / face
+ p(-4,-8,2,2,'#253243');p(2,-8,2,2,'#253243');p(-1,-5,2,1,'#b76b71');p(-5,-12,10,1,'#ffffff55');
+ // role-specific tops / accessories
  if(kind==='リラ' || kind==='lira'){
-  px(-7,-15,14,4,'#7b557f');px(-8,-12,4,6,'#7b557f');px(4,-12,4,6,'#7b557f');
-  px(-9,-1,18,2,'#ffde8d');px(-6,3,4,6,'#35506d');px(2,3,4,6,'#35506d');
-  px(7,-1,3,7,'#ff8fc9');
+  p(-8,-15,16,4,'#7b557f');p(-8,-11,3,7,'#7b557f');p(5,-11,3,7,'#7b557f');p(-9,-1,18,2,'#ffde8d');p(-6,3,4,6,'#35506d');p(2,3,4,6,'#35506d');p(7,-1,3,7,'#ff8fc9');
  }else if(kind==='案内人' || kind==='guide'){
-  px(-7,-14,14,4,'#d2b36d');px(-5,-17,10,3,'#f4e2a3');px(-10,-2,3,7,'#6bd2ff');
-  px(7,-1,4,4,'#9dfcf6');px(-3,3,6,4,'#3f5d7a');
+  p(-8,-14,16,4,'#d2b36d');p(-5,-17,10,3,'#f4e2a3');p(-10,-2,3,8,'#6bd2ff');p(7,-1,4,5,'#9dfcf6');p(-3,3,6,4,'#3f5d7a');
  }else if(kind==='整備士' || kind==='mechanic'){
-  px(-7,-14,14,4,'#4f7254');px(-9,-11,5,5,'#4f7254');px(4,-11,5,5,'#4f7254');
-  px(-6,3,5,5,'#64798a');px(1,3,5,5,'#64798a');
-  if(tool!=='none'){px(9,1,2,7,'#e6ffa9');px(11,5,4,2,'#8fe0cb');}
+  p(-8,-14,16,4,'#4f7254');p(-9,-11,5,5,'#4f7254');p(4,-11,5,5,'#4f7254');p(-6,3,5,5,'#64798a');p(1,3,5,5,'#64798a');if(tool!=='none'){p(9,1,2,8,'#e6ffa9');p(11,5,4,2,'#8fe0cb');}
  }else if(kind==='管理人' || kind==='keeper'){
-  px(-8,-14,16,4,'#5c3d70');px(-3,-18,6,5,'#ccb7ef');px(-6,3,12,6,'#445d75');
+  p(-8,-14,16,4,'#5c3d70');p(-3,-18,6,5,'#ccb7ef');p(-6,3,12,6,'#445d75');
  }else if(kind==='店主' || kind==='shop'){
-  px(-7,-14,14,4,'#7a5e31');px(-8,-10,16,3,'#f2d783');px(-6,3,12,5,'#6d4c2f');
+  p(-8,-14,16,4,'#7a5e31');p(-8,-10,16,3,'#f2d783');p(-6,3,12,5,'#6d4c2f');
  }else if(kind==='医師' || kind==='doctor'){
-  px(-7,-14,14,4,'#6ea0b0');px(-8,0,16,10,'#d5f6f3');px(-3,1,6,8,'#87c6c0');px(6,2,4,4,'#7ef2d1');
+  p(-8,-14,16,4,'#6ea0b0');p(-8,0,16,10,'#d5f6f3');p(-3,1,6,8,'#87c6c0');p(6,2,4,4,'#7ef2d1');
  }else if(kind==='技師' || kind==='engineer'){
-  px(-7,-14,14,4,'#844e64');px(-8,1,16,8,'#c895aa');px(-10,3,4,4,'#8adcc5');px(8,1,2,8,'#f0c94a');
+  p(-8,-14,16,4,'#844e64');p(-8,1,16,8,'#c895aa');p(-10,3,4,4,'#8adcc5');p(8,1,2,8,'#f0c94a');
  }else if(kind==='門番' || kind==='guard'){
-  px(-8,-14,16,4,'#384d74');px(-4,-18,8,5,'#dbe9ff');px(-8,1,16,9,'#40627d');px(-2,2,4,7,'#89f0d1');
+  p(-8,-14,16,4,'#384d74');p(-4,-18,8,5,'#dbe9ff');p(-8,1,16,9,'#40627d');p(-2,2,4,7,'#89f0d1');
  }else if(kind==='住民' || kind==='townsfolk'){
-  px(-7,-14,14,4,hair);px(-8,1,16,8,'#7a8d97');px(-10,3,3,4,'#dfe9f0');
+  p(-8,-14,16,4,hair);p(-8,1,16,8,'#7a8d97');p(-10,3,3,4,'#dfe9f0');
  }else if(kind==='記録係' || kind==='clerk'){
-  px(-7,-14,14,4,'#5f5aa7');px(-8,1,16,8,'#8894d6');px(6,1,5,7,'#efe6ff');px(-10,2,3,6,'#50466a');
+  p(-8,-14,16,4,'#5f5aa7');p(-8,1,16,8,'#8894d6');p(6,1,5,7,'#efe6ff');p(-10,2,3,6,'#50466a');
  }else if(kind==='歌う子' || kind==='child'){
-  px(-6,-13,12,4,'#c77d53');px(-7,2,14,7,'#8a78c5');px(-10,-1,3,3,'#fff2b6');px(8,-1,3,3,'#fff2b6');px(-3,4,6,3,'#ffd96f');
+  p(-7,-13,14,4,'#c77d53');p(-7,2,14,7,'#8a78c5');p(-10,-1,3,3,'#fff2b6');p(8,-1,3,3,'#fff2b6');p(-3,4,6,3,'#ffd96f');
  }else if(kind==='詩人' || kind==='poet'){
-  px(-7,-14,14,4,'#4d6f9e');px(-8,1,16,8,'#46688b');px(-10,3,4,5,'#dbe7f6');px(8,2,2,8,'#8ae4ff');
+  p(-8,-14,16,4,'#4d6f9e');p(-8,1,16,8,'#46688b');p(-10,3,4,5,'#dbe7f6');p(8,2,2,8,'#8ae4ff');
  }else{
-  px(-7,-14,14,4,hair);px(-8,1,16,8,outfit);px(-3,3,6,4,accent);
+  p(-8,-14,16,4,hair);p(-8,1,16,8,outfit);p(-3,3,6,4,accent);
  }
- // face
- px(-4,-9,2,2,'#253243');px(2,-9,2,2,'#253243');px(-1,-6,2,1,'#b76b71');
- // High-resolution sprite accents. Half-cell details are one physical pixel on the 2x canvas.
- px(-5.5,-11.5,1,.5,'#ffffff48');px(3.5,-11.5,1,.5,'#ffffff48');
- px(-5.5,-8.5,.5,.5,'#ffffff88');px(4,-8.5,.5,.5,'#ffffff88');
- px(-6.5,1.5,1,.5,'#ffffff55');px(5.5,1.5,1,.5,'#ffffff44');
- px(-4.5,9.5,2,.5,'#9fb2bd');px(2.5,9.5,2,.5,'#9fb2bd');
- px(-1.5,3.5,3,.5,accent);px(-2.5,5.5,5,.5,'#07192366');
- // accessories / satchels / glow accents
- if(profile.badge){px(5,4,3,3,profile.badge)}
- if(profile.bag){px(-11,4,3,5,profile.bag);px(-10,3,1,1,'#eff7ff88')}
- if(profile.glow!==false){px(-8,11,16,1,accent);t.fillStyle=accent+'55';t.fillRect(-6,-3,12,1)}
- border(-10,-1,20,12,'#ffffff10');
+ // pixel details
+ p(-5.5,-10.5,1,.5,'#ffffff55');p(3.5,-10.5,1,.5,'#ffffff55');p(-6.5,1.5,1,.5,'#ffffff44');p(5.5,1.5,1,.5,'#ffffff44');p(-1.5,3.5,3,.5,accent);p(-2.5,5.5,5,.5,'#07192366');
+ if(profile.badge){p(5,4,3,3,profile.badge)}
+ if(profile.bag){p(-11,4,3,5,profile.bag);p(-10,3,1,1,'#eff7ff88')}
+ if(profile.glow!==false){p(-8,11,16,1,accent);t.fillStyle=accent+'55';t.fillRect(-6,-3,12,1)}
+ t.strokeStyle='#ffffff10';t.lineWidth=1;t.strokeRect(-9.5,-1.5,19,13);
  t.restore();
 }
 function paintBoss(t,e,px,py){
@@ -4584,6 +4577,7 @@ function paintBoss(t,e,px,py){
  const type=e.name,phase=e.phase===2;
  const palette=type==='MOTHER-NULL'?['#5c2453','#f68bc8','#ffe4f4']:type==='ARCHON-9'?['#263a82','#70b5ff','#d4efff']:type==='SERAPH-0'?['#785127','#ffd17a','#fff2cf']:['#254b4c','#80edd8','#d4fff3'];
  t.save();t.translate(px+32,py+32);
+ const pixel=(x,y,w,h,c)=>{t.fillStyle=c;t.fillRect(x,y,w,h)};
  t.shadowColor=palette[1];t.shadowBlur=phase?21:11;
  t.lineWidth=2.6;t.strokeStyle=palette[1];t.fillStyle=palette[0];
  t.beginPath();
@@ -4592,47 +4586,35 @@ function paintBoss(t,e,px,py){
  else if(type==='SERAPH-0'){t.moveTo(0,-28);t.lineTo(28,-9);t.lineTo(22,10);t.lineTo(8,27);t.lineTo(-8,27);t.lineTo(-22,10);t.lineTo(-28,-9);}
  else{t.moveTo(-24,-23);t.lineTo(24,-23);t.lineTo(30,0);t.lineTo(15,27);t.lineTo(-15,27);t.lineTo(-30,0);}
  t.closePath();t.fill();t.stroke();t.shadowBlur=0;
+ // broad body shading
+ pixel(-22,-20,44,5,palette[2]+'22');pixel(-20,18,40,4,'#07131e44');
  t.strokeStyle=palette[2];t.lineWidth=1.8;
  if(type==='MOTHER-NULL'){
-  // corrupted maternal halo and triangular teeth
-  t.beginPath();t.arc(0,-3,22,-2.6,-.55);t.stroke();
-  for(const z of [-15,-5,5,15]){t.beginPath();t.moveTo(z,10);t.lineTo(z+5,17);t.lineTo(z+9,10);t.stroke()}
- }else if(type==='ARCHON-9'){
-  // layered command visor + antenna fins
-  for(let j=-1;j<=1;j++){t.strokeRect(-20+j*4,-13+j*8,40-j*8,4)}
-  t.beginPath();t.moveTo(-18,-22);t.lineTo(-25,-29);t.moveTo(18,-22);t.lineTo(25,-29);t.stroke();
- }else if(type==='SERAPH-0'){
-  // six ray-like solar wings
-  for(let i=0;i<6;i++){const a=i*Math.PI/3;t.beginPath();t.moveTo(Math.cos(a)*18,Math.sin(a)*18);t.lineTo(Math.cos(a)*28,Math.sin(a)*28);t.stroke()}
-  t.beginPath();t.arc(0,-3,15,0,Math.PI*2);t.stroke();
- }else{
-  // containment chains
-  for(let x=-19;x<=19;x+=9){t.beginPath();t.moveTo(x,-17);t.lineTo(x+8,17);t.stroke()}
- }
- // Art pass: high-contrast pixel details distinguish each guardian at mobile scale.
- t.shadowBlur=0;
- const pixel=(x,y,w,h,c)=>{t.fillStyle=c;t.fillRect(x,y,w,h)};
- if(type==='MOTHER-NULL'){
+  t.beginPath();t.arc(0,-3,22,-2.6,-.55);t.stroke();for(const z of [-15,-5,5,15]){t.beginPath();t.moveTo(z,10);t.lineTo(z+5,17);t.lineTo(z+9,10);t.stroke()}
   for(const side of [-1,1]){pixel(side*20-3,-17,6,12,'#e88ac9');pixel(side*23-2,8,4,13,'#69244d');}
-  pixel(-16,-6,8,4,'#ffb9df');pixel(8,-6,8,4,'#ffb9df');
-  for(let i=0;i<5;i++)pixel(-18+i*8,22,4,4,i%2?'#ff5c99':'#331127');
+  pixel(-16,-6,8,4,'#ffb9df');pixel(8,-6,8,4,'#ffb9df');for(let i=0;i<5;i++)pixel(-18+i*8,22,4,4,i%2?'#ff5c99':'#331127');
+  pixel(-12,-20,24,3,'#ffd5ef66');pixel(-8,2,16,3,'#2c1023');pixel(-5,-14,10,6,'#fff0fb');pixel(-2,-13,4,4,'#ff5c99');
+  pixel(-25,-6,5,10,'#8d396f');pixel(20,-6,5,10,'#8d396f');
  }else if(type==='ARCHON-9'){
+  for(let j=-1;j<=1;j++){t.strokeRect(-20+j*4,-13+j*8,40-j*8,4)}t.beginPath();t.moveTo(-18,-22);t.lineTo(-25,-29);t.moveTo(18,-22);t.lineTo(25,-29);t.stroke();
   for(const side of [-1,1]){pixel(side*20-3,-20,6,11,'#ffdb73');pixel(side*21-3,8,6,12,'#264c9c');}
-  for(let i=0;i<4;i++)pixel(-16+i*10,-17,6,4,'#cde9ff');
-  pixel(-16,7,32,3,'#94bdff');pixel(-6,13,12,6,'#0a285c');
+  for(let i=0;i<4;i++)pixel(-16+i*10,-17,6,4,'#cde9ff');pixel(-16,7,32,3,'#94bdff');pixel(-6,13,12,6,'#0a285c');
+  pixel(-23,-23,46,3,'#9dcfff66');pixel(-18,-6,36,4,'#0f2358');pixel(-10,-15,20,6,'#edf7ff');pixel(-3,-13,6,4,'#7ab9ff');
  }else if(type==='SERAPH-0'){
-  for(const side of [-1,1]){
-   for(let i=0;i<3;i++){pixel(side*(21+i*3)-2,-18+i*6,5,5,phase?'#ff9ac7':'#ffe8ad');}
-   pixel(side*16-2,15,5,12,phase?'#b480ff':'#f3bb64');
-  }
-  pixel(-12,-18,24,4,phase?'#f4b6ff':'#fff0c8');
-  pixel(-7,11,14,6,phase?'#712bb9':'#a76b31');
+  for(let i=0;i<6;i++){const a=i*Math.PI/3;t.beginPath();t.moveTo(Math.cos(a)*18,Math.sin(a)*18);t.lineTo(Math.cos(a)*28,Math.sin(a)*28);t.stroke()}t.beginPath();t.arc(0,-3,15,0,Math.PI*2);t.stroke();
+  for(const side of [-1,1]){for(let i=0;i<3;i++){pixel(side*(21+i*3)-2,-18+i*6,5,5,phase?'#ff9ac7':'#ffe8ad');}pixel(side*16-2,15,5,12,phase?'#b480ff':'#f3bb64');}
+  pixel(-12,-18,24,4,phase?'#f4b6ff':'#fff0c8');pixel(-7,11,14,6,phase?'#712bb9':'#a76b31');
+  pixel(-18,-5,36,3,phase?'#f3bcff66':'#fff6cc66');pixel(-10,-10,20,5,'#fff8e2');pixel(-4,-8,8,3,phase?'#e97bff':'#ffd17a');
+ }else{
+  for(let x=-19;x<=19;x+=9){t.beginPath();t.moveTo(x,-17);t.lineTo(x+8,17);t.stroke()}
+  pixel(-24,-18,48,4,'#b6fff266');pixel(-14,-7,28,5,'#103133');pixel(-8,-16,16,7,'#d7fff8');pixel(-3,-14,6,4,'#6de6d1');
+  for(let x=-18;x<=18;x+=9){pixel(x,10,4,12,'#2b6d67');}
  }
  // Centerline core and second-phase indicators
  t.fillStyle=palette[2];t.beginPath();t.moveTo(0,-13);t.lineTo(13,0);t.lineTo(0,13);t.lineTo(-13,0);t.closePath();t.fill();
  t.fillStyle=phase?'#ff426e':'#17182c';t.beginPath();t.arc(0,0,6,0,Math.PI*2);t.fill();
  t.fillStyle=palette[1];t.fillRect(-17,19,34,2);
- if(phase){t.strokeStyle='#ff5678';t.beginPath();t.arc(0,0,26,0,Math.PI*2);t.stroke()}
+ if(phase){t.strokeStyle='#ff5678';t.beginPath();t.arc(0,0,26,0,Math.PI*2);t.stroke();pixel(-24,-24,48,2,'#ff6b8a44');}
  t.restore();
  // Boss HP is readable even when its body is partly off screen.
  t.fillStyle='#190e25';t.fillRect(px+2,py+59,60,4);
@@ -4646,6 +4628,7 @@ function drawStorybookSprite(t,e,x,y,def){
  const r=(a,b,w,h,col)=>{t.fillStyle=col||c;t.fillRect(a,b,w,h)};
  const ball=(a,b,radius,col)=>{t.beginPath();t.arc(a,b,radius,0,Math.PI*2);t.fillStyle=col||c;t.fill();t.stroke()};
  const eyes=(dy=-2)=>{r(-6,dy,3,4,'#122333');r(3,dy,3,4,'#122333');r(-5,dy,1,1,'#fff');r(4,dy,1,1,'#fff')};
+ t.fillStyle='#07131e77';t.beginPath();t.ellipse(0,15,12,4,0,0,Math.PI*2);t.fill();
  if(k===0||k===11){ball(0,2,12);r(-9,10,7,4);r(3,10,7,4);eyes(0);if(k===11){ball(-10,-10,4,'#e3ffff');ball(10,-10,4,'#e3ffff')}}
  else if(k===1){ball(0,3,10);ball(-9,-8,5);ball(9,-8,5);r(8,7,7,5,'#d0a16f');r(-3,11,4,4,'#fff3d3');eyes(1)}
  else if(k===2){ball(0,2,11);ball(-8,-9,4);ball(8,-9,4);r(-13,11,8,3);r(5,11,8,3);eyes(0)}
@@ -4657,11 +4640,12 @@ function drawStorybookSprite(t,e,x,y,def){
  else if(k===8){ball(0,2,10);r(-16,-5,6,15);r(10,-5,6,15);r(-12,-11,7,5);r(5,-11,7,5);eyes(-1)}
  else if(k===9){r(-11,-11,22,23,'#93743e');r(-7,-15,14,5,'#ffed98');r(-3,-20,6,7,'#fff4b0');r(-9,7,18,5,c);eyes(-4)}
  else if(k===10){r(-13,-9,26,21);r(-10,-14,20,6,'#9d8bd4');r(-16,8,8,6);r(8,8,8,6);eyes(-2);r(-4,9,8,3,'#513971')}
- if(k===9){ // Lantern: golden sound rings identify the song support role.
-  r(-18,-7,4,3,'#fff4b0');r(14,-7,4,3,'#fff4b0');
-  r(-21,-3,3,3,'#e9acfb');r(18,-3,3,3,'#e9acfb');
-  r(-3,-25,6,5,'#fff1ac');
- }
+ // global detail pass
+ r(-5,-11,10,1,'#ffffff55');r(-7,-8,2,1,'#ffffff88');r(4,-8,2,1,'#ffffff88');r(-7,10,14,1,'#09142066');
+ if(k===9){r(-18,-7,4,3,'#fff4b0');r(14,-7,4,3,'#fff4b0');r(-21,-3,3,3,'#e9acfb');r(18,-3,3,3,'#e9acfb');r(-3,-25,6,5,'#fff1ac');}
+ if(k===6){r(-10,10,5,3,'#5f3d28');r(5,10,5,3,'#5f3d28');}
+ if(k===2||k===8){r(-14,-4,2,8,'#d9f5ff44');r(12,-4,2,8,'#d9f5ff44');}
+ if(k===4){r(-10,-1,20,2,'#7bcbe3');}
  if(e.stun>0)r(-3,-19,6,3,'#fff5a5');
  t.restore();
 }
@@ -4673,6 +4657,7 @@ function drawEnemySprite(t,e,x,y){
  const rect=(a,b,w,h,c)=>{t.fillStyle=c||color;t.fillRect(a,b,w,h)};
  const poly=pts=>{t.beginPath();t.moveTo(...pts[0]);pts.slice(1).forEach(q=>t.lineTo(...q));t.closePath();t.fill();t.stroke()};
  const circ=(a,b,r,c)=>{t.beginPath();t.arc(a,b,r,0,Math.PI*2);t.fillStyle=c||color;t.fill();t.stroke()};
+ t.fillStyle='#07131e77';t.beginPath();t.ellipse(0,15,11,4,0,0,Math.PI*2);t.fill();t.fillStyle=color;
  switch(shape){
  case 0:poly([[0,-12],[10,-4],[10,6],[0,11],[-10,6],[-10,-4]]);rect(-14,-2,28,4);break;
  case 1:rect(-11,-9,22,18);rect(-15,-4,30,9,'#546d8b');rect(-8,-13,16,5);break;
@@ -4685,70 +4670,35 @@ function drawEnemySprite(t,e,x,y){
  case 8:circ(0,0,11);for(let a=0;a<4;a++){let rad=a*Math.PI/2;circ(Math.round(Math.cos(rad)*12),Math.round(Math.sin(rad)*12),3)}break;
  case 9:poly([[-13,-9],[13,-9],[9,11],[-9,11]]);rect(-16,0,32,3);break;
  }
- // Distinct 30-family pixel glyphs: antenna / armor / wing / tail variants.
  const family=Math.max(0,Number(e.kind)||0),tier=Math.floor(family/10),variant=family%10;
  const shade=tier===0?'#d8f6ff':tier===1?'#ffdf92':'#eebaff';
+ const deep=tier===0?'#18384b':tier===1?'#5a3b14':'#462857';
  t.shadowBlur=0;
- if(variant%3===0){rect(-13,-16,4,7,shade);rect(9,-16,4,7,shade);}
- else if(variant%3===1){rect(-17,-4,5,12,shade);rect(12,-4,5,12,shade);}
- else{rect(-15,8,7,3,shade);rect(8,8,7,3,shade);}
- if(variant<3){rect(-9,10,5,4,'#182d46');rect(4,10,5,4,'#182d46');}
- else if(variant<6){rect(-2,-17,4,9,shade);rect(-2,-21,4,3,'#fff4db');}
- else if(variant<8){rect(-17,-12,6,5,shade);rect(11,-12,6,5,shade);}
- else{rect(-12,12,24,3,'#182d46');rect(-2,14,4,3,shade);}
- if(tier===1){rect(-12,-1,4,3,'#ffe38a');rect(8,-1,4,3,'#ffe38a');}
- if(tier===2){rect(-12,-11,3,3,'#dcb1ff');rect(9,-11,3,3,'#dcb1ff');}
- // v5.0.5: silhouettes are distinct at 32 px, not merely color swaps.
- // Crown antenna = commander; paired portal prongs = switcher;
- // forked polarity = inverter; satellite dish = EMP watch.
- if(family===39){
-  rect(-12,-17,5,10,'#ffeff9');rect(7,-17,5,10,'#ffeff9');
-  rect(-3,-21,6,8,'#ff6796');rect(-11,-21,5,4,'#ffeff9');rect(6,-21,5,4,'#ffeff9');
-  rect(-13,10,26,4,'#482037');rect(-2,-6,4,10,'#ffffff');
- }else if(family===44){
-  rect(-17,-15,6,27,'#bdf7ff');rect(11,-15,6,27,'#bdf7ff');
-  rect(-20,-18,12,5,'#7457f7');rect(8,-18,12,5,'#7457f7');
-  rect(-5,-5,10,10,'#f3e0ff');rect(-2,-9,4,18,'#271f74');
- }else if(family===45){
-  rect(-18,-12,10,5,'#ffdb7a');rect(8,8,10,5,'#82d8ff');
-  rect(-3,-20,6,11,'#ffdb7a');rect(-3,8,6,12,'#82d8ff');
-  rect(-15,13,12,3,'#ffdb7a');rect(3,-16,12,3,'#82d8ff');
- }else if(family===49){
-  rect(-15,-19,30,5,'#8ceaff');rect(-3,-24,6,7,'#c8f8ff');
-  rect(-14,-12,5,18,'#59a9db');rect(9,-12,5,18,'#59a9db');
-  rect(-7,-5,14,8,'#f4ee72');rect(-4,-10,8,5,'#102d4f');
- }
- // Silhouette accents: special AI remains visually identifiable even without labels.
+ // generic highlight / lowlight
+ rect(-7,-9,14,2,'#ffffff33');rect(-8,8,16,2,'#07131e55');rect(-4,-6,8,1,shade+'88');
+ // family/tier silhouettes
+ if(variant%3===0){rect(-13,-16,4,7,shade);rect(9,-16,4,7,shade);}else if(variant%3===1){rect(-17,-4,5,12,shade);rect(12,-4,5,12,shade);}else{rect(-15,8,7,3,shade);rect(8,8,7,3,shade);}
+ if(variant<3){rect(-9,10,5,4,deep);rect(4,10,5,4,deep);}else if(variant<6){rect(-2,-17,4,9,shade);rect(-2,-21,4,3,'#fff4db');}else if(variant<8){rect(-17,-12,6,5,shade);rect(11,-12,6,5,shade);}else{rect(-12,12,24,3,deep);rect(-2,14,4,3,shade);} 
+ if(tier===1){rect(-12,-1,4,3,'#ffe38a');rect(8,-1,4,3,'#ffe38a');rect(-5,3,10,2,'#6e4918');}
+ if(tier===2){rect(-12,-11,3,3,'#dcb1ff');rect(9,-11,3,3,'#dcb1ff');rect(-5,4,10,2,'#603684');}
+ // shape-specific polish
+ if(shape===0||shape===5){rect(-3,-4,6,6,'#122333');rect(-6,4,12,2,shade+'66');}
+ if(shape===1||shape===6){rect(-7,-6,14,4,'#132536');rect(-8,2,16,3,shade+'55');}
+ if(shape===2||shape===7){rect(-2,-10,4,7,shade);rect(-6,4,12,3,'#122333');}
+ if(shape===3||shape===8){rect(-5,-5,10,2,'#122333');rect(-3,2,6,2,shade+'77');}
+ if(shape===4||shape===9){rect(-6,-3,3,3,'#122333');rect(3,-3,3,3,'#122333');rect(-4,4,8,2,shade+'66');}
+ // signature enemies
+ if(family===39){rect(-12,-17,5,10,'#ffeff9');rect(7,-17,5,10,'#ffeff9');rect(-3,-21,6,8,'#ff6796');rect(-11,-21,5,4,'#ffeff9');rect(6,-21,5,4,'#ffeff9');rect(-13,10,26,4,'#482037');rect(-2,-6,4,10,'#ffffff');}
+ else if(family===44){rect(-17,-15,6,27,'#bdf7ff');rect(11,-15,6,27,'#bdf7ff');rect(-20,-18,12,5,'#7457f7');rect(8,-18,12,5,'#7457f7');rect(-5,-5,10,10,'#f3e0ff');rect(-2,-9,4,18,'#271f74');}
+ else if(family===45){rect(-18,-12,10,5,'#ffdb7a');rect(8,8,10,5,'#82d8ff');rect(-3,-20,6,11,'#ffdb7a');rect(-3,8,6,12,'#82d8ff');rect(-15,13,12,3,'#ffdb7a');rect(3,-16,12,3,'#82d8ff');}
+ else if(family===49){rect(-15,-19,30,5,'#8ceaff');rect(-3,-24,6,7,'#c8f8ff');rect(-14,-12,5,18,'#59a9db');rect(9,-12,5,18,'#59a9db');rect(-7,-5,14,8,'#f4ee72');rect(-4,-10,8,5,'#102d4f');}
  if(e.name==='スリップ・シーフ'){t.fillStyle='#ffe9a1';t.fillRect(8,5,7,9);t.fillStyle='#111b29';t.fillRect(10,7,3,3)}
  else if(e.name==='群体ビーコン'){t.strokeStyle='#a3ffda';t.lineWidth=2;t.beginPath();t.arc(0,-2,14,-.9,.15);t.stroke();t.fillStyle='#a3ffda';t.fillRect(-2,-15,4,5)}
  else if(e.name==='床面ハッカー'){t.strokeStyle='#79d9ff';t.lineWidth=2;t.beginPath();t.moveTo(-15,12);t.lineTo(0,6);t.lineTo(15,12);t.stroke()}
  else if(e.name==='搬送ランナー'){t.fillStyle='#ffcb75';t.beginPath();t.moveTo(-15,7);t.lineTo(-7,-2);t.lineTo(-7,5);t.lineTo(2,5);t.lineTo(-8,11);t.closePath();t.fill()}
- // v4.9.7: sixteen recognisable silhouettes and colored diagnostic markings.
- if(family>=34&&family<=49){
-  const kind=family-34;t.shadowBlur=0;
-  const glyph=[0,1,2,3][kind%4];
-  t.strokeStyle='#e6faff';t.lineWidth=2;
-  if(glyph===0){t.strokeRect(-13,-12,26,24);rect(-2,-16,4,7,'#fff5c7');}
-  if(glyph===1){t.beginPath();t.moveTo(-13,9);t.lineTo(0,-15);t.lineTo(13,9);t.stroke();}
-  if(glyph===2){t.beginPath();t.arc(0,0,14,Math.PI*.1,Math.PI*1.8);t.stroke();}
-  if(glyph===3){rect(-15,-3,30,5,'#1c364a');rect(-3,-15,6,30,'#e8f8ff');}
-  const marks=[[-10,-10],[9,-10],[-10,9],[9,9]];
-  for(let z=0;z<4;z++){const [ax,ay]=marks[z];if((kind+z)%3!==0)rect(ax,ay,4,4,z%2?'#fff0b7':'#a4e8ff');}
-  // Unique number of luminous stripes per family, even on 32px tiles.
-  const bars=1+Math.floor(kind/4);for(let b=0;b<bars;b++)rect(-10+b*6,13,4,3,color);
- }
- if(e.tacticalHacked>0||e.hacked>0){t.strokeStyle='#78ffc3';t.lineWidth=2;t.beginPath();t.arc(0,0,14,0,Math.PI*2);t.stroke()}
- // Three visually different marking patterns across the 30 families.
- if(mark===0){rect(-5,-4,10,4,'#07131e');rect(-3,-4,2,3,'#f4ffff');rect(2,-4,2,3,'#f4ffff');}
- if(mark===1){circ(0,-2,4,'#061d29');circ(0,-2,2,'#bafaff');rect(-6,5,12,2,'#bafaff');}
- if(mark===2){poly([[-5,-5],[0,-10],[5,-5],[0,0]]);rect(-7,4,14,3,'#101725');}
- // Scaled armor inlays and diagnostic pixels preserve each enemy family's silhouette.
- const core=([ '#81e6f7','#a8f3cd','#b7d1ff','#d5acfc','#ffd5a4','#e4cbff' ])[Math.max(0,Math.min(5,Math.floor((Math.max(1,g.floor)-1)/5)))];
- rect(-9,-9,4,2,'#ffffff99');rect(5,7,5,2,'#081522');
- if(variant%2===0){rect(-10,1,3,3,core);rect(7,1,3,3,core);}else{rect(-2,8,4,3,core);}
- if(e.stun>0){rect(-4,-15,8,2,'#d9f8ff');}
- if((e.evolutionStage||0)>0&&!e.boss){t.strokeStyle=e.evolutionStage>=2?'#ff80db':'#ffca69';t.lineWidth=2;t.strokeRect(-14,-14,28,28);rect(-5,-19,10,4,e.evolutionStage>=2?'#ff80db':'#ffca69');}
- if(e.boss){t.strokeStyle='#ffef9c';t.strokeRect(-15,-15,30,30);}t.shadowBlur=0;
+ // evolution mark
+ if(e.evolutionStage>0){const evoCol=e.evolutionStage>=2?'#ffd76f':'#8ef5c9';rect(-14,-20,6,4,evoCol);rect(-12,-18,2,6,evoCol);if(e.evolutionStage>=2){rect(8,-20,6,4,evoCol);rect(10,-18,2,6,evoCol);}}
+ if(e.stun>0)rect(-3,-19,6,3,'#fff5a5');
  t.restore();
 }
 
@@ -4838,12 +4788,31 @@ function draw(){
   t.fillStyle=base;t.fillRect(px,py,TILE,TILE);
   t.fillStyle=panel;t.fillRect(px+2,py+2,TILE-4,TILE-4);
   t.strokeStyle=line;t.lineWidth=1;t.strokeRect(px+2.5,py+2.5,TILE-5,TILE-5);
-  t.fillStyle=lit?'#ffffff10':'#ffffff06';t.fillRect(px+4,py+4,8,2);
-  t.fillRect(px+19,py+25,6,1);
+  t.fillStyle=lit?'#ffffff10':'#ffffff06';t.fillRect(px+4,py+4,8,2);t.fillRect(px+19,py+25,6,1);
   if(((x*7+y*11)%13)===0){t.fillStyle=lit?floorPalette.accent:'#1a4650';t.fillRect(px+5,py+20,4,4)}
   if(((x*5+y*3)%9)===0){t.fillStyle=lit?'#09121955':'#060c1240';t.fillRect(px+24,py+5,2,20)}
   if(lit&&((x+3*y)%7)===0){t.fillStyle=theme.glint+'55';t.fillRect(px+4,py+27,9,2);t.fillRect(px+4,py+23,2,4)}
   if(lit&&depthBand>=3&&((x*3+y)%11)===0){t.fillStyle=theme.glint+'33';t.fillRect(px+22,py+8,5,2)}
+  // stronger per-district motifs
+  if(depthBand===0){
+   if((x+y)%2===0){t.strokeStyle=lit?'#3e8196':'#234f60';t.strokeRect(px+7.5,py+7.5,17,17)}
+   if((x*2+y)%4===0){t.fillStyle=lit?'#5cc9db44':'#23546644';t.fillRect(px+14,py+4,2,24)}
+  }else if(depthBand===1){
+   if((x+y)%3===0){t.fillStyle=lit?'#5e7d6d55':'#2a453c55';t.fillRect(px+5,py+5,22,3);t.fillRect(px+5,py+24,22,2)}
+   if((x*3+y)%5===0){t.fillStyle=lit?'#c9d7a433':'#60725e22';t.fillRect(px+10,py+10,4,4);t.fillRect(px+18,py+17,3,3)}
+  }else if(depthBand===2){
+   if((x+y)%2===1){t.strokeStyle=lit?'#6f83a8':'#394a67';t.beginPath();t.moveTo(px+6,py+6);t.lineTo(px+26,py+26);t.moveTo(px+26,py+6);t.lineTo(px+6,py+26);t.stroke()}
+   if((x*5+y)%6===0){t.fillStyle=lit?'#bfd4ff22':'#51658922';t.fillRect(px+11,py+11,10,10)}
+  }else if(depthBand===3){
+   if((x+y)%2===0){t.fillStyle=lit?'#7d4d8c33':'#40284833';t.fillRect(px+5,py+14,22,2);t.fillRect(px+14,py+5,2,22)}
+   if((x*7+y)%8===0){t.fillStyle=lit?'#f0bbff33':'#8a5ea022';t.fillRect(px+9,py+9,3,3);t.fillRect(px+20,py+20,3,3)}
+  }else if(depthBand===4){
+   if((x+y)%2===0){t.strokeStyle=lit?'#aa7354':'#5d4337';t.beginPath();t.moveTo(px+6,py+24);t.lineTo(px+12,py+10);t.lineTo(px+20,py+22);t.lineTo(px+26,py+8);t.stroke()}
+   if((x*2+y)%5===0){t.fillStyle=lit?'#ffd4a244':'#8d604422';t.fillRect(px+7,py+7,4,2);t.fillRect(px+21,py+18,4,2)}
+  }else if(depthBand===5){
+   if((x+y)%2===1){t.strokeStyle=lit?'#b9acdf':'#675a88';t.strokeRect(px+9.5,py+9.5,13,13)}
+   if((x*4+y)%6===0){t.fillStyle=lit?'#ebd6ff44':'#8f7db222';t.fillRect(px+14,py+5,2,22);t.fillRect(px+5,py+14,22,2)}
+  }
  }
  function drawWallTile(px,py,lit,x,y){
   const back=lit?wallPalette.lit:wallPalette.dim;
@@ -4857,28 +4826,64 @@ function draw(){
   if(((x+y)%3)===0){t.fillStyle=lit?'#0d182155':'#0a121940';t.fillRect(px+24,py+9,2,14)}
   if(((x*2+y)%5)===0){t.strokeStyle=lit?'#7db2c233':'#55788822';t.beginPath();t.moveTo(px+8,py+18);t.lineTo(px+14,py+13);t.lineTo(px+17,py+22);t.stroke()}
   if(lit&&((x*3+y*2)%6)===0){t.fillStyle=theme.glint+'66';t.fillRect(px+6,py+7,4,2);t.fillRect(px+11,py+7,6,1)}
+  // stronger wall identity by district
+  if(depthBand===0){
+   if((x+y)%2===0){t.fillStyle=lit?'#1c3340':'#12222d';t.fillRect(px+9,py+13,14,12);t.strokeStyle=lit?'#69b7c7':'#3e7485';t.strokeRect(px+9.5,py+13.5,13,11)}
+   if((x*3+y)%4===0){t.fillStyle=lit?'#8ff0ff33':'#37728722';t.fillRect(px+14,py+14,2,10)}
+  }else if(depthBand===1){
+   if((x+y)%2===1){t.fillStyle=lit?'#556f67':'#324640';t.fillRect(px+8,py+13,16,10);t.fillStyle=lit?'#b7cabd33':'#6c837622';t.fillRect(px+10,py+15,12,2)}
+   if((x*2+y)%5===0){t.fillStyle=lit?'#99e0b855':'#4d8e6a33';t.fillRect(px+12,py+18,8,3)}
+  }else if(depthBand===2){
+   if((x+y)%2===0){t.fillStyle=lit?'#41567d':'#293853';t.fillRect(px+8,py+13,16,11);t.strokeStyle=lit?'#b7c5ff44':'#6e7ca944';t.beginPath();t.moveTo(px+10,py+22);t.lineTo(px+22,py+14);t.stroke()}
+   if((x*2+y)%4===0){t.fillStyle=lit?'#dce4ff33':'#6e7ba822';t.fillRect(px+13,py+16,6,2)}
+  }else if(depthBand===3){
+   if((x+y)%2===1){t.fillStyle=lit?'#5f4868':'#3a2943';t.fillRect(px+8,py+13,16,11);t.strokeStyle=lit?'#f0c1ff44':'#9f74b144';t.strokeRect(px+10.5,py+15.5,11,6)}
+   if((x*3+y)%6===0){t.fillStyle=lit?'#dda9ff44':'#8e5fb022';t.fillRect(px+14,py+13,2,10)}
+  }else if(depthBand===4){
+   if((x+y)%2===0){t.fillStyle=lit?'#6f4f41':'#473127';t.fillRect(px+8,py+13,16,11);t.strokeStyle=lit?'#ffcb8c44':'#9b6a4a44';t.beginPath();t.moveTo(px+9,py+20);t.lineTo(px+13,py+15);t.lineTo(px+17,py+20);t.lineTo(px+22,py+14);t.stroke()}
+   if((x*3+y)%5===0){t.fillStyle=lit?'#ffe1b244':'#a36e5222';t.fillRect(px+11,py+14,3,2);t.fillRect(px+18,py+19,3,2)}
+  }else if(depthBand===5){
+   if((x+y)%2===1){t.fillStyle=lit?'#544f70':'#342f48';t.fillRect(px+8,py+13,16,11);t.strokeStyle=lit?'#ebd7ff55':'#9b87c044';t.beginPath();t.arc(px+16,py+18,5,0,Math.PI*2);t.stroke()}
+   if((x*2+y)%4===0){t.fillStyle=lit?'#bda7ff44':'#6e5fa022';t.fillRect(px+14,py+13,2,10);t.fillRect(px+11,py+17,10,2)}
+  }
  }
  function drawTerrainTile(px,py,terrain){
   if(terrain.type==='electric'){
-   t.save();t.fillStyle='#7ec6ff33';t.beginPath();t.arc(px+16,py+16,9,0,Math.PI*2);t.fill();t.strokeStyle='#7ec6ff';t.lineWidth=2;t.beginPath();t.moveTo(px+12,py+9);t.lineTo(px+18,py+14);t.lineTo(px+14,py+14);t.lineTo(px+20,py+22);t.stroke();t.restore();
+   t.save();t.fillStyle='#0a1730cc';t.beginPath();t.ellipse(px+16,py+21,10,4,0,0,Math.PI*2);t.fill();
+   t.fillStyle='#163454';t.fillRect(px+8,py+9,16,12);t.strokeStyle='#7ec6ff';t.lineWidth=1.5;t.strokeRect(px+8.5,py+9.5,15,11);
+   t.fillStyle='#a5e0ff';t.beginPath();t.moveTo(px+13,py+11);t.lineTo(px+18,py+16);t.lineTo(px+15,py+16);t.lineTo(px+20,py+22);t.lineTo(px+12,py+17);t.lineTo(px+15,py+17);t.closePath();t.fill();
+   t.fillStyle='#dff8ff55';t.fillRect(px+10,py+11,5,1);t.restore();
   }else if(terrain.type==='sticky'){
-   t.save();t.fillStyle='#c5a05e55';t.beginPath();t.arc(px+16,py+18,9,0,Math.PI*2);t.fill();t.fillStyle='#e1bd7d';t.fillRect(px+12,py+12,8,3);t.fillRect(px+10,py+17,12,3);t.restore();
+   t.save();t.fillStyle='#241708aa';t.beginPath();t.ellipse(px+16,py+22,10,4,0,0,Math.PI*2);t.fill();
+   t.fillStyle='#7b532a';t.fillRect(px+9,py+12,14,8);t.fillStyle='#d3a36a';t.fillRect(px+11,py+10,10,3);t.fillRect(px+9,py+16,14,3);t.fillStyle='#f1cf8a';t.fillRect(px+13,py+13,6,2);t.restore();
   }else if(terrain.type==='fog'){
-   t.save();t.fillStyle='#b9a8f855';t.beginPath();t.arc(px+12,py+15,8,0,Math.PI*2);t.arc(px+19,py+18,6,0,Math.PI*2);t.fill();t.strokeStyle='#dacfff';t.lineWidth=1.5;t.strokeRect(px+7,py+9,18,14);t.restore();
+   t.save();t.fillStyle='#b9a8f833';t.beginPath();t.arc(px+12,py+16,7,0,Math.PI*2);t.arc(px+18,py+18,6,0,Math.PI*2);t.arc(px+22,py+15,5,0,Math.PI*2);t.fill();
+   t.strokeStyle='#e3d8ff';t.lineWidth=1.5;t.strokeRect(px+8.5,py+10.5,16,12);t.fillStyle='#ffffff33';t.fillRect(px+11,py+12,4,1);t.restore();
   }
  }
  function drawGimmickTile(px,py,device){
   const colors={conveyor:'#ffde78',spring:'#ffc56a',shield:'#74efb4',portal:'#cf98ff',cracked:'#ff9566'};
   const c=colors[device.type]||'#fff';
   t.save();
-  t.fillStyle='#09131dcc';t.fillRect(px+6,py+6,20,20);
-  t.strokeStyle=c;t.lineWidth=2;t.strokeRect(px+6.5,py+6.5,19,19);
-  t.textAlign='center';t.textBaseline='middle';t.font='bold 22px sans-serif';t.fillStyle=c;
-  if(device.type==='conveyor')t.fillText(device.dx>0?'→':device.dx<0?'←':device.dy>0?'↓':'↑',px+16,py+17);
-  else if(device.type==='spring')t.fillText('⇧',px+16,py+17);
-  else if(device.type==='shield'){if(!device.used)t.fillText('+',px+16,py+17);else{t.strokeStyle='#6ea1b2';t.beginPath();t.moveTo(px+9,py+9);t.lineTo(px+23,py+23);t.moveTo(px+23,py+9);t.lineTo(px+9,py+23);t.stroke();}}
-  else if(device.type==='portal')t.fillText('◎',px+16,py+17);
-  else if(device.type==='cracked'){t.beginPath();t.moveTo(px+8,py+7);t.lineTo(px+19,py+16);t.lineTo(px+13,py+26);t.moveTo(px+19,py+16);t.lineTo(px+25,py+11);t.stroke();}
+  t.fillStyle='#07111acc';t.fillRect(px+5,py+5,22,22);
+  t.fillStyle='#102232';t.fillRect(px+7,py+7,18,18);
+  t.strokeStyle=c;t.lineWidth=1.6;t.strokeRect(px+7.5,py+7.5,17,17);
+  t.fillStyle='#ffffff22';t.fillRect(px+9,py+9,5,1);
+  if(device.type==='conveyor'){
+   t.strokeStyle=c;t.lineWidth=2;t.beginPath();t.moveTo(px+10,py+16);t.lineTo(px+22,py+16);t.stroke();
+   t.beginPath();
+   if(device.dx>0){t.moveTo(px+20,py+12);t.lineTo(px+24,py+16);t.lineTo(px+20,py+20);}else if(device.dx<0){t.moveTo(px+12,py+12);t.lineTo(px+8,py+16);t.lineTo(px+12,py+20);}else if(device.dy>0){t.moveTo(px+12,py+20);t.lineTo(px+16,py+24);t.lineTo(px+20,py+20);}else{t.moveTo(px+12,py+12);t.lineTo(px+16,py+8);t.lineTo(px+20,py+12);}t.closePath();t.fillStyle=c;t.fill();
+  }else if(device.type==='spring'){
+   t.fillStyle=c;t.fillRect(px+12,py+19,8,3);t.strokeStyle=c;t.beginPath();t.moveTo(px+10,py+18);t.lineTo(px+13,py+14);t.lineTo(px+16,py+18);t.lineTo(px+19,py+14);t.lineTo(px+22,py+18);t.stroke();
+   t.beginPath();t.moveTo(px+16,py+8);t.lineTo(px+20,py+13);t.lineTo(px+17,py+13);t.lineTo(px+17,py+16);t.lineTo(px+15,py+16);t.lineTo(px+15,py+13);t.lineTo(px+12,py+13);t.closePath();t.fill();
+  }else if(device.type==='shield'){
+   if(!device.used){t.fillStyle='#173b31';t.beginPath();t.moveTo(px+16,py+10);t.lineTo(px+22,py+12);t.lineTo(px+21,py+18);t.lineTo(px+16,py+23);t.lineTo(px+11,py+18);t.lineTo(px+10,py+12);t.closePath();t.fill();t.strokeStyle=c;t.lineWidth=1.5;t.stroke();t.fillStyle='#cffff0';t.fillRect(px+15,py+12,2,7);t.fillRect(px+13,py+14,6,2);}else{t.strokeStyle='#6ea1b2';t.lineWidth=2;t.beginPath();t.moveTo(px+10,py+10);t.lineTo(px+22,py+22);t.moveTo(px+22,py+10);t.lineTo(px+10,py+22);t.stroke();}
+  }else if(device.type==='portal'){
+   t.fillStyle='#28153c';t.beginPath();t.ellipse(px+16,py+16,7,9,0,0,Math.PI*2);t.fill();t.strokeStyle=c;t.lineWidth=2;t.stroke();t.fillStyle='#eedbff';t.fillRect(px+14,py+11,4,2);t.fillRect(px+13,py+18,6,2);
+  }else if(device.type==='cracked'){
+   t.strokeStyle=c;t.lineWidth=2;t.beginPath();t.moveTo(px+9,py+8);t.lineTo(px+15,py+14);t.lineTo(px+12,py+18);t.lineTo(px+18,py+24);t.moveTo(px+15,py+14);t.lineTo(px+23,py+10);t.stroke();
+   t.fillStyle='#ffc6ab22';t.fillRect(px+9,py+9,14,14);
+  }
   t.restore();
  }
  
@@ -4898,32 +4903,73 @@ function draw(){
    t.save();t.strokeStyle='#c589ff';t.lineWidth=3;t.beginPath();t.arc(px+16,py+16,10,0,Math.PI*2);t.stroke();t.fillStyle='#b45aff55';t.fillRect(px+12,py+12,8,8);t.restore();
   }
   if(!wall&&g.special&&!g.special.used&&x===g.special.x&&y===g.special.y){t.save();t.fillStyle='#c88aff';t.strokeStyle='#f3dbff';t.lineWidth=1.5;t.beginPath();t.arc(px+16,py+16,11,0,Math.PI*2);t.stroke();t.font='bold 25px monospace';t.textAlign='center';t.fillText('◇',px+16,py+25);t.restore();}
-  if(!wall&&x===g.stair.x&&y===g.stair.y){
-   t.save();t.fillStyle=lit?'#2f8e6e':'#205643';t.fillRect(px+7,py+8,18,16);t.fillStyle='#0b2d23';t.fillRect(px+10,py+11,12,10);
-   t.strokeStyle=lit?'#90ffd3':'#4ea07a';t.lineWidth=2;t.strokeRect(px+7.5,py+8.5,17,15);
-   t.fillStyle=lit?'#9fffd7':'#5eb98d';t.beginPath();t.moveTo(px+16,py+6);t.lineTo(px+23,py+13);t.lineTo(px+19,py+13);t.lineTo(px+19,py+25);t.lineTo(px+13,py+25);t.lineTo(px+13,py+13);t.lineTo(px+9,py+13);t.closePath();t.fill();
-   t.restore();
+  if(!wall&&x===g.stair.x&&y===g.stair.y)drawStairMarker(px,py,lit);
+
+ }
+ function drawStairMarker(px,py,lit){
+  t.save();
+  t.fillStyle=lit?'#184c3b':'#123629';t.fillRect(px+6,py+7,20,18);
+  t.fillStyle=lit?'#2d7a61':'#1d5745';t.fillRect(px+8,py+9,16,14);
+  t.strokeStyle=lit?'#9cffd3':'#67b490';t.lineWidth=1.6;t.strokeRect(px+8.5,py+9.5,15,13);
+  t.fillStyle=lit?'#b9ffe1':'#7fd2a8';t.beginPath();t.moveTo(px+16,py+6);t.lineTo(px+24,py+14);t.lineTo(px+20,py+14);t.lineTo(px+20,py+24);t.lineTo(px+12,py+24);t.lineTo(px+12,py+14);t.lineTo(px+8,py+14);t.closePath();t.fill();
+  t.fillStyle='#07201955';t.fillRect(px+11,py+12,10,2);t.restore();
+ }
+ function drawTrapMarker(px,py){
+  t.save();t.fillStyle='#2a210d';t.fillRect(px+9,py+11,14,10);t.strokeStyle='#ffe083';t.lineWidth=1.6;t.strokeRect(px+9.5,py+11.5,13,9);t.fillStyle='#fff1ac';t.fillRect(px+15,py+13,2,5);t.fillRect(px+15,py+19,2,1);t.restore();
+ }
+ function drawCoinStack(px,py){
+  t.save();t.fillStyle='#201606aa';t.beginPath();t.ellipse(px+16,py+24,11,4,0,0,Math.PI*2);t.fill();
+  const coin=(x,y)=>{t.fillStyle='#d58f2e';t.fillRect(x,y,8,5);t.fillStyle='#ffd978';t.fillRect(x+1,y-1,6,4);t.fillStyle='#fff0a4';t.fillRect(x+2,y,2,1);};
+  coin(px+9,py+18);coin(px+15,py+15);coin(px+12,py+12);t.restore();
+ }
+ function drawGroundItemSprite(px,py,it){
+  const type=it.type;t.save();t.fillStyle='#00000066';t.beginPath();t.ellipse(px+16,py+24,8,4,0,0,Math.PI*2);t.fill();
+  const p=(a,b,w,h,c)=>{t.fillStyle=c;t.fillRect(px+a,py+b,w,h)};
+  const glow=(c)=>{t.fillStyle=c+'22';t.beginPath();t.arc(px+16,py+17,9,0,Math.PI*2);t.fill();};
+  const col=itemTypes[type]?.color||'#d6e7ef';glow(col);
+  if(type==='med'||type==='repair'||type==='antidote'){
+   p(11,11,10,10,type==='antidote'?'#72cf87':'#51c884');p(13,9,6,14,'#dffcf0');p(9,13,14,6,'#dffcf0');if(type==='antidote')p(14,14,4,4,'#f0ff9e');
+  }else if(type==='battery'){
+   p(11,10,10,13,'#54748b');p(12,11,8,11,'#f6e788');p(13,9,6,2,'#d2dce4');p(14,13,4,5,'#fff8b0');
+  }else if(type==='emp'||type==='shock'||type==='gravity'){
+   p(11,11,10,10,type==='gravity'?'#f5b37b':'#79dcff');p(14,8,4,3,'#eafcff');p(13,14,6,2,'#0e2030');if(type!=='gravity')p(14,16,4,3,'#dfffff');
+  }else if(type==='blade'){
+   p(15,8,2,12,'#eef6ff');p(12,18,8,3,'#ffcf73');p(14,20,4,2,'#7a5332');p(13,10,1,7,'#a7d9ff');
+  }else if(type==='armor'){
+   p(11,10,10,11,'#5d89d1');p(12,11,8,8,'#9dc5ff');p(13,9,6,2,'#ecf5ff');p(13,19,6,2,'#436595');
+  }else if(type==='upgrade'||type==='hack'||type==='scanner'){
+   p(11,10,10,10,'#3d5566');p(12,11,8,8,col);p(14,13,4,4,'#173243');if(type==='scanner')p(14,13,4,4,'#eafcff');if(type==='hack')p(13,14,6,2,'#ffd774');
+  }else if(type==='bikill'||type==='scala'){
+   p(11,10,10,12,'#eadfba');p(12,11,8,10,type==='scala'?'#9fcfff':'#ffba9d');p(12,20,8,2,'#a98962');p(14,13,4,1,'#fff7dd');
+  }else if(type==='smoke'||type==='cloak'||type==='overdrive'){
+   p(12,11,8,8,type==='overdrive'?'#ff8b9c':'#9ca6ff');p(10,13,12,4,col);p(13,9,6,2,'#f1f4ff');
+  }else if(type==='purge'){
+   p(11,15,8,3,'#ffe4a1');p(16,11,3,5,'#ffe4a1');p(10,16,2,4,'#ffe4a1');p(12,17,2,1,'#ffe4a1');
+  }else if(type==='warp'||type==='transfer'||type==='anchor'){
+   p(11,10,10,12,'#7a62b8');p(12,11,8,10,col);p(13,13,6,4,'#f0e4ff');if(type==='anchor')p(14,12,4,6,'#8fe9f9');
+  }else if(type==='freeze'){
+   p(15,9,2,14,'#a9ceff');p(12,12,8,2,'#e7f2ff');p(12,18,8,2,'#e7f2ff');p(13,10,6,2,'#e7f2ff');
+  }else{
+   p(11,11,10,10,col);p(13,13,6,6,'#ffffff55');
   }
+  t.restore();
  }
  for(const tr of (g.traps||[])){
   if(!tr.detected||tr.used)continue;
   const sx=tr.x-offsetX,sy=tr.y-offsetY;if(sx<0||sy<0||sx>=N||sy>=N||!g.seen[tr.y]?.[tr.x])continue;
   const px=sx*TILE,py=sy*TILE;
-  t.save();t.strokeStyle='#ffe083';t.lineWidth=2;t.strokeRect(px+8,py+8,16,16);t.fillStyle='#ffe083';t.font='bold 15px monospace';t.textAlign='center';t.fillText('!',px+16,py+22);t.restore();
+  drawTrapMarker(px,py);
  }
  for(const cash of (g.coins||[])){
   const sx=cash.x-offsetX,sy=cash.y-offsetY;
   if(sx<0||sy<0||sx>=N||sy>=N||!visibleNow(cash.x,cash.y))continue;
   const px=sx*TILE,py=sy*TILE;
-  t.save();t.fillStyle='#201606aa';t.beginPath();t.ellipse(px+16,py+25,11,4,0,0,Math.PI*2);t.fill();
-  t.fillStyle='#e8ae41';t.fillRect(px+8,py+11,16,12);t.fillStyle='#ffe49b';t.fillRect(px+10,py+9,13,11);
-  t.strokeStyle='#aa7026';t.lineWidth=1;t.strokeRect(px+10.5,py+9.5,12,10);
-  t.fillStyle='#704617';t.font='bold 10px sans-serif';t.textAlign='center';t.fillText('G',px+16,py+18);t.restore();
+  drawCoinStack(px,py);
  }
  for(const it of g.items){
   let sx=it.x-offsetX,sy=it.y-offsetY;if(sx<0||sy<0||sx>=N||sy>=N||!visibleNow(it.x,it.y))continue;
-  const px=sx*TILE,py=sy*TILE,col=itemTypes[it.type].color;
-  t.save();t.fillStyle='#00000066';t.beginPath();t.ellipse(px+16,py+24,8,4,0,0,Math.PI*2);t.fill();t.fillStyle=col+'33';t.beginPath();t.arc(px+16,py+18,9,0,Math.PI*2);t.fill();t.font='bold 23px monospace';t.textAlign='center';t.fillStyle=col;t.fillText(itemTypes[it.type].symbol,px+16,py+22);t.restore();
+  const px=sx*TILE,py=sy*TILE;
+  drawGroundItemSprite(px,py,it);
  }
  for(const e of g.enemies){
   if(!e.bossCharge||!g.bossArena)continue;
@@ -4972,12 +5018,11 @@ function draw(){
  // MOCHI support unit
  const bx=Math.floor(N/2)*TILE+29-shiftX,by=Math.floor(N/2)*TILE+5-shiftY+(g.turn%2)*2;
  t.save();t.fillStyle='#00000066';t.beginPath();t.ellipse(bx,by+8,7,3,0,0,Math.PI*2);t.fill();t.restore();
- t.fillStyle='#ffdfef';t.beginPath();t.arc(bx,by,8,0,Math.PI*2);t.fill();
- t.fillStyle='#ffb6da';t.beginPath();t.moveTo(bx-6,by-5);t.lineTo(bx-6,by-11);t.lineTo(bx-1,by-7);t.fill();t.beginPath();t.moveTo(bx+6,by-5);t.lineTo(bx+6,by-11);t.lineTo(bx+1,by-7);t.fill();
- t.fillStyle='#3d4967';t.fillRect(bx-4,by-2,2,3);t.fillRect(bx+3,by-2,2,3);t.fillStyle='#ff87bb';t.fillRect(bx,by+2,2,2);
- t.fillStyle='#96f3ff';t.fillRect(bx-10,by-1,3,5);t.fillRect(bx+8,by-1,3,5);
- t.fillStyle='#fdf2c8';t.fillRect(bx-3,by+7,6,2);
- t.fillStyle='#7eead8';t.fillRect(bx-1,by-5,2,2);
+ t.fillStyle='#09131c66';t.beginPath();t.ellipse(bx,by+9,8,3,0,0,Math.PI*2);t.fill();
+ t.fillStyle='#ffe4f2';t.beginPath();t.arc(bx,by,9,0,Math.PI*2);t.fill();
+ t.fillStyle='#ffc0e0';t.beginPath();t.moveTo(bx-7,by-5);t.lineTo(bx-7,by-12);t.lineTo(bx-1,by-8);t.fill();t.beginPath();t.moveTo(bx+7,by-5);t.lineTo(bx+7,by-12);t.lineTo(bx+1,by-8);t.fill();
+ t.fillStyle='#414f72';t.fillRect(bx-4,by-2,2,3);t.fillRect(bx+3,by-2,2,3);t.fillStyle='#ff88bc';t.fillRect(bx-1,by+2,3,2);
+ t.fillStyle='#9df5ff';t.fillRect(bx-11,by-1,3,5);t.fillRect(bx+8,by-1,3,5);t.fillStyle='#d8fff6';t.fillRect(bx-2,by-5,4,2);t.fillStyle='#fff5d0';t.fillRect(bx-4,by+7,8,2);t.fillStyle='#7eead8';t.fillRect(bx-1,by-6,2,2);
  drawBattleFx(t,offsetX,offsetY);
  // edge vignette inside canvas for immersion
  const edge=t.createRadialGradient((offsetX+N/2)*TILE,(offsetY+N/2)*TILE,90,(offsetX+N/2)*TILE,(offsetY+N/2)*TILE,250);
@@ -5166,12 +5211,12 @@ function showEquippedDetails(slot){
 function help(){modal('OPERATION MANUAL','<b>NEON ABYSS — 電脳迷宮</b><br>方向キーで1マス移動。1回の行動につき敵も1ターン行動します。隣接した敵へ移動すると近接攻撃します。通常攻撃の命中率は93%（空振り7%）。空振りでも1ターン経過します。スキルや道具には適用されません。<br><br>◆ 緑の階段に乗ると「おりる」「やめる」を選べます<br>◆ 新戦術アイテム：位相アンカー・重力パルス・時間凍結・光学迷彩・ハッキング・緊急転送。アイテムをタップ→つかう→対象選択で使用。<br>◆ アイテムをタップすると効果説明が開きます。装備は「そうびする」で持ち物に保持、道具は「つかう」「なげる」「おく」を選択できます。投げる方向は最後に移動した方向（最大5マス）。足元に置いた道具は移動して戻ると回収。モチのボタンから探索中に会話できます<br>◆ 第30層の最終ボス撃破後は探索履歴に応じてエンディングが自動分岐。全30階で任意通信を収集可能。第7・14・17・24・27層で重要な記憶の痕跡を探せ。街の整備士がモチの認証回路を修復できる<br>◆ HPはダンジョンで12ターンごとに1自然回復（最大HPまで）。街はターン消費なし。十字キーの左右は画面上部・街の切替ボタンで変更可能。<br>◆ 電力は5ターンごとに1減少。0になるとHP減少<br>◆ 追加の特殊敵：スリップ・シーフ（盗んだ物資は敵のいた床から回収可能）、群体ビーコン（増援は最大2体）、床面ハッカー（電撃床を最大2枚設置）、搬送ランナー（2マス突進と床利用）。行動不能にする攻撃やハッキングで妨害可能。<br>◆ 敵ごとに行動パターンが異なります。ショック弾は最後に向いた方向へ発射します。毒・出血・移動妨害は解毒パッチで除去できます。<br>◆ 紫の◇は特殊端末。マス上で「周辺端末を調べる」を押すと商人・医療・データ解読を利用可能。敵撃破でゴールド獲得。<br>◆ 全体マップボタンで探索済み範囲を確認（ターン消費なし）<br>◆ 武器・装甲はそれぞれ6種類で、各装備の固有基礎値＋強化値（上限+20）が攻撃力・防御力に加算されます。未鑑定装備は装備時に判明。装備後も持ち物に残ります。呪いは装備変更不可。街の合成工房か迷宮の改造端末で合成できます。付け替えはいつでも可能。バイキルトの巻物は武器、スカラの巻物は装甲を探索中どこでも+1強化します。鑑定スキャナ・改造チップも活用<br>◆ 新地形：矢印＝搬送床／⇧＝跳躍床／＋＝HPと電力を一度回復／◎＝転送床／亀裂壁＝向きを合わせて攻撃で破壊。重力パルスでも破壊可能。<br>◆ 電磁地雷に注意。高密度セルで電力回復<br>◆ 灯の街：広場近くの戦術教官に話せば、ハッキング・進化・装備・探索・ボス戦の攻略講座を何度でも聞けます。道具屋で売買、診療所で補給、リラと広場の住民から、それぞれ1件ずつ順番に依頼を受注、整備士に施設の改修を頼めます。セーフハウスで出発用の道具を指定できます。街の所持金は帰還時に精算されます。<br>◆ 探索中は街へ戻れません。「あきらめる」を選ぶと死亡扱いで街へ帰還し、探索中の装備・持ち物を失います。倉庫と出発用に指定した物資は残ります。<br>◆ 倒れると街へ戻ります。再挑戦は街の迷宮入口から<br><br>探索途中は自動保存。オフラインで動作します。',[['探索へ戻る',()=>{}]])}
 const TOWN_W=16,TOWN_H=12,TOWN_CELL=32;
 const townBuildings=[
- {id:'home',x:1,y:1,w:3,h:2,name:'セーフハウス',icon:'⌂',color:'#2d6688'},
- {id:'shop',x:6,y:1,w:2,h:2,name:'道具屋',icon:'◇',color:'#856c38'},
- {id:'clinic',x:11,y:1,w:3,h:2,name:'診療所',icon:'✚',color:'#367c75'},
- {id:'square',x:1,y:7,w:3,h:2,name:'広場',icon:'✧',color:'#496c78'},
- {id:'workshop',x:6,y:7,w:2,h:2,name:'合成工房',icon:'⚒',color:'#875c70'},
- {id:'gate',x:11,y:7,w:3,h:2,name:'迷宮入口',icon:'▣',color:'#307e57'}
+ {id:'home',x:1,y:1,w:3,h:2,name:'セーフハウス',icon:'⌂',color:'#4f86b6'},
+ {id:'shop',x:6,y:1,w:2,h:2,name:'道具屋',icon:'◇',color:'#c48b52'},
+ {id:'clinic',x:11,y:1,w:3,h:2,name:'診療所',icon:'✚',color:'#59b8a4'},
+ {id:'square',x:1,y:7,w:3,h:2,name:'広場',icon:'✧',color:'#7f93b7'},
+ {id:'workshop',x:6,y:7,w:2,h:2,name:'合成工房',icon:'⚒',color:'#b07ab7'},
+ {id:'gate',x:11,y:7,w:3,h:2,name:'迷宮入口',icon:'▣',color:'#57b98a'}
 ];
 let townPlayer={x:5,y:4};
 let townInterior=null;
@@ -5212,6 +5257,11 @@ const townResidents=[
  {x:3,y:10,name:'戦術教官',icon:'●',color:'#b8d6ff',sprite:'見習い',hair:'#5c74a0',secondary:'#36485f',accent:'#8fe0ff',badge:'#d1f2ff',text:'戦術教官「ハッキングも罠も、仕組みを知れば頼れる戦術だ。知りたい分野を選んでくれ。」'},
  {x:10,y:9,name:'露店主',icon:'●',color:'#efc3a3',sprite:'露店主',hair:'#7d5638',secondary:'#624438',accent:'#f9da7a',text:'露店主「夜店の灯りは控えめだけど、旅人の足はちゃんと止まるんだ。」'}
 ];
+const townScenery=[
+ {x:0,y:5,name:'街灯',solid:true},
+ {x:14,y:10,name:'観葉植物',solid:true}
+];
+
 const indoorNPC={
  home:{name:'管理人',sprite:'管理人',color:'#edb1d1',hair:'#5c3d70',secondary:'#445d75',accent:'#ccb7ef',theme:'home',text:'管理人「倉庫で持ち物を整理できるよ。」'},
  shop:{name:'店主',sprite:'店主',color:'#d6c188',hair:'#7a5e31',secondary:'#6d4c2f',accent:'#f2d783',theme:'shop',text:'店主「物資を売買できます。買ったものは倉庫に届くよ。」'},
@@ -5235,6 +5285,14 @@ const indoorInspectables={
  square:[{x:2,y:4,name:'掲示板',text:'街の依頼やお知らせがびっしり貼られている。生活の匂いがする内容が多い。'},{x:6,y:6,name:'案内卓',text:'案内卓だ。地図、相談メモ、未処理の依頼が整然と積まれている。'},{x:8,y:7,name:'待合席',text:'待合席だ。相談や雑談をしながら、順番を待つ住民のための場所らしい。'}],
  workshop:[{x:2,y:5,name:'作業台',text:'部品と工具の並ぶ作業台だ。使い込まれているが、必要なものはすぐ手に取れる配置になっている。'},{x:6,y:6,name:'加工機',text:'装備加工用の機械。表面には、繰り返し調整された細かな傷が残っている。'},{x:8,y:7,name:'資材箱',text:'金具や導線の入った資材箱。見た目以上にきっちり分類されている。'}],
  gate:[{x:2,y:6,name:'制御卓',text:'迷宮入口の制御卓だ。灯りの色と波形表示が、ゲートの状態を静かに伝えている。'},{x:6,y:3,name:'監視端末',text:'深部の反応を監視する端末。断片的なログが絶えず流れている。'},{x:8,y:6,name:'蓄電器',text:'ゲート用の蓄電器だ。低い駆動音とともに、淡い光が脈打っている。'}]
+};
+const indoorDecor={
+ home:[{x:9,y:4,name:'ロッカー'},{x:9,y:6,name:'データ棚'}],
+ shop:[{x:4,y:2,w:2,h:1,name:'受付カウンター'},{x:9,y:4,name:'自販機'}],
+ clinic:[{x:9,y:4,name:'回復ポッド'}],
+ square:[{x:8,y:3,w:2,h:1,name:'休憩ベンチ'},{x:9,y:5,w:1,h:1,name:'観葉植物'}],
+ workshop:[{x:9,y:4,name:'配電盤'},{x:9,y:6,name:'ドローン充電台'}],
+ gate:[{x:4,y:3,w:2,h:1,name:'ゲート端末'},{x:4,y:6,w:2,h:2,name:'ワープゲート'}]
 };
 // Each furnishing has its own discoverable details. These have no gameplay rewards.
 const INDOOR_OBJECT_STORIES={
@@ -5315,140 +5373,123 @@ function townIndoorActorTalk(actor){
  return townDialoguePick(actor.name,'indoor-'+townInterior+'-'+actor.name,lines);
 }
 function indoorObjectAt(x,y,room=townInterior){return (indoorInspectables[room]||[]).find(o=>o.x===x&&o.y===y)||null;}
+function decorOccupiesCell(d,x,y){const w=d.w||1,h=d.h||1;return x>=d.x&&x<d.x+w&&y>=d.y&&y<d.y+h;}
+function indoorDecorAt(x,y,room=townInterior){return (indoorDecor[room]||[]).find(d=>decorOccupiesCell(d,x,y))||null;}
+function townSceneryAt(x,y){return townScenery.find(s=>decorOccupiesCell(s,x,y))||null;}
 function indoorBlocked(x,y){
  if(x<1||y<1||x>10||y>8)return true;
  // Inspectable furniture is a solid obstacle: interact with it from an adjacent tile.
  if(indoorObjectAt(x,y))return true;
+ if(indoorDecorAt(x,y))return true;
  if(indoorActors(townInterior).some(a=>a.x===x&&a.y===y))return true;
  if(townInterior==='gate'&&y===4&&(x===7||x===9))return true;
  return false;
 }
 
 function drawInteriorInspectableObject(t,o,room,index=0){
- const px=o.x*32,py=o.y*32,name=o.name||'';
- const accentByRoom={home:'#c8d8f0',shop:'#f4ce7d',clinic:'#90ead8',square:'#d8e4ee',workshop:'#f1c75a',gate:'#8fd7ff'};
+ const px=o.x*32,py=o.y*32,name=o.name||'',w=(o.w||1)*32,h=(o.h||1)*32;
+ const accentByRoom={home:'#b9d6ff',shop:'#ffd78a',clinic:'#98efd8',square:'#e6edf5',workshop:'#f2c77a',gate:'#91f6d2'};
  const accent=accentByRoom[room]||'#bfe9ef';
  const R=(x,y,w,h,c)=>{t.fillStyle=c;t.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))};
+ const I=(x,y,w,h,c)=>{t.fillStyle=c;t.fillRect(px+Math.round(x),py+Math.round(y),Math.round(w),Math.round(h))};
+ const O=(x,y,w,h,c='#1a2b38')=>{t.strokeStyle=c;t.lineWidth=1;t.strokeRect(px+Math.round(x)+.5,py+Math.round(y)+.5,Math.round(w)-1,Math.round(h)-1)};
+ const dot=(x,y,c)=>R(px+x,py+y,1,1,c);
+ const panel=(x,y,w,h,body,border='#1a2b38',hl='#ffffff33')=>{I(x,y,w,h,body);O(x,y,w,h,border);I(x+1,y+1,w-2,1,hl)};
+ const feet=(x1,x2,y,c='#435766')=>{I(x1,y,2,4,c);I(x2,y,2,4,c)};
+ const slat=(x,y,w,step,c)=>{for(let i=0;i<w;i+=step)I(x+i,y,1,1,c)};
  t.save();
- R(px+5,py+25,22,3,'#0000002e');
- t.strokeStyle='#203949';t.lineWidth=1.5;t.strokeRect(px+4.5,py+4.5,23,23);
- if(/寝台|ベッド/.test(name)){
-  R(px+6,py+8,20,13,'#5b6f82');R(px+8,py+10,7,5,'#eef6ff');R(px+16,py+10,8,9,accent);R(px+6,py+21,20,2,'#dfeaf3');
- }else if(/食卓|作業台|案内卓/.test(name)){
-  R(px+7,py+10,18,9,'#6d7f8e');R(px+9,py+12,14,5,accent+'aa');R(px+9,py+19,3,5,'#435766');R(px+20,py+19,3,5,'#435766');
+ R(px+4,py+h-6,Math.max(20,w-8),2,'#06131e33');
+ if(/ワープゲート/.test(name)){
+  I(6,h-9,w-12,5,'#233948');I(10,h-12,w-20,2,'#5caebd');
+  panel(9,7,w-18,h-20,'#2e4657','#6ed8ff','#c9f8ff55');
+  panel(13,11,w-26,h-28,'#173143',accent,'#ffffff55');
+  I(16,14,w-32,2,'#aaf8ff66');I(16,h-19,w-32,2,'#6ed8ff55');
+  I(8,h-18,5,8,'#627988');I(w-13,h-18,5,8,'#627988');
+  I(10,h-17,1,5,'#d8eef7');I(w-11,h-17,1,5,'#d8eef7');
+  for(let k=0;k<5;k++){dot(17+k*4,15+(k%2),accent);dot(w-18-k*4,15+((k+1)%2),accent)}
+ }else if(/受付カウンター/.test(name)){
+  panel(3,10,w-6,14,'#d9e1e8','#60707e','#ffffff55');
+  I(6,13,w-12,8,'#a7b6c2');I(8,11,w-16,2,'#eef6ff');I(10,22,w-20,2,accent);
+  I(12,6,16,5,'#486272');panel(14,7,12,3,'#163040',accent,'#cfffff66');
+  feet(8,w-10,24,'#667785');
+ }else if(/案内卓/.test(name)){
+  panel(5,11,w-10,11,'#7b8d9e','#495965','#ffffff55');
+  I(7,13,w-14,6,'#dde5ee');I(11,9,10,3,'#b7c9d7');I(22,9,8,3,'#90d4ff');
+  feet(10,w-12,22,'#445361');I(12,19,w-24,2,accent);
+ }else if(/休憩ベンチ|待合席/.test(name)){
+  panel(4,13,w-8,5,'#6c7f97','#40505f','#c8d9ee55');
+  I(6,10,w-12,3,'#9cb2d0');I(8,18,w-16,2,'#4e5f6f');feet(8,w-10,20,'#445361');
+  I(7,12,4,1,'#ffffff77');I(w-11,12,4,1,'#ffffff77');
+ }else if(/ゲート端末/.test(name)){
+  panel(5,9,14,15,'#586d7c','#223746','#ffffff44');panel(w-19,9,14,15,'#586d7c','#223746','#ffffff44');
+  panel(19,12,w-38,10,'#193344',accent,'#d8faff66');I(21,14,w-42,2,'#8ef1ff88');
+  I(8,18,8,2,'#dfe9f0');I(w-16,18,8,2,'#dfe9f0');I(11,13,3,3,accent);I(w-14,13,3,3,accent);
+ }else if(/食卓/.test(name)){
+  panel(6,9,20,11,'#8a735d','#594736','#f2d4af55');I(8,11,16,7,'#a48970');
+  I(12,12,4,4,'#f4efdd');I(18,12,3,3,'#9de6ff');I(22,13,2,2,'#ffca8d');feet(9,21,20,'#4a382b');
+ }else if(/作業台/.test(name)){
+  panel(5,9,22,11,'#6f6b76','#45424b','#ffffff44');I(7,11,18,7,'#8d8992');
+  I(8,12,5,2,'#efcd76');I(15,12,2,5,'#cad4dc');I(20,12,4,2,'#7fd7c6');I(19,15,6,1,'#273c49');feet(8,22,20,'#44414a');
  }else if(/掲示板/.test(name)){
-  R(px+7,py+7,18,16,'#6f827e');R(px+9,py+9,14,12,'#c9d2bc');R(px+11,py+11,4,2,'#ffec8b');R(px+17,py+14,4,2,'#ffd0d0');R(px+13,py+17,6,2,'#d2ecff');
- }else if(/待合席/.test(name)){
-  R(px+7,py+15,18,5,'#7a8994');R(px+9,py+11,14,4,accent);R(px+9,py+20,3,3,'#435766');R(px+20,py+20,3,3,'#435766');
- }else if(/箱|資材/.test(name)){
-  R(px+8,py+9,16,14,'#7a6246');R(px+10,py+11,12,2,'#d1b08a');R(px+15,py+9,2,14,'#5c4630');
+  panel(6,6,20,18,'#6e7c6b','#3f4c3d','#f5ffdd55');I(8,8,16,14,'#ced7bf');
+  I(10,10,5,3,'#ffef9b');I(17,10,5,4,'#d0eeff');I(10,15,8,4,'#ffd0d7');I(19,16,3,2,'#ffffff');I(12,20,9,1,'#60706a');
+ }else if(/在庫箱|資材箱/.test(name)){
+  panel(8,9,16,14,'#7a6043','#4d3927','#d8ba8e55');I(10,11,12,2,'#cfa77a');I(10,14,12,1,'#5b432d');I(15,9,2,14,'#59402c');I(9,22,14,1,'#e0c49a');
+ }else if(/自販機/.test(name)){
+  panel(9,5,14,20,'#576b79','#2a3b46','#ffffff44');I(11,7,10,12,'#183243');
+  I(12,8,3,3,'#f4d76c');I(16,8,3,3,'#89d6ff');I(12,12,3,3,'#ff95b3');I(16,12,3,3,'#88e4b2');I(12,16,7,2,'#ffffff88');I(18,20,2,3,'#d9e2e9');I(11,22,6,2,'#41515b');
+ }else if(/ロッカー/.test(name)){
+  panel(6,7,20,17,'#8c99a3','#56636c','#ffffff44');I(15,8,2,15,'#606d76');I(8,9,6,13,'#9aa7b1');I(18,9,6,13,'#9aa7b1');I(11,12,1,1,'#edf5ff');I(21,12,1,1,'#edf5ff');I(10,18,3,1,'#697780');I(20,18,3,1,'#697780');
+ }else if(/観葉植物/.test(name)){
+  panel(10,18,12,6,'#68797e','#45555a','#dce8ea44');I(12,19,8,4,'#7b8b90');
+  I(15,7,2,12,'#73926c');I(11,10,4,6,'#43a372');I(17,10,4,6,'#43a372');I(9,13,5,5,'#68cc92');I(18,13,5,5,'#68cc92');I(13,5,6,4,'#91efad');
+ }else if(/街灯/.test(name)){
+  I(15,8,2,16,'#6b7d88');I(12,6,8,3,'#f3d989');I(10,9,12,2,'#fde9a477');I(14,11,4,2,'#9dc1cc');I(14,22,4,2,'#4b5b65');
+ }else if(/データ棚/.test(name)){
+  panel(6,7,20,17,'#647888','#314654','#ffffff44');I(8,10,16,2,'#243746');I(8,15,16,2,'#243746');I(8,20,16,2,'#243746');
+  I(9,8,4,2,accent);I(15,8,3,2,'#e5edf5');I(19,8,5,2,'#ffdd8b');I(10,13,6,1,'#98aebc');I(17,18,5,2,'#c5d0d8');
+ }else if(/寝台|ベッド/.test(name)){
+  panel(5,8,22,15,'#6b7e90','#445362','#ffffff44');I(7,10,8,6,'#eef6ff');I(16,10,9,9,accent);I(7,19,18,2,'#d7e6f1');I(18,12,6,1,'#ffffff88');
  }else if(/カーテン/.test(name)){
-  R(px+10,py+6,12,3,'#b6dadd');R(px+11,py+9,10,14,'#e9ffff');R(px+13,py+11,2,10,'#b9dde0');R(px+17,py+11,2,10,'#b9dde0');
- }else if(/端末|監視|制御|医療機器|加工機|販売/.test(name)){
-  R(px+8,py+7,16,16,'#4b5e6d');R(px+10,py+10,12,6,'#1d3745');R(px+11,py+11,10,4,accent);R(px+12,py+18,8,2,'#cfd8df');
+  I(10,5,12,3,'#9ab8bf');I(11,8,10,15,'#ecffff');I(12,9,2,13,'#d0e9ec');I(15,10,2,12,'#ffffff');I(18,9,2,13,'#d0e9ec');I(11,21,10,2,'#b9d3d7');
+ }else if(/回復ポッド/.test(name)){
+  panel(10,5,12,20,'#6e828f','#304351','#ffffff44');I(12,7,8,15,accent+'99');I(13,8,6,10,'#ffffff33');I(14,10,4,7,'#e6ffff55');I(14,18,4,2,'#bde8ff');I(13,22,6,2,'#536978');
+ }else if(/ドローン充電台/.test(name)){
+  panel(8,18,16,7,'#647885','#394954','#ffffff44');I(11,20,10,2,accent);I(12,10,8,6,'#8b9baa');I(15,8,2,2,'#eff6ff');I(13,16,4,2,'#e2c36b');I(9,17,3,2,'#d9b65b');I(20,17,3,2,'#d9b65b');
+ }else if(/販売端末|監視端末|制御卓|医療機器|加工機/.test(name)){
+  panel(8,7,16,16,'#526574','#243847','#ffffff44');I(10,9,12,7,'#173243');I(11,10,10,5,accent);I(12,17,8,2,'#dbe5ec');I(20,19,2,2,'#efc77c');I(11,11,7,1,'#ffffff88');
+ }else if(/配電盤/.test(name)){
+  panel(9,7,14,17,'#61717e','#2d3d48','#ffffff44');I(11,10,10,5,'#273945');I(14,12,4,2,'#ffd86e');I(12,18,2,2,'#f28a72');I(16,18,2,2,'#92e0ff');I(20,10,1,10,'#899ca8');
  }else if(/蓄電器/.test(name)){
-  R(px+10,py+7,12,16,'#547181');R(px+12,py+10,8,7,accent);R(px+14,py+19,4,2,'#d9e5ef');
+  panel(10,6,12,18,'#5a7687','#2c4151','#ffffff44');I(12,9,8,8,accent);I(13,10,6,5,'#b7ffff44');I(14,18,4,3,'#d6e3ec');I(12,22,8,1,'#718997');
  }else{
-  R(px+8,py+8,16,14,'#596b79');R(px+10,py+10,12,8,accent+'aa');
+  panel(8,8,16,14,'#5f7281','#30424d','#ffffff44');I(10,10,12,8,accent+'aa');
  }
- R(px+10,py+27,12,2,accent);
- // Two-pixel-scale markings improve material readability without adding new scenery.
- R(px+8.5,py+8.5,1,.5,'#f4ffff88');
- R(px+22.5,py+20.5,1,.5,'#06152099');
- R(px+6.5,py+24.5,2,.5,'#ffffff3b');
- if(/端末|機器|加工|制御|蓄電/.test(name)){
-  R(px+12.5,py+12.5,5,.5,'#e8ffff');
-  R(px+12.5,py+14,3,.5,'#0b6170');
-  R(px+18.5,py+18.5,1.5,1,'#ffe08c');
- }
- if(/寝台|ベッド/.test(name)){
-  R(px+9,py+10.5,5,.5,'#ffffff');
-  R(px+17,py+16.5,6,.5,'#ffffff66');
- }
- if(/箱|資材/.test(name)){
-  R(px+10.5,py+14,11,.5,'#3b2a23');
-  R(px+16,py+10.5,.5,10,'#e1bd8a');
- }
+ if(!/受付カウンター|案内卓|休憩ベンチ|待合席|ゲート端末|ワープゲート/.test(name))I(10,27,12,2,accent);
  t.restore();
 }
 function drawIndoorWalkability(t,room){
+ const decor=indoorDecor[room]||[];
  const objects=indoorInspectables[room]||[];
  t.save();
+ for(let i=0;i<decor.length;i++)drawInteriorInspectableObject(t,decor[i],room,i);
  for(let i=0;i<objects.length;i++)drawInteriorInspectableObject(t,objects[i],room,i);
  t.restore();
 }
 // Simplified interiors: fewer decorative details, clearer purpose-driven furniture.
+// Room architecture only. All visible furniture is rendered from indoorInspectables,
+// which is also the authoritative collision and interaction map.
 function drawTownInteriorDetails(t,room,th){
- const R=(x,y,w,h,c)=>{t.fillStyle=c;t.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))};
- const light=(x,y,w,h,c,blur=8)=>{t.save();t.shadowBlur=blur;t.shadowColor=c;R(x,y,w,h,c);t.restore()};
- const frame=(x,y,w,h,body,edge)=>{R(x,y,w,h,edge);R(x+2,y+2,w-4,h-4,body)};
- const rug=(x,y,w,h,base,trim)=>{R(x,y,w,h,base);R(x+3,y+3,w-6,h-6,trim+'55');R(x+4,y+4,w-8,2,trim);R(x+4,y+h-6,w-8,2,trim)};
- const table=(x,y,w,h,top,leg)=>{R(x,y,w,h,top);R(x+3,y+h-1,3,5,leg);R(x+w-6,y+h-1,3,5,leg)};
- const bed=(x,y,w,h,frameC,blanket)=>{R(x,y,w,h,frameC);R(x+3,y+3,w-6,h-6,'#334451');R(x+5,y+5,18,10,'#eef6ff');R(x+25,y+5,w-30,h-10,blanket)};
- const cabinet=(x,y,w,h,c)=>{R(x,y,w,h,c);R(x+3,y+3,w-6,3,'#dce6ef55');R(x+4,y+h-6,w-8,2,'#cfd8df');};
- const shelf=(x,y,w,h,c,accent)=>{R(x,y,w,h,c);R(x+4,y+7,w-8,2,'#dce6ef55');R(x+4,y+h-9,w-8,2,'#1d2e39');R(x+6,y+4,8,5,accent);R(x+18,y+4,8,5,accent);R(x+w-14,y+4,8,5,accent)};
- const machine=(x,y,w,h,body,glow)=>{frame(x,y,w,h,body,'#8aa0ad');R(x+7,y+9,w-14,8,'#163142');light(x+9,y+11,w-18,4,glow,7);R(x+10,y+h-10,10,3,'#dec47a');};
- const board=(x,y,w,h)=>{frame(x,y,w,h,'#778a7b','#c8d0c3');R(x+5,y+5,w-10,h-10,'#d7dfcd');R(x+10,y+9,8,3,'#fff0a1');R(x+22,y+13,8,3,'#ffc9c9');R(x+14,y+21,12,3,'#d4ecff');};
- const plant=(x,y)=>{R(x+4,y+15,16,7,'#64757c');R(x+7,y+9,10,7,'#2f7f67');R(x+11,y+3,3,10,'#78d1a4');};
- const windowBand=(xs)=>{for(const x of xs){frame(x,45,34,14,'#20374a','#6d8797');light(x+6,50,22,4,th.light,8)}};
- // clean room frame
- R(32,34,320,4,'#071b2b');R(32,286,320,4,'#071b2b');
- R(32,34,4,256,'#071b2b');R(348,34,4,256,'#071b2b');
- R(36,38,312,248,'rgba(255,255,255,0.03)');
- windowBand([54,150,246,310]);
- R(40,64,304,2,'rgba(255,255,255,0.05)');
- if(room==='home'){
-  rug(50,82,76,86,'#5b668755','#bfd0e8');
-  bed(50,88,72,30,'#4f6274','#8fa7c8');
-  bed(50,124,72,30,'#4f6274','#7f91b8');
-  table(150,94,54,18,'#667583','#445360');
-  cabinet(144,128,64,20,'#5d6d7d');
-  shelf(236,86,74,24,'#485c6a','#c8d8f0');
-  machine(238,128,70,34,'#3e5260','#9ed1ff');
-  plant(300,226);
- }else if(room==='shop'){
-  shelf(42,82,72,24,'#765437','#f4ce7d');
-  shelf(126,82,72,24,'#765437','#f4ce7d');
-  shelf(244,82,88,24,'#765437','#f4ce7d');
-  table(182,138,74,20,'#7c5839','#563c28');
-  cabinet(44,192,58,28,'#705139');
-  cabinet(112,192,58,28,'#705139');
-  cabinet(256,236,78,24,'#705139');
-  plant(314,130);
- }else if(room==='clinic'){
-  cabinet(42,82,74,22,'#a3c9cc');
-  shelf(126,82,72,24,'#9dc5c9','#90ead8');
-  machine(250,80,84,34,'#8eb7bb','#90ead8');
-  bed(54,176,88,34,'#cfe8e8','#9bcfd8');
-  bed(202,176,88,34,'#cfe8e8','#9bcfd8');
-  R(176,170,4,58,'#5b909e');R(180,174,4,50,'#a8e9e8');
-  machine(118,238,70,34,'#92bcc3','#66efd0');
- }else if(room==='square'){
-  board(44,82,86,44);
-  machine(142,84,56,28,'#708390','#d8e4ee');
-  table(214,172,102,24,'#6b818e','#485864');
-  cabinet(44,242,80,22,'#667b87');
-  cabinet(254,242,78,22,'#667b87');
-  plant(134,238);plant(332,238);
- }else if(room==='workshop'){
-  shelf(40,82,72,24,'#4a5a65','#f1c75a');
-  machine(118,80,60,36,'#455663','#8adcc5');
-  machine(244,78,90,40,'#3d4d59','#8adcc5');
-  cabinet(48,166,78,28,'#5b6b76');
-  table(158,206,54,22,'#715245','#48322b');
-  cabinet(42,244,72,22,'#545e68');
-  cabinet(124,244,40,22,'#6b5749');
-  cabinet(170,244,40,22,'#6b5749');
- }else if(room==='gate'){
-  machine(44,80,76,36,'#35505f','#89f0d1');
-  machine(258,80,76,36,'#3c5670','#9dd0ff');
-  machine(44,132,76,34,'#35505f','#89f0d1');
-  machine(258,132,76,34,'#3c5670','#9dd0ff');
-  frame(154,78,76,44,'#314a55','#7da6b2');light(164,88,56,6,'#8ae4c0');
-  R(210,162,4,90,'#456477');R(278,162,4,90,'#456477');
-  cabinet(140,244,44,22,'#596069');cabinet(188,244,44,22,'#596069');cabinet(258,244,76,22,'#536a76');
- }
- for(const x of [45,166,324])light(x,42,15,3,th.light);
+ const R=(x,y,w,h,c)=>{t.fillStyle=c;t.fillRect(x,y,w,h)};
+ // One clean wall band, with a room-specific sign; no non-interactive imitation furniture.
+ R(33,33,318,30,'#152939');
+ R(33,62,318,3,'#476579');
+ R(34,66,316,2,'#091b29');
+ const names={home:'自宅',shop:'道具屋',clinic:'診療所',square:'集会所',workshop:'合成工房',gate:'迷宮入口'};
+ const accents={home:'#bdd5f6',shop:'#f3cb76',clinic:'#98ebd5',square:'#d8e5ef',workshop:'#f2c96f',gate:'#89ebc7'};
+ const accent=accents[room]||'#b8dfea';
+ R(43,44,4,12,accent);
+ townTextLabel(t,names[room]||'室内',192,48,{fg:'#f0fbff',bg:'rgba(9,27,40,0.88)',font:'bold 15px sans-serif',padX:10,padY:3});
 }
 
 function townTextLabel(t,text,x,y,{fg='#ecfbff',bg='rgba(7,19,31,0.76)',stroke='#06131d',padX=4,padY=2,font='bold 11px sans-serif',align='center'}={}){
@@ -5478,38 +5519,25 @@ function indoorDraw(){
  t.imageSmoothingEnabled=false;
  const npcProfile=indoorNPC[townInterior];
  const themes={
-  home:{bg:'#101824',trim:'#60798b',counter:'#b88a55',light:'#ccb7ef',decor:'#8bd8ff'},
-  shop:{bg:'#1c1510',trim:'#8a6a44',counter:'#a57a46',light:'#f2d783',decor:'#d0a261'},
-  clinic:{bg:'#0f1f25',trim:'#6ea0b0',counter:'#90c9c5',light:'#7ef2d1',decor:'#8fd7ff'},
-  square:{bg:'#172028',trim:'#83919d',counter:'#a37f5d',light:'#dfe9f0',decor:'#b6c9da'},
-  workshop:{bg:'#18151d',trim:'#8c6a80',counter:'#86615d',light:'#8adcc5',decor:'#f0c94a'},
-  gate:{bg:'#111924',trim:'#6e8fa0',counter:'#6b8a74',light:'#89f0d1',decor:'#9dd0ff'}
+  home:{bg:'#132030',trim:'#708ba0',counter:'#c79c63',light:'#d5cbff',decor:'#8fdcff'},
+  shop:{bg:'#261912',trim:'#9d774a',counter:'#c58b4f',light:'#ffd88d',decor:'#d7a664'},
+  clinic:{bg:'#12252b',trim:'#78b4bf',counter:'#9fd4cb',light:'#8ff6d9',decor:'#9adbff'},
+  square:{bg:'#1b2330',trim:'#93a0b2',counter:'#b4926d',light:'#edf3ff',decor:'#c2d4e7'},
+  workshop:{bg:'#211a26',trim:'#9b7191',counter:'#9d6e69',light:'#97e8ce',decor:'#f4d06e'},
+  gate:{bg:'#14202a',trim:'#7ea0b5',counter:'#75967f',light:'#97ffd9',decor:'#a9dcff'}
  };
  const th=themes[npcProfile.theme]||themes.home;
  t.fillStyle=th.bg;t.fillRect(0,0,384,320);
  for(let y=0;y<10;y++)for(let x=0;x<12;x++){
-  if(x===0||y===0||x===11||y===9){t.fillStyle=th.trim;t.fillRect(x*32+1,y*32+1,30,30)}
+  if(x===0||y===0||x===11||y===9){t.fillStyle='#536979';t.fillRect(x*32+1,y*32+1,30,30);t.fillStyle='#384e60';t.fillRect(x*32+3,y*32+3,26,26)}
   else drawIndoorWalkTile(t,x*32,y*32);
  }
  t.fillStyle='#3e8d74';t.fillRect(3*32+3,9*32+2,26,29);townTextLabel(t,'出口',3*32+16,9*32+17,{fg:'#d6ffdd',bg:'rgba(14,43,40,0.78)',font:'bold 13px sans-serif'});
  // Render fixed interior scenery first so the NPC remains visible.
  drawTownInteriorDetails(t,townInterior,th);
  drawIndoorWalkability(t,townInterior);
- // room-specific counter-top and wall-side props (draw before actors so residents never get buried)
- if(townInterior==='shop'){
-  for(const sx of [6,7,8,9]){t.fillStyle='#8f6a41';t.fillRect(sx*32+6,2*32+7,18,4);t.fillStyle='#d9c39b';t.fillRect(sx*32+10,2*32+11,10,7)}
- }else if(townInterior==='clinic'){
-  t.fillStyle='#efffff';t.fillRect(7*32+6,2*32+6,18,18);t.fillStyle='#7ef2d1';t.fillRect(7*32+13,2*32+8,4,14);t.fillRect(7*32+8,2*32+13,14,4);
- }else if(townInterior==='workshop'){
-  t.fillStyle='#4b545f';t.fillRect(7*32+5,2*32+8,22,14);t.fillStyle='#f0c94a';t.fillRect(7*32+12,2*32+5,8,5);t.fillStyle='#8adcc5';t.fillRect(8*32+12,2*32+10,5,12);
- }else if(townInterior==='square'){
-  t.fillStyle='#a9b8c4';t.fillRect(7*32+2,2*32+5,58,20);t.fillStyle='#304657';t.fillRect(7*32+5,2*32+8,52,2);t.fillRect(7*32+5,2*32+14,46,2);
- }else if(townInterior==='home'){
-  t.fillStyle='#7c94aa';t.fillRect(7*32+8,2*32+8,16,14);t.fillStyle='#ccb7ef';t.fillRect(8*32+8,2*32+8,16,14);
- }else if(townInterior==='gate'){
-  t.fillStyle='#9dd0ff';t.fillRect(6*32+10,2*32+8,12,12);t.fillStyle='#89f0d1';t.fillRect(9*32+8,2*32+10,16,8);
- }
- t.fillStyle=th.counter;t.fillRect(2*32,2*32,3*32,32);t.fillStyle='#00000022';t.fillRect(2*32+3,2*32+3,3*32-6,26);
+ // Only gameplay furniture from indoorInspectables is drawn; no duplicate
+ // decorative props or a non-collidable counter layer are placed over walkable tiles.
  for(const actor of indoorActors(townInterior)){
   paintCitizen(t,actor.x*32+16,actor.y*32+16,actor,1);
   townTextLabel(t,actor.name,actor.x*32+16,actor.y*32-5,{font:'bold 11px sans-serif'});
@@ -5522,15 +5550,16 @@ function indoorDraw(){
    townTextLabel(t,door.locked?'封鎖':door.name,door.x*32+16,4*32-6,{font:'bold 10px sans-serif',fg:'#f3fbff'});
   }
  }
- const front=townFrontTile(),hasFrontTarget=!!(townGateNearby()||townNPCNearby()||townIndoorInspectableNearby());
- if(hasFrontTarget){t.save();t.strokeStyle='#fff5a8';t.lineWidth=2;t.strokeRect(front.x*32+3,front.y*32+3,26,26);t.restore();}
+ const front=townFrontTile(),focusedObject=townIndoorInspectableNearby(),hasFrontTarget=!!(townGateNearby()||townNPCNearby()||focusedObject);
+ if(hasFrontTarget){t.save();t.strokeStyle='#fff5a8';t.lineWidth=2;t.strokeRect(front.x*32+2.5,front.y*32+2.5,27,27);t.restore();}
+ if(focusedObject){townTextLabel(t,focusedObject.name,Math.max(48,Math.min(336,front.x*32+16)),Math.max(80,front.y*32-8),{font:'bold 10px sans-serif',fg:'#fff0ae',bg:'rgba(8,28,38,0.94)'});}
  const x=townInteriorPlayer.x*32+16,y=townInteriorPlayer.y*32+16;animateTownAvatar(t,x,y);
  const door=townGateNearby(),nearActor=townNPCNearby(),inspect=townIndoorInspectableNearby();
  const exitAhead=townInteriorPlayer.x===3&&townInteriorPlayer.y===8&&townFacing.dy===1;
  $('townInteract').disabled=!nearActor&&!inspect&&!door&&!exitAhead;
  $('townInteract').textContent=door?'入る：'+door.name:nearActor?'話す：'+nearActor.name:(exitAhead?'街に出る':inspect?'調べる：'+inspect.name:'調べる（'+townFacingName()+'）');
 }
-function townBlocked(x,y){return x<0||y<0||x>=TOWN_W||y>=TOWN_H||townBuildings.some(b=>x>=b.x&&x<b.x+b.w&&y>=b.y&&y<b.y+b.h)||townResidents.some(n=>n.x===x&&n.y===y)}
+function townBlocked(x,y){return x<0||y<0||x>=TOWN_W||y>=TOWN_H||townBuildings.some(b=>x>=b.x&&x<b.x+b.w&&y>=b.y&&y<b.y+b.h)||townResidents.some(n=>n.x===x&&n.y===y)||!!townSceneryAt(x,y)}
 function townNearby(){
  const {x,y}=townFrontTile();
  return townBuildings.find(b=>x>=b.x&&x<b.x+b.w&&y>=b.y&&y<b.y+b.h)||null;
@@ -5568,51 +5597,45 @@ function townDraw(){
  for(const b of townBuildings){
   const X=b.x*32,Y=b.y*32,W=b.w*32,H=b.h*32;
   const sign=signColors[b.id]||'#74e3ed';
-  const facade=t.createLinearGradient(X,Y,X,Y+H);facade.addColorStop(0,b.color);facade.addColorStop(1,'#0f1d2e');
-  t.fillStyle='#0d1724';t.fillRect(X+1,Y+5,W-2,H-4);
-  t.fillStyle=facade;t.fillRect(X+2,Y+4,W-4,H-6);
-  t.fillStyle='#1b3448';t.fillRect(X+4,Y+4,W-8,6);
-  t.fillStyle='#0c1824';t.fillRect(X+7,Y+H-7,W-14,4);
-  // roof and side depth
-  t.fillStyle='#27435a';t.fillRect(X+6,Y+1,W-12,4);t.fillStyle='#0d1726';t.fillRect(X+W-6,Y+7,4,H-12);
-  // neon sign strip
-  t.save();t.shadowColor=sign;t.shadowBlur=8+4*pulse;t.fillStyle=sign;t.fillRect(X+8,Y+7,Math.min(W-16,18),2);t.restore();
+  const roofById={home:'#4f6e96',shop:'#b87f43',clinic:'#4ea58e',square:'#7688aa',workshop:'#9a6aa5',gate:'#4d9a78'};
+  const wallById={home:'#88abd0',shop:'#ddb37d',clinic:'#9ad7c6',square:'#c7d0e1',workshop:'#c9a0cf',gate:'#9ed8bc'};
+  const trimById={home:'#58789d',shop:'#9b6a3a',clinic:'#5f9f92',square:'#8e98aa',workshop:'#8f6a99',gate:'#64997d'};
+  const roof=roofById[b.id]||'#547087',wall=wallById[b.id]||'#b6c7d2',trim=trimById[b.id]||'#688391';
+  // pokemon-like exterior: readable roof, bright wall, clean doorway
+  t.fillStyle='#21303d';t.fillRect(X+2,Y+8,W-4,H-8);
+  t.fillStyle=roof;t.fillRect(X+4,Y+2,W-8,10);
+  t.fillStyle='#dbe8f4';t.fillRect(X+6,Y+4,W-12,2);
+  t.fillStyle=wall;t.fillRect(X+4,Y+11,W-8,H-15);
+  t.fillStyle=trim;t.fillRect(X+4,Y+11,W-8,3);t.fillRect(X+4,Y+H-5,W-8,1);
+  t.fillStyle='#34485a';t.fillRect(X+W-5,Y+12,1,H-14);
+  // door and stoop
+  t.fillStyle='#4d5f6f';t.fillRect(X+W/2-7,Y+H-16,14,9);t.fillStyle='#edf6ff';t.fillRect(X+W/2-5,Y+H-15,10,4);t.fillStyle='#2e4252';t.fillRect(X+W/2+1,Y+H-12,3,3);
+  t.fillStyle='#6e7c86';t.fillRect(X+W/2-9,Y+H-7,18,2);
   // windows
-  for(let row=0;row<2;row++)for(let wx=X+10;wx<X+W-8;wx+=12){
-   const wy=Y+14+row*9;t.save();t.shadowColor='#99eef4';t.shadowBlur=3+2*pulse;t.fillStyle=row===0?'#9cefff':'#72cde1';t.fillRect(wx,wy,6,5);t.restore();t.fillStyle='#d9fbff44';t.fillRect(wx,wy,6,2);t.fillStyle='#183b4b';t.fillRect(wx+2.5,wy+.5,.5,4);t.fillStyle='#e6ffff88';t.fillRect(wx+.5,wy+.5,1,.5)
+  for(let row=0;row<2;row++)for(let wx=X+10;wx<X+W-9;wx+=12){
+   const wy=Y+15+row*9;t.fillStyle='#284254';t.fillRect(wx,wy,6,5);t.fillStyle='#98ebff';t.fillRect(wx+1,wy+1,4,3);t.fillStyle='#dfffff88';t.fillRect(wx+1,wy+1,4,1);t.fillStyle='#173646';t.fillRect(wx+2,wy+1,1,3)
   }
-  // door / entry step
-  t.fillStyle='#0e1d2a';t.fillRect(X+W/2-7,Y+H-18,14,11);t.fillStyle='#f2d783';t.fillRect(X+W/2-5,Y+H-16,4,4);t.fillRect(X+W/2+1,Y+H-16,4,4);t.fillStyle='#7e94a3';t.fillRect(X+W/2-9,Y+H-7,18,2);
-  // building-specific features
+  // roof edge / sign strip
+  t.fillStyle='#223747';t.fillRect(X+6,Y+10,W-12,2);t.save();t.shadowColor=sign;t.shadowBlur=6+3*pulse;t.fillStyle=sign;t.fillRect(X+8,Y+7,Math.min(W-16,18),2);t.restore();
   if(b.id==='home'){
-   t.fillStyle='#5bb8ff';t.fillRect(X+W-22,Y+10,10,8);t.fillStyle='#c1f6ff';t.fillRect(X+W-19,Y+7,4,3);t.fillStyle='#526c85';t.fillRect(X+9,Y+H-12,8,4);
-   t.fillStyle='#8fbdd8';t.fillRect(X+8,Y+9,12,2);t.fillRect(X+8,Y+12,12,2);t.fillStyle='#d5f7ff';t.fillRect(X+11,Y+11,2,8);
-   t.fillStyle='#3d5367';t.fillRect(X+W-14,Y+8,8,4);t.fillStyle='#91f1ff';t.fillRect(X+W-11,Y+5,2,3);
+   t.fillStyle='#7cb6e2';t.fillRect(X+8,Y+6,10,4);t.fillStyle='#d7f7ff';t.fillRect(X+11,Y+3,4,3);t.fillStyle='#7090b5';t.fillRect(X+W-16,Y+5,8,5);t.fillStyle='#b9dcff';t.fillRect(X+W-14,Y+6,4,2);
+   t.fillStyle='#8fc3dc';t.fillRect(X+9,Y+H-20,8,4);t.fillStyle='#5c7a92';t.fillRect(X+10,Y+H-16,6,3);
   }else if(b.id==='shop'){
-   t.fillStyle='#d2a56f';t.fillRect(X+W/2-11,Y+H-11,22,4);t.fillStyle='#8b5a31';t.fillRect(X+3,Y+11,W-6,3);t.fillStyle='#ffe5a8';t.fillRect(X+W/2-7,Y+10,14,3);
-   t.fillStyle='#6a3d24';t.fillRect(X+6,Y+H-23,W-12,3);t.fillStyle='#f8c978';t.fillRect(X+6,Y+H-20,W-12,4);t.fillStyle='#d48d53';t.fillRect(X+8,Y+H-19,8,3);t.fillRect(X+W-16,Y+H-19,8,3);
-   t.fillStyle='#fff3c4';t.fillRect(X+W/2-2,Y+13,4,6);t.fillRect(X+W/2-10,Y+15,3,4);t.fillRect(X+W/2+7,Y+15,3,4);
+   t.fillStyle='#fff1c5';t.fillRect(X+W/2-9,Y+5,18,4);t.fillStyle='#c1783a';t.fillRect(X+W/2-10,Y+6,20,1);
+   t.fillStyle='#9e6330';t.fillRect(X+6,Y+H-21,W-12,3);t.fillStyle='#f1c070';t.fillRect(X+8,Y+H-18,W-16,5);t.fillStyle='#e59b55';t.fillRect(X+10,Y+H-17,5,3);t.fillRect(X+W-15,Y+H-17,5,3);
   }else if(b.id==='clinic'){
-   t.fillStyle='#7ef2d1';t.fillRect(X+W/2-2,Y+H-23,4,12);t.fillRect(X+W/2-8,Y+H-17,16,4);t.fillStyle='#dafefe';t.fillRect(X+8,Y+11,W-16,2);
-   t.fillStyle='#d5ffff';t.fillRect(X+10,Y+9,W-20,2);t.fillStyle='#8ef7de';t.fillRect(X+W-18,Y+11,8,8);t.fillStyle='#d8fffb';t.fillRect(X+W-15,Y+14,2,2);
-   t.fillStyle='#77d2cb';t.fillRect(X+7,Y+H-20,6,8);t.fillRect(X+W-13,Y+H-20,6,8);
+   t.fillStyle='#ecffff';t.fillRect(X+W/2-2,Y+4,4,16);t.fillRect(X+W/2-8,Y+10,16,4);t.fillStyle='#8ff2d7';t.fillRect(X+W-18,Y+6,8,8);t.fillStyle='#ecfffb';t.fillRect(X+W-15,Y+9,2,2);t.fillStyle='#8cc6c1';t.fillRect(X+8,Y+H-18,6,6);
   }else if(b.id==='square'){
-   t.fillStyle='#a8d2da';t.fillRect(X+8,Y+12,W-16,3);t.fillStyle='#e8f9ff';t.fillRect(X+12,Y+17,W-24,2);t.fillStyle='#6c7f90';t.fillRect(X+W-18,Y+11,8,10);
-   t.fillStyle='#cde8f6';t.fillRect(X+W/2-1,Y+10,2,13);t.fillStyle='#e6fdff';t.fillRect(X+W/2-7,Y+13,14,2);
-   t.fillStyle='#8ec4d1';t.fillRect(X+8,Y+H-16,W-16,2);
+   t.fillStyle='#f5fbff';t.fillRect(X+W/2-1,Y+4,2,18);t.fillRect(X+W/2-7,Y+10,14,2);t.fillStyle='#b7cadf';t.fillRect(X+8,Y+H-18,W-16,3);t.fillStyle='#dce9f5';t.fillRect(X+W-17,Y+6,8,9);
   }else if(b.id==='workshop'){
-   t.fillStyle='#f0c94a';t.fillRect(X+W/2-9,Y+H-11,18,4);t.fillStyle='#6b536a';t.fillRect(X+7,Y+10,W-14,4);t.fillStyle='#8adcc5';t.fillRect(X+W-18,Y+12,8,8);
-   t.fillStyle='#7d5f88';t.fillRect(X+6,Y+H-23,W-12,3);t.fillStyle='#f7e078';t.fillRect(X+10,Y+15,6,6);t.fillRect(X+W-16,Y+15,6,6);
-   t.strokeStyle='#ffd772';t.lineWidth=1;t.beginPath();t.moveTo(X+13.5,Y+12.5);t.lineTo(X+16.5,Y+9.5);t.moveTo(X+16.5,Y+12.5);t.lineTo(X+13.5,Y+9.5);t.stroke();
+   t.fillStyle='#f3d46f';t.fillRect(X+W/2-9,Y+5,18,4);t.fillStyle='#8d6a98';t.fillRect(X+7,Y+H-21,W-14,3);t.fillStyle='#9fe7cf';t.fillRect(X+W-17,Y+6,8,8);t.fillStyle='#f9e388';t.fillRect(X+10,Y+15,6,5);t.fillRect(X+W-16,Y+15,6,5);
+   t.strokeStyle='#ffe08c';t.lineWidth=1;t.beginPath();t.moveTo(X+13.5,Y+11.5);t.lineTo(X+16.5,Y+8.5);t.moveTo(X+16.5,Y+11.5);t.lineTo(X+13.5,Y+8.5);t.stroke();
   }else if(b.id==='gate'){
-   t.fillStyle='#74f0bf';t.fillRect(X+W/2-12,Y+H-22,24,3);t.fillRect(X+W/2-2,Y+9,4,18);t.fillStyle='#b8ffeb';t.fillRect(X+W/2-6,Y+11,12,2);t.fillStyle='#4f6e86';t.fillRect(X+9,Y+H-11,W-18,2);
-   t.strokeStyle='#7cf6c3';t.lineWidth=2;t.strokeRect(X+W/2-14,Y+9,28,H-18);t.fillStyle='rgba(116,240,191,'+(0.18+0.12*pulse)+')';t.fillRect(X+W/2-10,Y+12,20,H-24);
-   t.fillStyle='#d9fff3';t.fillRect(X+W/2-5,Y+15,10,2);t.fillRect(X+W/2-5,Y+H-19,10,2);
+   t.strokeStyle='#88ffd3';t.lineWidth=2;t.strokeRect(X+W/2-13,Y+6,26,H-15);t.fillStyle='rgba(136,255,211,'+(0.20+0.10*pulse)+')';t.fillRect(X+W/2-10,Y+9,20,H-21);t.fillStyle='#e8fff8';t.fillRect(X+W/2-5,Y+13,10,2);t.fillRect(X+W/2-5,Y+H-17,10,2);t.fillStyle='#609e7e';t.fillRect(X+9,Y+H-18,W-18,2);
   }
-  // cables and satellite bits
-  t.fillStyle='#39566a';t.fillRect(X+5,Y+2,8,2);t.fillRect(X+W-18,Y+2,9,2);t.fillRect(X+W-14,Y+0,2,6);
-  t.strokeStyle=nearby===b?'#f7e394':'#8fb9c9';t.lineWidth=nearby===b?3:1.5;t.strokeRect(X+2,Y+4,W-4,H-6);
-  t.save();t.shadowColor='rgba(0,0,0,0.45)';t.shadowBlur=4;t.fillStyle='#e8f9ff';t.textAlign='center';t.textBaseline='middle';t.font='bold 19px sans-serif';t.fillText(b.icon,X+W/2,Y+29);t.restore();
+  t.strokeStyle=nearby===b?'#fff0a1':'#243746';t.lineWidth=nearby===b?2.5:1.5;t.strokeRect(X+4.5,Y+11.5,W-9,H-15);
+  t.fillStyle='#20323f';t.fillRect(X+W/2-10,Y+26,20,9);
+  t.save();t.shadowColor='rgba(0,0,0,0.35)';t.shadowBlur=3;t.fillStyle='#f0fbff';t.textAlign='center';t.textBaseline='middle';t.font='bold 19px sans-serif';t.fillText(b.icon,X+W/2,Y+29);t.restore();
   townTextLabel(t,b.name,X+W/2,Y+46,{font:'bold 11px sans-serif'});
  }
  for(const n of townResidents){const x=n.x*32+16,y=n.y*32+16;paintCitizen(t,x,y,n,townResidents.indexOf(n));townTextLabel(t,n.name,x,y-17,{font:'bold 10px sans-serif'});}
