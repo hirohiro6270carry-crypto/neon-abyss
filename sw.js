@@ -1,4 +1,4 @@
-const CACHE='neon-abyss-v568-town-clarity';
+const CACHE='neon-abyss-v569-hi-res-town-pixels';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
